@@ -1,0 +1,153 @@
+<section class="aca-ai-agents">
+  <header class="aca-ai-agents__header">
+    <div class="aca-ai-agents__brand">
+      <img src="assets/aca-ai-agents/images/alfdockia-logo.png" alt="AlfDockia" />
+      <div>
+        <p class="aca-ai-agents__eyebrow">AlfDockia Control Center</p>
+        <h1>Agentes de IA</h1>
+        <p class="aca-ai-agents__intro">Gestión de agentes conectados a Alfresco Content Services.</p>
+      </div>
+    </div>
+
+    <div class="aca-ai-agents__actions">
+      <button
+        *ngIf="(appNavBarMode$ | async) === 'collapsed'"
+        mat-icon-button
+        type="button"
+        aria-label="Mostrar menú lateral"
+        matTooltip="Mostrar menú lateral"
+        (click)="reopenNavigation()"
+      >
+        <mat-icon>keyboard_double_arrow_right</mat-icon>
+      </button>
+      <button mat-icon-button type="button" aria-label="Actualizar agentes" matTooltip="Actualizar" (click)="loadAgents()" [disabled]="loading">
+        <mat-icon>refresh</mat-icon>
+      </button>
+      <button mat-raised-button color="primary" type="button" (click)="openCreateDialog()" [disabled]="workingAgentId === '__create__'">
+        <mat-icon>add</mat-icon>
+        <span>Nuevo agente</span>
+      </button>
+    </div>
+  </header>
+
+  <mat-progress-bar *ngIf="loading || workingAgentId" mode="indeterminate"></mat-progress-bar>
+
+  <div *ngIf="errorMessage" class="aca-ai-agents__banner">
+    <mat-icon>info</mat-icon>
+    <span>{{ errorMessage }}</span>
+  </div>
+
+  <div class="aca-ai-agents__layout">
+    <section class="aca-ai-agents__list-panel" aria-label="Listado de agentes">
+      <div class="aca-ai-agents__panel-title">
+        <h2>Inventario</h2>
+        <span>{{ agents.length }} agentes</span>
+      </div>
+
+      <div *ngIf="!loading && !agents.length" class="aca-ai-agents__empty">
+        <mat-icon>device_hub</mat-icon>
+        <strong>No hay agentes desplegados</strong>
+        <span>Crea el primero pegando el JSON de AlfDockia.</span>
+      </div>
+
+      <button
+        *ngFor="let agent of agents; trackBy: trackByAgentId"
+        class="aca-ai-agents__row"
+        type="button"
+        [class.aca-ai-agents__row--selected]="isSelected(agent)"
+        (click)="selectAgent(agent)"
+      >
+        <span class="aca-ai-agents__status-dot" [ngClass]="getStateClass(agent)"></span>
+        <span class="aca-ai-agents__agent-main">
+          <strong>{{ agent.name }}</strong>
+          <span>{{ agent.image }}</span>
+        </span>
+        <span class="aca-ai-agents__state" [ngClass]="getStateClass(agent)">
+          {{ agent.currentState || agent.desiredState || 'unknown' }}
+        </span>
+      </button>
+    </section>
+
+    <aside class="aca-ai-agents__detail-panel" aria-label="Detalle del agente">
+      <ng-container *ngIf="selectedAgent as agent; else detailPlaceholder">
+        <div class="aca-ai-agents__detail-heading">
+          <div>
+            <span class="aca-ai-agents__status-dot" [ngClass]="getStateClass(agent)"></span>
+            <h2>{{ agent.name }}</h2>
+          </div>
+          <span class="aca-ai-agents__state" [ngClass]="getStateClass(agent)">
+            {{ agent.currentState || 'unknown' }}
+          </span>
+        </div>
+
+        <dl class="aca-ai-agents__facts">
+          <div>
+            <dt>ID</dt>
+            <dd>{{ agent.agentId }}</dd>
+          </div>
+          <div>
+            <dt>Imagen</dt>
+            <dd>{{ agent.image }}</dd>
+          </div>
+          <div>
+            <dt>Estado deseado</dt>
+            <dd>{{ agent.desiredState || '-' }}</dd>
+          </div>
+          <div>
+            <dt>Salud</dt>
+            <dd>{{ agent.health || '-' }}</dd>
+          </div>
+          <div>
+            <dt>Contenedor</dt>
+            <dd>{{ agent.containerId || '-' }}</dd>
+          </div>
+          <div>
+            <dt>Actualizado</dt>
+            <dd>{{ agent.updatedAt ? (agent.updatedAt | date: 'short') : '-' }}</dd>
+          </div>
+        </dl>
+
+        <div class="aca-ai-agents__runtime-actions">
+          <button mat-stroked-button color="primary" type="button" (click)="startAgent(agent)" [disabled]="isWorking(agent)">
+            <mat-icon>play_arrow</mat-icon>
+            <span>Arrancar</span>
+          </button>
+          <button mat-stroked-button type="button" (click)="stopAgent(agent)" [disabled]="isWorking(agent)">
+            <mat-icon>stop</mat-icon>
+            <span>Parar</span>
+          </button>
+          <button mat-stroked-button type="button" (click)="openRestartDialog(agent)" [disabled]="isWorking(agent)">
+            <mat-icon>autorenew</mat-icon>
+            <span>Reiniciar</span>
+          </button>
+          <button mat-stroked-button color="warn" type="button" (click)="deleteAgent(agent)" [disabled]="isWorking(agent)">
+            <mat-icon>delete</mat-icon>
+            <span>Eliminar</span>
+          </button>
+        </div>
+
+        <section class="aca-ai-agents__json-panel">
+          <div>
+            <h3>Configuración</h3>
+            <button mat-button type="button" (click)="openRestartDialog(agent)">
+              <mat-icon>edit</mat-icon>
+              <span>Modificar JSON</span>
+            </button>
+          </div>
+          <pre>{{ agent.configJson || getAgentJson(agent) }}</pre>
+        </section>
+      </ng-container>
+
+      <ng-template #detailPlaceholder>
+        <div class="aca-ai-agents__empty aca-ai-agents__empty--detail">
+          <mat-icon>memory</mat-icon>
+          <strong>Selecciona un agente</strong>
+          <span *ngIf="!detailLoading">Aquí verás su runtime y configuración.</span>
+          <span *ngIf="detailLoading">Cargando detalle...</span>
+        </div>
+      </ng-template>
+    </aside>
+  </div>
+
+  <footer class="aca-ai-agents__footer">&copy; AlfDockia todos los derechos reservados.</footer>
+</section>

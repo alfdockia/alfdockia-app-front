@@ -1,0 +1,76 @@
+@use '@angular/material' as mat;
+
+/* stylelint-disable selector-class-pattern */
+@mixin adf-pagination-theme() {
+  adf-pagination {
+    &.adf-pagination {
+      height: 32px;
+      line-height: 24px;
+      padding: 16px 0;
+
+      .adf-pagination__block {
+        flex: none;
+        padding: 0;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 24px;
+        letter-spacing: 0.25px;
+
+        &.adf-pagination__range-block {
+          padding: 0 24px;
+        }
+      }
+
+      .adf-pagination__perpage-block {
+        @include mat.icon-button-overrides(
+          (
+            icon-color: var(--adf-theme-foreground-text-color-087)
+          )
+        );
+
+        flex: auto;
+        padding-right: 24px;
+      }
+
+      .adf-pagination__actualinfo-block {
+        padding-right: 12px;
+      }
+
+      .adf-pagination__previous-button {
+        @include mat.icon-button-overrides(
+          (
+            icon-color: var(--adf-theme-foreground-text-color-087),
+            disabled-icon-color: var(--adf-theme-foreground-disabled-text-color)
+          )
+        );
+        @include mat.icon-overrides(
+          (
+            color: currentColor
+          )
+        );
+
+        margin: 0 12px 0 0;
+      }
+
+      .adf-pagination__next-button {
+        @include mat.icon-button-overrides(
+          (
+            icon-color: var(--adf-theme-foreground-text-color-087),
+            disabled-icon-color: var(--adf-theme-foreground-disabled-text-color)
+          )
+        );
+        @include mat.icon-overrides(
+          (
+            color: currentColor
+          )
+        );
+
+        margin: 0;
+      }
+
+      .adf-pagination__controls-block {
+        padding-right: 24px;
+      }
+    }
+  }
+}

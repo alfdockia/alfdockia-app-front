@@ -1,0 +1,43 @@
+{
+  "defaultBase": "develop",
+  "namedInputs": {
+    "sharedGlobals": [],
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "production": [
+      "default",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/**/*.spec.[jt]s",
+      "!{projectRoot}/karma.conf.js",
+      "!{projectRoot}/.eslintrc.json"
+    ]
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"],
+      "cache": true
+    },
+    "test": {
+      "inputs": ["default", "^production", "{workspaceRoot}/karma.conf.js"],
+      "cache": true
+    },
+    "lint": {
+      "executor": "@angular-eslint/builder:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["{projectRoot}/**/*.ts", "{projectRoot}/**/*.html"],
+        "cache": true,
+        "cacheLocation": ".eslintcache",
+        "ignorePath": ".eslintignore"
+      },
+      "cache": true
+    },
+    "e2e": {
+      "inputs": ["default", "^production"]
+    }
+  },
+  "cacheDirectory": "nxcache",
+  "useInferencePlugins": false,
+  "useLegacyCache": true,
+  "analytics": true
+}

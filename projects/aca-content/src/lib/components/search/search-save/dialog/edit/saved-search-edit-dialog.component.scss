@@ -1,0 +1,30 @@
+@use '@angular/material' as mat;
+
+.aca-saved-search-edit-dialog {
+  .aca-saved-search-edit-dialog__form-field {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .aca-saved-search-edit-dialog__header {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    justify-content: space-between;
+  }
+
+  .aca-saved-search-edit-dialog__title {
+    font-size: large;
+    font-weight: 200;
+    margin: 0;
+  }
+
+  mat-dialog-actions button[mat-flat-button] {
+    @include mat.button-overrides(
+      (
+        filled-container-color: var(--theme-primary-color),
+        filled-label-text-color: var(--theme-primary-color-default-contrast)
+      )
+    );
+  }
+}

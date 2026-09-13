@@ -1,0 +1,56 @@
+@use '../../../ui/mixins' as mixins;
+@use '@angular/material' as mat;
+
+aca-search-results {
+  @include mat.progress-bar-overrides(
+    (
+      active-indicator-color: var(--theme-primary-color)
+    )
+  );
+
+  .aca-search-results__toolbar-actions {
+    margin-left: 8px;
+  }
+
+  .adf-search-results {
+    @include mixins.flex-row;
+
+    &__content {
+      @include mixins.flex-column;
+
+      border-left: 1px solid var(--theme-border-color);
+    }
+
+    &__content-header {
+      display: flex;
+      padding: 0 25px;
+      flex-direction: row;
+      align-items: center;
+      border-bottom: 1px solid var(--theme-border-color);
+      border-top: 1px solid var(--theme-border-color);
+    }
+
+    &--info-text {
+      flex: 1;
+      font-size: 16px;
+      color: var(--theme-secondary-text-color);
+    }
+
+    .aca-content-lib {
+      @include mixins.flex-row;
+
+      flex: unset;
+      height: unset;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      flex-wrap: wrap;
+      background-color: var(--theme-card-background-color);
+
+      &__side--left {
+        @include mixins.flex-column;
+
+        height: unset;
+      }
+    }
+  }
+}

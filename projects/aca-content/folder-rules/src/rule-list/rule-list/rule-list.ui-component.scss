@@ -1,0 +1,64 @@
+/* stylelint-disable selector-class-pattern */
+@use '@angular/material' as mat;
+
+.aca-rule-list {
+  @include mat.expansion-overrides(
+    (
+      container-background-color: var(--theme-background-color),
+      header-text-color: var(--theme-text-color),
+      container-shape: 12px
+    )
+  );
+
+  &__item {
+    border: 1px solid var(--theme-border-color);
+    border-radius: 12px;
+    /* stylelint-disable-next-line declaration-no-important */
+    box-shadow: none !important;
+
+    .mat-expansion-panel-body {
+      padding: 0;
+    }
+
+    &__header {
+      font-size: 0.9em;
+      padding: 0 16px;
+
+      &.mat-expanded {
+        border-bottom: 1px solid var(--theme-border-color);
+        border-radius: 0;
+      }
+
+      & > * {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      &__title {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        flex: 1;
+
+        &__icon {
+          transform: scale(0.8);
+        }
+      }
+    }
+
+    &__all-linked-rules-are-disabled {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      color: var(--theme-disabled-text-color);
+      font-style: italic;
+      text-align: center;
+      padding: 0.5em 0;
+      font-size: 0.9em;
+    }
+  }
+}

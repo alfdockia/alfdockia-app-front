@@ -1,0 +1,118 @@
+@use '@angular/material' as mat;
+
+app-view-profile {
+  letter-spacing: 0.5px;
+
+  .app-profile-container {
+    overflow: scroll;
+    height: 100%;
+    width: 100%;
+  }
+
+  .app-profile-row {
+    width: 100%;
+    height: 32px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--theme-about-panel-border-color);
+  }
+
+  .app-profile-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 32px;
+    padding: 0 24px;
+
+    .app-profile-icon {
+      margin-right: 1rem;
+      cursor: pointer;
+      width: 24px;
+      height: 24px;
+      padding: 0;
+    }
+  }
+
+  .app-profile {
+    cursor: pointer;
+    margin-bottom: 1em;
+    font-size: 1.17em;
+  }
+
+  .app-profile-general-row {
+    margin: 2rem 0 0 2rem;
+    width: 70%;
+    border: 1px solid var(--theme-grey-background-color);
+    border-radius: 1rem;
+  }
+
+  .app-profile-general {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    .app-general-save-btn {
+      @include mat.icon-overrides(
+        (
+          color: var(--theme-primary-color)
+        )
+      );
+    }
+
+    .app-general-edit {
+      @include mat.icon-overrides(
+        (
+          color: var(--adf-theme-foreground-text-color-064)
+        )
+      );
+    }
+
+    .app-general-cancel-btn {
+      @include mat.icon-overrides(
+        (
+          color: var(--adf-metadata-action-button-clear-color)
+        )
+      );
+    }
+  }
+
+  .app-profile-general-bottom-radius {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .app-profile-general-section {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    .app-general-title {
+      font-size: unset;
+      margin-bottom: 1.33em;
+      margin-top: 1.33em;
+    }
+  }
+
+  .app-divider {
+    border-top-width: 1px;
+    border-top-color: var(--theme-grey-background-color);
+    padding-left: -1px;
+    padding-right: 1px;
+  }
+
+  .app-general-dropdown {
+    display: flex;
+    flex-direction: column;
+    padding: 21.5px 1rem 0;
+
+    .app-form-field {
+      margin-bottom: 15px;
+    }
+  }
+
+  .app-profile-contact-row {
+    margin: 2rem 0 0 2rem;
+    width: 70%;
+    border: 1px solid var(--theme-grey-background-color);
+    border-radius: 1rem;
+  }
+}

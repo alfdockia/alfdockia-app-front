@@ -1,0 +1,159 @@
+{
+  "ACA_FOLDER_RULES": {
+    "ACTIONS": {
+      "MANAGE_RULES": "Gestisci regole",
+      "GO_BACK": "Torna indietro"
+    },
+    "EDIT_RULE_DIALOG": {
+      "CANCEL": "Annulla",
+      "CLOSE": "Chiudi",
+      "CREATE": "Crea",
+      "CREATE_TITLE": "Crea una regola",
+      "UPDATE": "Aggiorna",
+      "UPDATE_TITLE": "Modifica una regola",
+      "OPEN_ACTION_MENU": "Apri menu delle azioni"
+    },
+    "RULE_DETAILS": {
+      "LABEL": {
+        "NAME": "Nome",
+        "DESCRIPTION": "Descrizione",
+        "WHEN": "Quando",
+        "PERFORM_ACTIONS": "Esegui azioni",
+        "OPTIONS": "Altre opzioni",
+        "FIELD": "Campo",
+        "COMPARATOR": "Comparatore",
+        "VALUE": "Valore",
+        "LOGIC_OPERATOR": "Operatore Logico",
+        "GROUP_CONDITIONS": "Condizioni Del Gruppo",
+        "CONDITIONS": "Condizioni"
+      },
+      "PLACEHOLDER": {
+        "NAME": "Immetti nome regola",
+        "DESCRIPTION": "Immetti descrizione regola",
+        "NO_DESCRIPTION": "Nessuna descrizione",
+        "VALUE": "Valore",
+        "CHOOSE_FOLDER": "Scegli cartella di destinazione"
+      },
+      "ERROR": {
+        "REQUIRED": "Questo campo è obbligatorio",
+        "RULE_COMPOSITE_CONDITION_INVALID": "Uno o più gruppi di condizioni sono vuoti.",
+        "INSUFFICIENT_TRIGGERS_SELECTED": "È necessario almeno un trigger",
+        "ACTION_REQUIRED": "Campo di azione obbligatorio"
+      },
+      "TRIGGERS": {
+        "INBOUND": "Vengono creati gli elementi o si accede alla cartella",
+        "UPDATE": "Vengono aggiornati gli elementi",
+        "OUTBOUND": "Vengono eliminati gli elementi o si esce dalla cartella"
+      },
+      "OPTIONS": {
+        "IS_INHERITABLE": "Regola applicabile alle sottocartelle",
+        "IS_ASYNCHRONOUS": "Esegui regola in background",
+        "DISABLE_RULE": "Disabilita regola",
+        "ERROR_SCRIPT": "Esegui script in caso di errori",
+        "NO_SCRIPT": "Nessuna"
+      },
+      "COMPARATORS": {
+        "EQUALS": "(=) Uguale a",
+        "CONTAINS": "Contiene",
+        "STARTS_WITH": "Inizia con",
+        "ENDS_WITH": "Finisce con",
+        "GREATER_THAN": "(>) Maggiore di",
+        "LESS_THAN": "(<) Minore di",
+        "GREATER_THAN_OR_EQUAL": "(>=) Maggiore di o uguale a",
+        "LESS_THAN_OR_EQUAL": "(<=) Minore di o uguale a",
+        "ON": "(=) Il",
+        "AFTER": "(>) Dopo",
+        "BEFORE": "(<) Prima",
+        "ON_OR_AFTER": "(>=) Il o dopo",
+        "ON_OR_BEFORE": "(<=) Il o prima",
+        "INSTANCE_OF": "(=) È"
+      },
+      "FIELDS": {
+        "NAME": "Nome",
+        "SIZE": "Dimensione",
+        "MIMETYPE": "Tipo MIME",
+        "ENCODING": "Codifica",
+        "HAS_CATEGORY": "Con categoria",
+        "HAS_TAG": "Con tag",
+        "HAS_ASPECT": "Con aspetto"
+      },
+      "LOGIC_OPERATORS": {
+        "IF": "Se",
+        "NOT_IF": "NON Se",
+        "AND": "E",
+        "OR": "O"
+      },
+      "CONDITION_BUTTONS": {
+        "ADD_CONDITION": "Aggiungi condizione",
+        "ADD_GROUP": "Aggiungi gruppo di condizioni",
+        "REMOVE": "Rimuovi"
+      },
+      "NO_CONDITIONS": "Nessuna condizione",
+      "NO_CONDITIONS_IN_GROUP": "Nessuna condizione nel gruppo",
+      "ACTION_BUTTONS": {
+        "ADD_ACTION": "Aggiungi azione",
+        "REMOVE": "Rimuovi"
+      },
+      "ACTION_SELECT_PLACEHOLDER": "Seleziona un'azione"
+    },
+    "MANAGE_RULES": {
+      "TOOLBAR": {
+        "BREADCRUMB": {
+          "RULES": "regole"
+        },
+        "ACTIONS": {
+          "CREATE_RULE": "Crea una regola",
+          "LINK_RULES": "Collega le regole",
+          "EDIT_RULE": "Modifica",
+          "SEE_IN_FOLDER": "Visualizza nella cartella",
+          "INHERIT_RULES": "Eredita le regole"
+        }
+      },
+      "EMPTY_RULES_LIST": {
+        "TITLE": "L'elenco è vuoto",
+        "SUBTITLE": "Non sono ancora state definite delle regole per questa cartella."
+      }
+    },
+    "CONFIRMATION_DIALOG": {
+      "DELETE_RULE": {
+        "TITLE": "Elimina regola",
+        "MESSAGE": "Eliminare questa regola?"
+      },
+      "DELETE_RULE_SET_LINK": {
+        "TITLE": "Elimina collegamento al set di regole",
+        "MESSAGE": "Eliminare il collegamento a questo set di regole?"
+      }
+    },
+    "RULE_LIST": {
+      "OWNED_RULES": "Regole dalla cartella corrente",
+      "LINKED_RULES": "Regole dalla cartella collegata",
+      "INHERITED_RULES": "Regole ereditate",
+      "LOAD_MORE_RULE_SETS": "Carica regole da altre cartelle",
+      "LOAD_MORE_RULES": "Carica altre regole",
+      "LOADING_RULES": "Caricamento delle regole in corso",
+      "TOGGLE_RULE_STATE": "Attiva/disattiva regola {{ name }}",
+      "INHERITED_RULES_WILL_BE_RUN_FIRST": "Le regole ereditate verranno eseguite per prime",
+      "ALL_LINKED_RULES_ARE_DISABLED": "Tutte le regole collegate a questo set di regole verranno disabilitate",
+      "EDIT_LINK_LABEL": "Collega le regole da un'altra cartella"
+    },
+    "LINK_RULES_DIALOG": {
+      "TITLE": "Seleziona una cartella da cui collegare le regole",
+      "CANCEL": "Annulla",
+      "SUBMIT": "Seleziona cartella",
+      "EMPTY_RULES_LIST": {
+        "TITLE": "Nessuna regola di proprietà",
+        "SUBTITLE": "La cartella selezionata non ha regole proprie."
+      },
+      "LIST_OF_RULES_TO_LINK": "Elenco delle regole che verranno collegate",
+      "ERRORS": {
+        "REQUEST_FAILED": "Errore durante il tentativo di creare un collegamento a un set di regole"
+      }
+    },
+    "ERRORS": {
+      "DELETE_RULE_SET_LINK_FAILED": "Errore durante il tentativo di eliminare un collegamento da un set di regole"
+    },
+    "AUTOCOMPLETE": {
+      "NO_OPTIONS_FOUND": "Nessuna opzione trovata"
+    }
+  }
+}

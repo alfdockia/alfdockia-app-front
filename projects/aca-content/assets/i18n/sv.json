@@ -1,0 +1,754 @@
+{
+    "APP": {
+        "COPYRIGHT": "© 2005-2025 Hyland Software, Inc. och dess dotterbolag. Alla rättigheter förbehålles.",
+        "TITLE": "Workspace",
+        "ABOUT": {
+            "VERSION": "Version:",
+            "PLUGINS": {
+                "TITLE": "Tillägg",
+                "ID": "ID",
+                "NAME": "Namn",
+                "VERSION": "Version",
+                "VENDOR": "Tillverkare",
+                "LICENSE": "Licens",
+                "RUNTIME": "Runtime",
+                "DESCRIPTION": "Beskrivning"
+            },
+            "LICENSE": {
+                "TITLE": "Licens",
+                "PROPERTY": "Egenskap",
+                "VALUE": "Värde"
+            },
+            "STATUS": {
+                "TITLE": "Status",
+                "PROPERTY": "Egenskap",
+                "VALUE": "Värde"
+            },
+            "MODULES": {
+                "TITLE": "Alfresco-plattformsmoduler",
+                "ID": "ID",
+                "NAME": "Namn",
+                "VERSION": "Version"
+            },
+            "PACKAGES": {
+                "TITLE": "Paket",
+                "NAME": "Namn",
+                "VERSION": "Version"
+            },
+            "BACK_BUTTON_LABEL": "Gå tillbaka"
+        },
+        "LANGUAGE": "Språk",
+        "SIGN_IN": "Logga in",
+        "SIGN_OUT": "Logga ut",
+        "EDIT_PROFILE": {
+            "MY_PROFILE": "Min profil",
+            "GENERAL": "Allmänt",
+            "EDIT": "Redigera",
+            "CANCEL": "Avbryt",
+            "SAVE": "Spara",
+            "FIRST_NAME": "Förnamn",
+            "LAST_NAME": "Efternamn",
+            "JOB_TITLE": "Jobbtitel",
+            "LOCATION": "Plats",
+            "TELEPHONE": "Telefon",
+            "MOBILE": "Mobil",
+            "EMAIL": "E-post",
+            "COMPANY_DETAILS": "Företagsuppgifter",
+            "NAME": "Namn",
+            "ADDRESS": "Adress",
+            "POSTCODE": "Postnummer",
+            "INVALID_PHONE_FORMAT": "Ange ett giltigt telefonnummer",
+            "INVALID_EMAIL_FORMAT": "Ange en giltig e‑postadress",
+            "GO_TO_PERSONAL_FILES_BUTTON_LABEL": "Gå till personliga filer"
+        },
+        "LOCKED_BY": "Låst av: ",
+        "PREVIEW": {
+            "TITLE": "Förhandsgranskning"
+        },
+        "DETAILS": {
+            "TITLE": "Detaljer"
+        },
+        "NEW_MENU": {
+            "MENU_ITEMS": {
+                "CREATE_FOLDER": "Skapa mapp",
+                "UPLOAD_FILE": "Ladda upp fil",
+                "UPLOAD_FOLDER": "Ladda upp mapp",
+                "CREATE_LIBRARY": "Skapa bibliotek",
+                "FILE_TEMPLATE": "Skapa fil från mall",
+                "FOLDER_TEMPLATE": "Skapa mapp från mall"
+            },
+            "TOOLTIPS": {
+                "CREATE_FOLDER": "Skapa ny mapp",
+                "CREATE_FOLDER_NOT_ALLOWED": "Mappar kan inte skapas när man visar de aktuella objekten",
+                "CREATE_FILE_NOT_ALLOWED": "Filerna kan inte skapas när aktuella objekt visas",
+                "UPLOAD_FILES": "Välj filer att ladda upp",
+                "UPLOAD_FILES_NOT_ALLOWED": "Filer kan inte laddas upp när man visar de aktuella objekten",
+                "UPLOAD_FOLDERS": "Välj mappar att ladda upp",
+                "UPLOAD_FOLDERS_NOT_ALLOWED": "Mappar kan inte laddas upp när man visar de aktuella objekten",
+                "CREATE_LIBRARY": "Skapa ett nytt filbibliotek"
+            }
+        },
+        "HEADER": {
+            "BUTTONS": {
+                "CREATE": "Skapa",
+                "CREATE_TOOLTIP": "Skapa innehåll",
+                "UPLOAD": "Ladda upp",
+                "UPLOAD_TOOLTIP": "Ladda upp innehåll"
+            },
+            "SELECTED": "Vald ({{ count }})"
+        },
+        "BROWSE": {
+            "FILE": {
+                "SIDENAV_LINK": {
+                    "LABEL": "Filer",
+                    "TOOLTIP": "Filer"
+                }
+            },
+            "PERSONAL": {
+                "TITLE": "Personliga filer",
+                "SIDENAV_LINK": {
+                    "LABEL": "Personliga filer",
+                    "TOOLTIP": "Visa dina personliga filer"
+                },
+                "PERMISSIONS": {
+                    "TITLE": "Behörigheter"
+                }
+            },
+            "REPOSITORY_VIEW": {
+                "TITLE": "Repository",
+                "SIDENAV_LINK": {
+                    "LABEL": "Repository",
+                    "TOOLTIP": "View the repository"
+                }
+            },
+            "LIBRARIES": {
+                "TITLE": "Filbibliotek",
+                "DESCRIPTION": "Gå till filbibliotek",
+                "SIDENAV_LINK": {
+                    "LABEL": "Filbibliotek",
+                    "TOOLTIP": "Filbibliotek"
+                },
+                "EMPTY_STATE": {
+                    "FILE_LIBRARIES": {
+                        "TITLE": "Du är inte medlem av några filbibliotek än",
+                        "TEXT": "Gå med i bibliotek för att ladda upp, visa och dela filer."
+                    },
+                    "FAVORITE_LIBRARIES": {
+                        "TITLE": "Inga favoritbibliotek",
+                        "TEXT": "Favoritmarkera ett bibliotek som du enkelt vill hitta senare."
+                    },
+                    "ALL_LIBRARIES": {
+                        "TITLE": "Inget bibliotek hittades",
+                        "TEXT": "Skapa ett nytt bibliotek för att komma igång."
+                    }
+                },
+                "MENU": {
+                    "MY_LIBRARIES": {
+                        "TITLE": "Mina bibliotek",
+                        "SIDENAV_LINK": {
+                            "LABEL": "Mina bibliotek",
+                            "TOOLTIP": "Kom åt mina bibliotek"
+                        }
+                    },
+                    "FAVORITE_LIBRARIES": {
+                        "TITLE": "Favoritbibliotek",
+                        "SIDENAV_LINK": {
+                            "LABEL": "Favoritbibliotek",
+                            "TOOLTIP": "Kom åt mina favoritbibliotek"
+                        }
+                    },
+                    "ALL_LIBRARIES": {
+                        "TITLE": "Alla bibliotek",
+                        "SIDENAV_LINK": {
+                            "LABEL": "Alla bibliotek",
+                            "TOOLTIP": "Få tillgång till alla bibliotek"
+                        }
+                    }
+                },
+                "ERRORS": {
+                    "LIBRARY_NOT_FOUND": "Detta bibliotek finns inte längre.",
+                    "LIBRARY_LOADING_ERROR": "Ett problem uppstod när detta bibliotek skulle läsas in."
+                },
+                "LIBRARY_NO_PERMISSIONS_WARNING": "Du har inte behörighet att visa detta bibliotek."
+            },
+            "SHARED": {
+                "TITLE": "Delade filer",
+                "SIDENAV_LINK": {
+                    "LABEL": "Delad",
+                    "TOOLTIP": "Visa filer som har delats"
+                },
+                "EMPTY_STATE": {
+                    "TITLE": "Inga delade filer eller foldrar",
+                    "TEXT": "Objekt du delar genom att använda alternativet Dela visas här."
+                }
+            },
+            "RECENT": {
+                "TITLE": "De senaste filerna",
+                "SIDENAV_LINK": {
+                    "LABEL": "De senaste filerna",
+                    "TOOLTIP": "Visa filer som du nyligen har redigerat"
+                },
+                "EMPTY_STATE": {
+                    "TITLE": "Inga nyligen redigerade filer",
+                    "TEXT": "Objekt som du laddat upp eller redigerat de senaste 30 dagarna visas här."
+                }
+            },
+            "FAVORITES": {
+                "TITLE": "Favoriter",
+                "SIDENAV_LINK": {
+                    "LABEL": "Favoriter",
+                    "TOOLTIP": "Visa dina favoritfiler och mappar"
+                },
+                "EMPTY_STATE": {
+                    "TITLE": "Inga favoritfiler eller mappar",
+                    "TEXT": "Favoritmarkera objekt som du enkelt vill hitta senare."
+                }
+            },
+            "TRASHCAN": {
+                "TITLE": "Papperskorg",
+                "SIDENAV_LINK": {
+                    "LABEL": "Papperskorg",
+                    "TOOLTIP": "Visa raderade filer i papperskorgen"
+                },
+                "EMPTY_STATE": {
+                    "TITLE": "Papperskorgen är tom",
+                    "FIRST_TEXT": "Objekt du raderar flyttas till papperskorgen.",
+                    "SECOND_TEXT": "Töm papperskorgen för att permanent radera objekt."
+                }
+            },
+            "ABOUT": {
+                "TITLE": "Om"
+            },
+            "SEARCH": {
+                "DEFAULT_SEARCH": "Standard",
+                "DUBLIN_CORE": "Dublin core",
+                "EFFECTIVITY": "Giltighet",
+                "TITLE": "Sökresultat",
+                "FILTER_SET": "Filteruppsättning:",
+                "ADVANCED_FILTERS": "Avancerade filter:",
+                "RESET": "Återställ",
+                "RESET_ACTION": "Återställ sökfilter",
+                "SAVE_SEARCH": {
+                    "ACTION_BUTTON": "Spara sökning",
+                    "SAVE_CHANGES": "Spara ändringar",
+                    "SAVE_AS_NEW": "Spara som ny",
+                    "MODAL_HEADER": "Spara denna sökning",
+                    "NAME_LABEL": "Namn",
+                    "NAME_REQUIRED_ERROR": "Fältet är obligatoriskt",
+                    "DESCRIPTION_LABEL": "Beskrivning",
+                    "SAVE_SUCCESS": "Sökning sparad",
+                    "SAVE_ERROR": "Ett fel uppstod. Sökningen kunde inte sparas.",
+                    "SEARCH_NAME_NOT_UNIQUE_ERROR": "Det finns redan en sparad sökning med namnet '{{ name }}'.",
+                    "NAVBAR": {
+                        "TITLE": "Sparade sökningar ({{ number }})",
+                        "MANAGE_BUTTON": "Hantera sökningar"
+                    },
+                    "EDIT_DIALOG": {
+                        "CONTEXT_OPTION": "Redigera sökning",
+                        "TITLE": "Redigera sparad sökning",
+                        "SUCCESS_MESSAGE": "Sparad sökning har redigerats",
+                        "ERROR_MESSAGE": "Ett fel uppstod. Den sparade sökningen kunde inte redigeras."
+                    },
+                    "DELETE_DIALOG": {
+                        "CONTEXT_OPTION": "Radera sökning",
+                        "TITLE": "Radera sparad sökning",
+                        "CONTENT": "Är du säker på att du vill radera den här sökningen",
+                        "SUCCESS_MESSAGE": "Sparad sökning har raderats",
+                        "ERROR_MESSAGE": "Ett fel uppstod. Den sparade sökningen kunde inte raderas."
+                    },
+                    "LIST": {
+                        "TITLE": "Sparade sökningar",
+                        "NAME": "Namn",
+                        "DESCRIPTION": "Beskrivning",
+                        "EMPTY_LIST": "Inga sparade sökningar",
+                        "COPY_TO_CLIPBOARD": "Kopiera till urklipp",
+                        "COPY_TO_CLIPBOARD_SUCCESS": "Sökning kopierad till urklipp",
+                        "EXECUTE_SEARCH": "Utför sökning"
+                    }
+                },
+                "FOUND_RESULTS": "{{ number }} resultat hittades",
+                "FOUND_ONE_RESULT": "{{ number }} resultat hittades",
+                "CUSTOM_ROW": {
+                    "MODIFIED": "Ändrad",
+                    "BY_USER": "av {{ user }}",
+                    "LOCATION": "Plats",
+                    "SIZE": "Storlek"
+                },
+                "UNKNOWN_LOCATION": "Du har inte behörighet att se mappen med detta dokument.",
+                "VIEW_ADDITIONAL_LOCATIONS": "Visa ytterligare referensplatser",
+                "NO_RESULTS": "Din sökning gav inga resultat",
+                "EMPTY_SEARCH": "Sökord krävs",
+                "NO_FILTER_RESULTS": "Ditt filter gav inga resultat",
+                "ERRORS": {
+                    "500": "Det uppstod ett fel när sökförfrågan behandlades [500]",
+                    "GENERIC": "Det uppstod ett fel när sökförfrågan behandlades"
+                }
+            },
+            "SEARCH_LIBRARIES": {
+                "FOUND_RESULTS": "{{ number }} resultat",
+                "FOUND_ONE_RESULT": "{{ number }} resultat"
+            }
+        },
+        "ACTIONS": {
+            "VIEW": "Visa",
+            "EDIT": "Redigera",
+            "DOWNLOAD": "Ladda ner",
+            "COPY": "Kopiera",
+            "MOVE": "Flytta",
+            "DELETE": "Radera",
+            "DELETE_PERMANENT": "Radera permanent",
+            "MORE": "Fler åtgärder",
+            "UNDO": "Ångra",
+            "PERMISSIONS": "Behörigheter",
+            "RESTORE": "Återställ",
+            "FAVORITE": "Favorit",
+            "ADD_FAVORITE": "Lägg till favorit",
+            "REMOVE_FAVORITE": "Ta bort favorit",
+            "UNSHARE": "Sluta dela",
+            "DETAILS": "Visa detaljer",
+            "VERSIONS": "Hantera versioner",
+            "UPLOAD_VERSION": "Ladda upp ny version",
+            "TOGGLE-SIDENAV": "Växla sidnavigeringsfält",
+            "SHARE": "Dela",
+            "SHARE_EDIT": "Inställningar för delad länk",
+            "PRINT": "Skriv ut",
+            "FULLSCREEN": "Aktivera helskärmsläge",
+            "JOIN": "Gå med",
+            "CANCEL_JOIN": "Avbryt förfrågan om att gå med",
+            "LEAVE": "Lämna bibliotek",
+            "EDIT_OFFLINE": "Redigera offline",
+            "EDIT_OFFLINE_CANCEL": "Avbryt redigering",
+            "CHANGE_ASPECT": "Redigera aspekter",
+            "ADD_ASPECTS": "Lägg till aspekter",
+            "NODE_INFO": "Information"
+        },
+        "DIALOGS": {
+            "CONFIRM_PURGE": {
+                "TITLE": "Radera från papperskorgen?",
+                "MESSAGE": "Det här kommer att ta bort valt/valda objekt permanent.",
+                "YES_LABEL": "Radera",
+                "NO_LABEL": "Behåll"
+            },
+            "CONFIRM_LEAVE": {
+                "TITLE": "Lämna det här biblioteket?",
+                "MESSAGE": "Lämnar du tas din åtkomst bort.",
+                "YES_LABEL": "OK",
+                "NO_LABEL": "Avbryt"
+            },
+            "MOBILE_APP": {
+                "MOBILE_APP_BUTTON_LABEL": "Öppna i appen",
+                "DOWNLOAD_APP_BUTTON_LABEL": "Har du inte appen? Ladda ner nu.",
+                "OPEN_ALFRESCO_MOBILE_APP": "Öppna med Alfresco Mobile-applikation?"
+            }
+        },
+        "DOCUMENT_LIST": {
+            "COLUMNS": {
+                "ID": "ID",
+                "NAME": "Namn",
+                "DESCRIPTION": "Beskrivning",
+                "SIZE": "Storlek",
+                "MODIFIED_ON": "Ändrad",
+                "MODIFIED_BY": "Ändrad av",
+                "VISIBILITY": "Synlighet",
+                "TITLE": "Titel",
+                "LOCATION": "Plats",
+                "SHARED_BY": "Delad av",
+                "DELETED_ON": "Raderad",
+                "DELETED_BY": "Raderad av",
+                "ROLE": "Min roll",
+                "TAGS": "Taggar"
+            }
+        },
+        "MESSAGES": {
+            "ERRORS": {
+                "CANNOT_NAVIGATE_LOCATION": "Kan inte öppna den här platsen",
+                "MISSING_CONTENT": "Objektet finns inte längre eller så du har inte behörighet att visa det.",
+                "GENERIC": "Åtgärden lyckades inte. Försök igen eller kontakta din IT-avdelning.",
+                "CONFLICT": "Det här namnet används redan, testa ett annat namn.",
+                "NODE_MOVE": "Flytt lyckades inte, en fil med samma namn finns redan.",
+                "EXISTENT_FOLDER": "Det finns redan en mapp med det här namnet. Testa ett annat namn",
+                "NODE_DELETION": "{{ name }} kunde inte raderas",
+                "NODE_DELETION_PLURAL": "{{ number }} objekt kunde inte raderas",
+                "NODE_RESTORE": "{{ name }} kunde inte återställas",
+                "NODE_RESTORE_PLURAL": "{{ number }} objekt kunde inte återställas",
+                "PERMISSION": "Du har inte behörighet att göra detta",
+                "LOCK_NODE": "Det uppstod ett problem med att låsa filen {{ fileName }}",
+                "UNLOCK_NODE": "Det uppstod ett problem med att låsa upp filen {{ fileName }}",
+                "TRASH": {
+                    "NODES_PURGE": {
+                        "PLURAL": "{{ number }} objekt kunde inte raderas",
+                        "SINGULAR": "{{ name }} kunde inte raderas"
+                    },
+                    "NODES_RESTORE": {
+                        "PARTIAL_PLURAL": "{{ number }} objekt ej återställda på grund av problem med återställningsplatsen",
+                        "NODE_EXISTS": "Kan inte återställa {{ name }}, finns redan",
+                        "LOCATION_MISSING": "Kan inte återställa {{ name }}, ursprunglig plats finns inte längre",
+                        "GENERIC": "Det uppstod ett problem med att återställa {{ name }}"
+                    }
+                },
+                "DELETE_LIBRARY_FAILED": "Kan inte radera biblioteket",
+                "LEAVE_LIBRARY_FAILED": "Kan inte lämna det här biblioteket"
+            },
+            "UPLOAD": {
+                "ERROR": {
+                    "GENERIC": "Uppladdningen misslyckades. Kontakta IT-avdelningen om det här problemet kvarstår",
+                    "CONFLICT": "Ny version blev inte uppladdad, en annan fil med samma namn finns redan",
+                    "500": "Internt serverfel, försök igen eller kontakta IT-supporten [500]",
+                    "504": "Tidsgränsen för servern överskreds, försök igen eller kontakta IT-supporten [504]",
+                    "403": "Otillräckliga behörigheter för att ladda upp på den här platsen [403]",
+                    "404": "Uppladdningsplats finns inte längre [404]"
+                }
+            },
+            "INFO": {
+                "TRASH": {
+                    "NODES_PURGE": {
+                        "PLURAL": "{{ number }} objekt raderade",
+                        "SINGULAR": "{{ name }} raderad",
+                        "PARTIAL_SINGULAR": "{{ name }} raderad, {{ failed }} kunde inte raderas",
+                        "PARTIAL_PLURAL": "{{ number }} objekt raderade, {{ failed }} kunde inte raderas"
+                    },
+                    "NODES_RESTORE": {
+                        "PLURAL": "Återställning lyckades",
+                        "SINGULAR": "{{ name }} återställd"
+                    }
+                },
+                "NODE_DELETION": {
+                    "SINGULAR": "{{ name }} raderad",
+                    "PLURAL": "Raderade {{ number }} objekt",
+                    "PARTIAL_SINGULAR": "Raderade {{ success }} objekt, {{ failed }} kunde inte raderas",
+                    "PARTIAL_PLURAL": "Raderade {{ success }} objekt, {{ failed }} kunde inte raderas"
+                },
+                "NODE_COPY": {
+                    "SINGULAR": "Kopierade {{ success }} objekt",
+                    "PLURAL": "Kopierade {{ success }} objekt",
+                    "PARTIAL_SINGULAR": "Kopierade {{ success }} objekt, {{ failed }} kunde inte kopieras.",
+                    "PARTIAL_PLURAL": "Kopierade {{ success }} objekt, {{ failed }} kunde inte kopieras.",
+                    "FAIL_SINGULAR": "{{ failed }} objekt kunde inte kopieras.",
+                    "FAIL_PLURAL": "{{ failed }} objekt kunde inte kopieras."
+                },
+                "NODE_MOVE": {
+                    "SINGULAR": "Flyttade {{ success }} objekt.",
+                    "PLURAL": "Flyttade {{ success }} objekt.",
+                    "PARTIAL": {
+                        "SINGULAR": "Flyttade delvis {{ partially }} objekt.",
+                        "PLURAL": "Flyttade delvis {{ partially }} objekt.",
+                        "FAIL": "{{ failed }} kunde inte flyttas."
+                    }
+                },
+                "NODE_CREATE": {
+                    "FILE_FROM_TEMPLATE_SUCCESS": "Filen {{ name }} har skapats från mallen",
+                    "FOLDER_FROM_TEMPLATE_SUCCESS": "Mappen {{ name }} har skapats från mallen"
+                },
+                "LIBRARY_DELETED": "Bibliotek raderat",
+                "LEFT_LIBRARY": "Du har lämnat biblioteket",
+                "FAVORITE_NODE_ADDED": "Har lagt till {{ name }} till favoriter",
+                "FAVORITE_NODES_ADDED": "Har lagt till {{ number }} objekt till favoriter",
+                "FAVORITE_NODE_REMOVED": "Har tagit bort {{ name }} från favoriter",
+                "FAVORITE_NODES_REMOVED": "Har tagit bort {{ number }} objekt från favoriter",
+                "FAVORITE_NODE_NOT_FOUND": "{{ name }} är ingen favorit"
+            }
+        },
+        "CONTENT_METADATA": {
+            "EXIF_GROUP_TITLE": "Bild EXIF",
+            "GROUP_IPTC_CORE_CONTACT_INFO": "IPTC kontakt",
+            "GROUP_IPTC_CORE_IMAGE_INFO": "IPTC bild",
+            "GROUP_IPTC_CORE_CONTENT_INFO": "IPTC innehåll",
+            "GROUP_IPTC_CORE_STATUS_INFO": "IPTC status",
+            "GROUP_IPTC_EXT_DESCRIPTION": "IPTC bildbeskrivning",
+            "GROUP_IPTC_EXT_AO_DETAIL": "IPTC detalj för konstverk eller objekt",
+            "GROUP_IPTC_EXT_MODEL_INFO": "IPTC modellinformation",
+            "GROUP_IPTC_EXT_ADMIN_INFO": "IPTC administratörsinformation",
+            "GROUP_IPTC_EXT_RIGHTS_INFO": "IPTC rättighetsinformation",
+            "GROUP_IPTC_EXT_OTHER": "IPTC andra",
+            "EFFECTIVITY_GROUP_TITLE": "Giltighet"
+        },
+        "INFO_DRAWER": {
+            "TITLE": "Detaljer",
+            "REDUCE_PANEL": "Förminska panel",
+            "DATA_LOADING": "Data läses in",
+            "ICON": "Nodikon",
+            "TABS": {
+                "PROPERTIES": "Egenskaper",
+                "LIBRARY_PROPERTIES": "Om",
+                "VERSIONS": "Versioner",
+                "COMMENTS": "Kommentarer",
+                "PERMISSIONS": "Behörigheter",
+                "EXPAND": "Expandera"
+            }
+        },
+        "TOOLTIPS": {
+            "COLLAPSE_NAVIGATION": "Dölj navigeringsmenyn",
+            "COLLAPSE_NAVIGATION_ALT": "Ikon för att fälla ihop navigationsmenyn",
+            "OPTIONS_SETTINGS": "Alternativ och inställningar",
+            "MY_PROFILE": "Min profil",
+            "EXPAND_NAVIGATION": "Expandera navigeringsmenyn",
+            "EXPAND_SECTION": "Expandera avsnitt",
+            "COLLAPSE_SECTION": "Minimera avsnitt",
+            "EDIT": "Redigera",
+            "CANCEL": "Avbryt",
+            "SAVE": "Spara"
+        },
+        "NODE_INFO": {
+            "ICON": "Nodikon",
+            "TITLE": "Information",
+            "SIZE": "Storlek",
+            "NUMBER_OF_FILES": "Antal filer",
+            "CALCULATING": "Beräknar...",
+            "LOCATION": "Plats",
+            "REFERENCED": "Refererad",
+            "CREATED": "Skapad",
+            "MODIFIED": "Ändrad",
+            "DONE": "Klar",
+            "ERROR": "Något gick fel, stäng denna dialogruta och försök igen"
+        },
+        "ADDITIONAL_REFERENCES_DIALOG": {
+            "TITLE": "Ytterligare referensplats",
+            "NO_LOCATIONS": "{{ name }} refereras inte på någon plats.",
+            "DESCRIPTION": "{{ name }} refereras för närvarande på dessa platser.",
+            "CLOSE": "Stäng"
+        }
+    },
+    "NODE_SELECTOR": {
+        "COPY_ITEM": "Kopiera '{{ name }}' till...",
+        "COPY_ITEMS": "Kopiera {{ number }} objekt till...",
+        "MOVE_ITEM": "Flytta '{{ name }}' till...",
+        "MOVE_ITEMS": "Flytta {{ number }} objekt till...",
+        "SEARCH": "Sök",
+        "NEXT": "Nästa",
+        "SELECT_FILE_TEMPLATE_TITLE": "Välj en dokumentmall",
+        "SELECT_FOLDER_TEMPLATE_TITLE": "Välj en mappmall"
+    },
+    "NODE_FROM_TEMPLATE": {
+        "CANCEL": "Avbryt",
+        "CREATE": "Skapa",
+        "FOLDER_DIALOG_TITLE": "Skapa ny mapp från <span class=\"bold\">'{{ template }}'</span>",
+        "FILE_DIALOG_TITLE": "Skapa nytt dokument från <span class=\"bold\">'{{ template }}'</span>",
+        "FORM": {
+            "PLACEHOLDER": {
+                "NAME": "Namn",
+                "TITLE": "Titel",
+                "DESCRIPTION": "Beskrivning"
+            },
+            "ERRORS": {
+                "DESCRIPTION_TOO_LONG": "Använd 512 tecken eller färre till beskrivningen",
+                "TITLE_TOO_LONG": "Använd 256 tecken eller färre till titeln",
+                "REQUIRED": "Namn krävs",
+                "SPECIAL_CHARACTERS": "Namnet kan inte innehålla dessa tecken * \" < > \\ / ? : |",
+                "ENDING_DOT": "Namnet kan inte sluta med en punkt .",
+                "ONLY_SPACES": "Namnet kan inte innehålla endast mellanslag"
+            }
+        }
+    },
+    "SHARED_LINK": {
+        "UNSHARE_PERMISSION_ERROR": "Du har inte behörighet att sluta dela den här filen"
+    },
+    "VERSION": {
+        "DIALOG": {
+            "TITLE": "Ladda upp ny version",
+            "CANCEL": "Avbryt",
+            "UPLOAD": "Ladda upp"
+        },
+        "SELECTION": {
+            "EMPTY": "Välj ett dokument för att se versionerna för det.",
+            "NO_PERMISSION": "Du har inte behörighet att hantera versionerna för det här innehållet."
+        },
+        "ERROR": {
+            "GENERIC": "Det uppstod ett fel med att versionshantera filen"
+        }
+    },
+    "LIBRARY": {
+        "DIALOG": {
+            "CREATE_TITLE": "Skapa bibliotek",
+            "CREATE": "Skapa",
+            "UPDATE": "Uppdatera",
+            "EDIT": "Redigera",
+            "CANCEL": "Avbryt",
+            "FORM": {
+                "DESCRIPTION": "Beskrivning",
+                "SITE_ID": "Biblioteks-ID",
+                "NAME": "Namn",
+                "VISIBILITY": "Synlighet"
+            }
+        },
+        "VISIBILITY": {
+            "PRIVATE": "Privat",
+            "PUBLIC": "Offentlig",
+            "MODERATED": "Modererad"
+        },
+        "HINTS": {
+            "SITE_TITLE_EXISTS": "Biblioteksnamn används redan"
+        },
+        "ERRORS": {
+            "GENERIC": "Vi stötte på ett problem",
+            "EXISTENT_SITE": "Detta biblioteks-ID är inte tillgängligt. Testa ett annat Biblioteks-ID.",
+            "CONFLICT": "Detta Biblioteks-ID används redan. Kontrollera papperskorgen",
+            "ID_TOO_LONG": "Använd 72 tecken eller färre för URL-namnet",
+            "DESCRIPTION_TOO_LONG": "Använd 512 tecken eller färre till beskrivningen",
+            "TITLE_TOO_LONG_OR_MISSING": "Använd 256 tecken eller färre i rubriken",
+            "ILLEGAL_CHARACTERS": "Använd bara siffror och bokstäver",
+            "ONLY_SPACES": "Biblioteksnamnet kan inte innehålla enbart mellanrum",
+            "LIBRARY_UPDATE_ERROR": "Det uppstod ett fel när biblioteksegenskaperna uppdaterades"
+        },
+        "SUCCESS": {
+            "LIBRARY_UPDATED": "Biblioteksegenskaper uppdaterade"
+        }
+    },
+    "SEARCH": {
+        "BULK_ACTIONS_DROPDOWN": {
+            "LABEL": "Massåtgärder",
+            "TITLE": "Välj en åtgärd för alla {{ count }} resultat",
+            "BULK_NOT_AVAILABLE": "Gruppåtgärder (inte tillgängligt)",
+            "BULK_NOT_AVAILABLE_TOOLTIP": "Gruppåtgärder kan inte användas utan sökresultat"
+        },
+        "INPUT": {
+            "PLACEHOLDER": "Sök",
+            "FILES": "Filer",
+            "FOLDERS": "Mappar",
+            "LIBRARIES": "Bibliotek",
+            "MIN_LENGTH": "Sökindata måste ha minst 2 alfanumeriska tecken.",
+            "REQUIRED": "Sökindata måste fyllas i.",
+            "WHITESPACE": "Sökinmatningen kan inte bara vara blankt.",
+            "OPERATORS": "Sökfältet får inte börja eller sluta med, eller enbart bestå av operatorer",
+            "IN_PREFIX": "I",
+            "FILES_AND_FOLDERS": "Filer och mappar",
+            "RESET": "Återställ",
+            "SEARCH_IN": "Sök i"
+        },
+        "SORT": {
+            "SORTING_OPTION": "Sortera efter",
+            "ASCENDING": "Stigande",
+            "DESCENDING": "Fallande",
+            "RELEVANCE": "Relevans",
+            "FILENAME": "Filnamn",
+            "TITLE": "Titel",
+            "MODIFIED_DATE": "Modifierad datum",
+            "SIZE": "Storlek",
+            "TYPE": "Typ",
+            "MODIFIER": "Ändrad av",
+            "CREATE_DATE": "Skapad datum"
+        },
+        "CLOSE_BUTTON": {
+            "ARIA_LABEL": "Stäng sökning"
+        },
+        "FACET_FIELDS": {
+            "CREATOR": "Skapad av",
+            "MODIFIER": "Ändrad av",
+            "LOCATION": "Plats",
+            "CATEGORIES": "Kategorier"
+        },
+        "CATEGORIES": {
+            "DATE": "Datum",
+            "DATE_TABS": {
+                "CREATED": "Skapad",
+                "MODIFIED": "Ändrad"
+            },
+            "EFFECTIVITY_FROM": "Giltighet från",
+            "EFFECTIVITY_TO": "Giltighet till",
+            "LOGIC": "Logik",
+            "PROPERTIES": "Egenskaper"
+        },
+        "SEARCH_HEADER": {
+            "TITLE": "Filter",
+            "TYPE": "Typ",
+            "FILTER_BY": "Filtrera efter {{ category }}",
+            "CLEAR": "Rensa",
+            "APPLY": "Tillämpa",
+            "FILTERS": {
+                "NAME": {
+                    "TITLE": "Namn",
+                    "PLACEHOLDER": "Ange namn"
+                },
+                "TYPE": {
+                    "TITLE": "Kontrolltyp",
+                    "FOLDER": "Mapp",
+                    "DOCUMENT": "Dokument"
+                },
+                "SIZE": {
+                    "TITLE": "Innehållsstorlek (område)",
+                    "SMALL": "Litet",
+                    "MEDIUM": "Medium",
+                    "LARGE": "Stort",
+                    "HUGE": "Jättestort"
+                },
+                "DATE": {
+                    "TITLE": "Skapad datum (område)"
+                }
+            }
+        }
+    },
+    "CORE": {
+        "METADATA": {
+            "ACTIONS": {
+                "SAVE": "Spara ändringar",
+                "CANCEL": "Släng ändringar"
+            }
+        }
+    },
+    "ADF_VIEWER": {
+        "ACTIONS": {
+            "INFO": "Visa detaljer",
+            "PREVIEW": "Visa förhandsvisning"
+        }
+    },
+    "FILE_UPLOAD": {
+        "ERRORS": {
+            "409": "Det här namnet används redan, försök med ett annat namn [409]"
+        }
+    },
+    "ADF_VERSION_LIST": {
+        "ACTIONS": {
+            "UPLOAD": {
+                "TOOLTIP": "Ladda upp ny version"
+            }
+        }
+    },
+    "CUSTOM_NAME_COLUMN": {
+        "ACCESSIBILITY": {
+            "FILE_LINK_ARIA_LABEL": "Visa {{ name }}",
+            "FOLDER_LINK_ARIA_LABEL": "Öppna mappen {{ name }}"
+        }
+    },
+    "ADF-DATATABLE": {
+        "FILE_TYPE": {
+            "BOOKS-24PX": "filbibliotek",
+            "BASELINE-LOCK-24PX": "låst fil"
+        }
+    },
+    "KNOWLEDGE_RETRIEVAL": {
+        "SEARCH": {
+            "RESULTS_PAGE": {
+                "QUERY_INPUT_PLACEHOLDER": "Vill du fråga något mer?",
+                "REFERENCED_DOCUMENTS_HEADER": "Referensdokument",
+                "REGENERATION_BUTTON_LABEL": "Generera på nytt",
+                "COPY_BUTTON_LABEL": "Kopiera",
+                "COPY_MESSAGE": "Svar kopierat till urklipp",
+                "RELOAD_REFERENCES_BUTTON_LABEL": "Ladda om"
+            },
+            "AGENTS_BUTTON": {
+                "LABEL": "Fråga Discovery",
+                "TITLE": "Hämta kunskap"
+            },
+            "SEARCH_INPUT": {
+                "ASK_BUTTON_LABEL": "Fråga",
+                "DEFAULT_PLACEHOLDER": "Ställ så detaljerade frågor som möjligt...",
+                "HIDE_INPUT": "Dölj inmatning",
+                "HIDE_ANSWER": "Dölj svar"
+            },
+            "ERRORS": {
+                "AGENTS_FETCHING": "Det gick inte att hämta agenter.",
+                "HX_INSIGHT_URL_FETCHING": "Det gick inte att hämta HX Insight-URL.",
+                "LOADING_ERROR": "Hmm... något verkar ha gått fel.",
+                "PAGE_NOT_AVAILABLE_ERROR": "Sidan är inte tillgänglig för dessa villkor.",
+                "REFERENCES_LOADING_ERROR": "Något gick fel när referenserna laddades."
+            },
+            "DISCARD_CHANGES": {
+                "WARNING": "Varning!",
+                "ASK_AI": "Fråga AI",
+                "DO_NOT_SHOW_MESSAGE": "Visa inte detta meddelande igen",
+                "DISCARD_CONVERSATION": "Ta bort konversation",
+                "CONVERSATION_DISCARDED": "Denna konversation tas bort",
+                "LOSE_RESPONSE": "När du ställer en ny fråga går dina tidigare svar förlorade"
+            }
+        }
+    }
+}

@@ -1,0 +1,94 @@
+@use '@angular/material' as mat;
+@use '../../styles/mixins' as mixins;
+
+.aca-page-layout {
+  @include mixins.flex-column;
+
+  .aca-content-header {
+    background: var(--theme-page-layout-header-background-color);
+    height: 96px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+
+    @include mat.icon-overrides(
+      (
+        color: var(--adf-theme-foreground-icon-color)
+      )
+    );
+
+    &-button {
+      margin-top: -1px;
+    }
+  }
+
+  .aca-page-layout-header {
+    display: flex;
+    align-items: center;
+    flex: auto;
+    width: 100%;
+
+    .adf-breadcrumb-item {
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: 0.15px;
+      line-height: 30px;
+
+      @include mat.icon-overrides(
+        (
+          color: var(--adf-theme-foreground-text-color-064)
+        )
+      );
+
+      .adf-breadcrumb-item-anchor {
+        color: var(--adf-theme-foreground-text-color-064);
+      }
+
+      .adf-breadcrumb-item-chevron {
+        font-size: var(--mat-sys-headline-medium-size);
+        font-family: var(--mat-icon-font-family, 'Material Icons Outlined');
+        margin-top: 6px;
+      }
+    }
+
+    .aca-toolbar-action {
+      button {
+        border-radius: 6px;
+      }
+    }
+  }
+
+  .aca-page-layout-content {
+    @include mixins.flex-row;
+
+    border-top: 1px solid var(--theme-metadata-property-panel-border-color);
+  }
+
+  .aca-page-layout-error {
+    @include mixins.flex-row;
+  }
+
+  .aca-main-content {
+    @include mixins.flex-column;
+  }
+
+  .aca-scrollable {
+    overflow: auto;
+
+    .aca-main-content {
+      overflow: auto;
+    }
+  }
+}
+
+[dir='rtl'] .aca-page-layout {
+  .aca-main-content {
+    border-left: 1px solid var(--theme-border-color, rgba(0, 0, 0, 0.07));
+  }
+}
+
+[dir='ltr'] .aca-page-layout {
+  .aca-main-content {
+    border-right: 1px solid var(--theme-border-color, rgba(0, 0, 0, 0.07));
+  }
+}

@@ -1,0 +1,49 @@
+.aca-ai-agent-json-dialog {
+  .mat-dialog-container {
+    padding: 0;
+  }
+
+  h1[mat-dialog-title] {
+    margin: 0;
+    padding: 24px 28px 8px;
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  .mat-dialog-actions {
+    margin: 0;
+    padding: 16px 28px 24px;
+  }
+}
+
+.aca-ai-agent-json-dialog__content {
+  padding: 0 28px;
+}
+
+.aca-ai-agent-json-dialog__helper {
+  color: #5f6f7d;
+  font-size: 14px;
+  margin: 0 0 16px;
+}
+
+.aca-ai-agent-json-dialog__field {
+  width: 100%;
+
+  textarea {
+    font-family: Consolas, Monaco, 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.45;
+    min-height: 360px;
+    resize: vertical;
+  }
+}
+
+.aca-ai-agent-json-dialog__tools {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+
+  .mat-icon {
+    margin-right: 6px;
+  }
+}

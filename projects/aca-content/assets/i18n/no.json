@@ -1,0 +1,754 @@
+{
+    "APP": {
+        "COPYRIGHT": "© 2005-2025 Hyland Software, Inc. og samarbeidspartnere. Med enerett.",
+        "TITLE": "Workspace",
+        "ABOUT": {
+            "VERSION": "Versjon:",
+            "PLUGINS": {
+                "TITLE": "Utvidelser",
+                "ID": "ID",
+                "NAME": "Navn",
+                "VERSION": "Versjon",
+                "VENDOR": "Leverandør",
+                "LICENSE": "Lisens",
+                "RUNTIME": "Gjennomkjøring",
+                "DESCRIPTION": "Beskrivelse"
+            },
+            "LICENSE": {
+                "TITLE": "Lisens",
+                "PROPERTY": "Egenskap",
+                "VALUE": "Verdi"
+            },
+            "STATUS": {
+                "TITLE": "Status",
+                "PROPERTY": "Egenskap",
+                "VALUE": "Verdi"
+            },
+            "MODULES": {
+                "TITLE": "Alfresco-plattformmoduler",
+                "ID": "ID",
+                "NAME": "Navn",
+                "VERSION": "Versjon"
+            },
+            "PACKAGES": {
+                "TITLE": "Pakker",
+                "NAME": "Navn",
+                "VERSION": "Versjon"
+            },
+            "BACK_BUTTON_LABEL": "Gå tilbake"
+        },
+        "LANGUAGE": "Språk",
+        "SIGN_IN": "Logg på",
+        "SIGN_OUT": "Logg ut",
+        "EDIT_PROFILE": {
+            "MY_PROFILE": "Min profil",
+            "GENERAL": "Generelt",
+            "EDIT": "Rediger",
+            "CANCEL": "Avbryt",
+            "SAVE": "Lagre",
+            "FIRST_NAME": "Fornavn",
+            "LAST_NAME": "Etternavn",
+            "JOB_TITLE": "Stillingsbetegnelse",
+            "LOCATION": "Lokalisering",
+            "TELEPHONE": "Telefon",
+            "MOBILE": "Mobil",
+            "EMAIL": "E-post",
+            "COMPANY_DETAILS": "Firmadetaljer",
+            "NAME": "Navn",
+            "ADDRESS": "Adresse",
+            "POSTCODE": "Postnummer",
+            "INVALID_PHONE_FORMAT": "Angi et gyldig telefonnummer",
+            "INVALID_EMAIL_FORMAT": "Angi en gyldig e‑postadresse",
+            "GO_TO_PERSONAL_FILES_BUTTON_LABEL": "Gå til personlige filer"
+        },
+        "LOCKED_BY": "Låst av: ",
+        "PREVIEW": {
+            "TITLE": "Forhåndsvisning"
+        },
+        "DETAILS": {
+            "TITLE": "Detaljer"
+        },
+        "NEW_MENU": {
+            "MENU_ITEMS": {
+                "CREATE_FOLDER": "Opprett mappe",
+                "UPLOAD_FILE": "Last opp fil",
+                "UPLOAD_FOLDER": "Last opp mappe",
+                "CREATE_LIBRARY": "Opprett bibliotek",
+                "FILE_TEMPLATE": "Opprett fil fra mal",
+                "FOLDER_TEMPLATE": "Opprett mappe fra mal"
+            },
+            "TOOLTIPS": {
+                "CREATE_FOLDER": "Opprett ny mappe",
+                "CREATE_FOLDER_NOT_ALLOWED": "Mapper kan ikke opprettes mens de gjeldende elementene vises",
+                "CREATE_FILE_NOT_ALLOWED": "Filer kan ikke opprettes mens de gjeldende elementene vises",
+                "UPLOAD_FILES": "Velg filene som skal lastes opp",
+                "UPLOAD_FILES_NOT_ALLOWED": "Filer kan ikke lastes opp mens de gjeldende elementene vises",
+                "UPLOAD_FOLDERS": "Velg mappene som skal lastes opp",
+                "UPLOAD_FOLDERS_NOT_ALLOWED": "Mapper kan ikke lastes opp mens de gjeldende elementene vises",
+                "CREATE_LIBRARY": "Opprett et nytt filbibliotek"
+            }
+        },
+        "HEADER": {
+            "BUTTONS": {
+                "CREATE": "Opprett",
+                "CREATE_TOOLTIP": "Opprett innhold",
+                "UPLOAD": "Last opp",
+                "UPLOAD_TOOLTIP": "Last opp innhold"
+            },
+            "SELECTED": "Valgt ({{ count }})"
+        },
+        "BROWSE": {
+            "FILE": {
+                "SIDENAV_LINK": {
+                    "LABEL": "Filer",
+                    "TOOLTIP": "Filer"
+                }
+            },
+            "PERSONAL": {
+                "TITLE": "Personlige filer",
+                "SIDENAV_LINK": {
+                    "LABEL": "Personlige filer",
+                    "TOOLTIP": "Vis personlige filer"
+                },
+                "PERMISSIONS": {
+                    "TITLE": "Tillatelser"
+                }
+            },
+            "REPOSITORY_VIEW": {
+                "TITLE": "Repository",
+                "SIDENAV_LINK": {
+                    "LABEL": "Repository",
+                    "TOOLTIP": "View the repository"
+                }
+            },
+            "LIBRARIES": {
+                "TITLE": "Filbiblioteker",
+                "DESCRIPTION": "Få tilgang til filbiblioteker",
+                "SIDENAV_LINK": {
+                    "LABEL": "Filbiblioteker",
+                    "TOOLTIP": "Filbiblioteker"
+                },
+                "EMPTY_STATE": {
+                    "FILE_LIBRARIES": {
+                        "TITLE": "Du er ikke medlem av noen filbiblioteker ennå",
+                        "TEXT": "Bli med i biblioteker for å laste opp, vise og dele filer."
+                    },
+                    "FAVORITE_LIBRARIES": {
+                        "TITLE": "Ingen favorittbiblioteker",
+                        "TEXT": "Merk et bibliotek som favoritt for å enkelt finne det senere."
+                    },
+                    "ALL_LIBRARIES": {
+                        "TITLE": "Ingen bibliotek funnet",
+                        "TEXT": "Opprett et nytt bibliotek for å komme i gang."
+                    }
+                },
+                "MENU": {
+                    "MY_LIBRARIES": {
+                        "TITLE": "Mine biblioteker",
+                        "SIDENAV_LINK": {
+                            "LABEL": "Mine biblioteker",
+                            "TOOLTIP": "Få tilgang til mine biblioteker"
+                        }
+                    },
+                    "FAVORITE_LIBRARIES": {
+                        "TITLE": "Favorittbiblioteker",
+                        "SIDENAV_LINK": {
+                            "LABEL": "Favorittbiblioteker",
+                            "TOOLTIP": "Få tilgang til mine favorittbiblioteker"
+                        }
+                    },
+                    "ALL_LIBRARIES": {
+                        "TITLE": "Alle biblioteker",
+                        "SIDENAV_LINK": {
+                            "LABEL": "Alle biblioteker",
+                            "TOOLTIP": "Tilgang til alle biblioteker"
+                        }
+                    }
+                },
+                "ERRORS": {
+                    "LIBRARY_NOT_FOUND": "Dette biblioteket eksisterer ikke lenger.",
+                    "LIBRARY_LOADING_ERROR": "Det oppsto et problem under lasting av dette biblioteket."
+                },
+                "LIBRARY_NO_PERMISSIONS_WARNING": "Du har ikke tillatelse til å vise dette biblioteket."
+            },
+            "SHARED": {
+                "TITLE": "Delte filer",
+                "SIDENAV_LINK": {
+                    "LABEL": "Delt",
+                    "TOOLTIP": "Vis filer som har blitt delt"
+                },
+                "EMPTY_STATE": {
+                    "TITLE": "Ingen delte filer eller mapper",
+                    "TEXT": "Elementer du deler med Del-alternativet, vises her."
+                }
+            },
+            "RECENT": {
+                "TITLE": "Nylige filer",
+                "SIDENAV_LINK": {
+                    "LABEL": "Nylige filer",
+                    "TOOLTIP": "Vis filer du nylig har redigert"
+                },
+                "EMPTY_STATE": {
+                    "TITLE": "Ingen nylige filer",
+                    "TEXT": "Elementer du har lastet opp eller redigert i løpet av de siste 30 dagene, vises her."
+                }
+            },
+            "FAVORITES": {
+                "TITLE": "Favoritter",
+                "SIDENAV_LINK": {
+                    "LABEL": "Favoritter",
+                    "TOOLTIP": "Vis dine favorittfiler og -mapper"
+                },
+                "EMPTY_STATE": {
+                    "TITLE": "Ingen favorittfiler eller -mapper",
+                    "TEXT": "Favorittelementer som du enkelt vil finne senere."
+                }
+            },
+            "TRASHCAN": {
+                "TITLE": "Papirkurv",
+                "SIDENAV_LINK": {
+                    "LABEL": "Papirkurv",
+                    "TOOLTIP": "Vis slettede filer i papirkurven"
+                },
+                "EMPTY_STATE": {
+                    "TITLE": "Papirkurven er tom",
+                    "FIRST_TEXT": "Elementer du sletter, flyttes til papirkurven.",
+                    "SECOND_TEXT": "Tøm papirkurven for å slette elementer permanent."
+                }
+            },
+            "ABOUT": {
+                "TITLE": "Om"
+            },
+            "SEARCH": {
+                "DEFAULT_SEARCH": "Standard",
+                "DUBLIN_CORE": "Dublin Core",
+                "EFFECTIVITY": "Effektivitet",
+                "TITLE": "Søk i resultater",
+                "FILTER_SET": "Filtersett:",
+                "ADVANCED_FILTERS": "Avanserte filtre:",
+                "RESET": "Tilbakestill",
+                "RESET_ACTION": "Tilbakestill søkefiltre",
+                "SAVE_SEARCH": {
+                    "ACTION_BUTTON": "Lagre søk",
+                    "SAVE_CHANGES": "Lagre endringer",
+                    "SAVE_AS_NEW": "Lagre som ny",
+                    "MODAL_HEADER": "Lagre dette søket",
+                    "NAME_LABEL": "Navn",
+                    "NAME_REQUIRED_ERROR": "Dette feltet er obligatorisk",
+                    "DESCRIPTION_LABEL": "Beskrivelse",
+                    "SAVE_SUCCESS": "Søk i lagret",
+                    "SAVE_ERROR": "Det oppstod en feil. Søket kunne ikke lagres.",
+                    "SEARCH_NAME_NOT_UNIQUE_ERROR": "Et lagret søk med navnet «{{ name }}» eksisterer allerede.",
+                    "NAVBAR": {
+                        "TITLE": "Lagrede søk ({{ number }})",
+                        "MANAGE_BUTTON": "Administrer søk"
+                    },
+                    "EDIT_DIALOG": {
+                        "CONTEXT_OPTION": "Rediger søk",
+                        "TITLE": "Rediger lagrede søk",
+                        "SUCCESS_MESSAGE": "Lagret søk er redigert",
+                        "ERROR_MESSAGE": "Det oppstod en feil. Lagret søk kunne ikke redigeres."
+                    },
+                    "DELETE_DIALOG": {
+                        "CONTEXT_OPTION": "Slett søk",
+                        "TITLE": "Slett lagret søk",
+                        "CONTENT": "Er du sikker på at du vil slette dette søket?",
+                        "SUCCESS_MESSAGE": "Lagret søk er slettet",
+                        "ERROR_MESSAGE": "Det oppstod en feil. Lagret søk kunne ikke slettes."
+                    },
+                    "LIST": {
+                        "TITLE": "Lagrede søk",
+                        "NAME": "Navn",
+                        "DESCRIPTION": "Beskrivelse",
+                        "EMPTY_LIST": "Ingen lagrede søk",
+                        "COPY_TO_CLIPBOARD": "Kopiere til utklippstavlen",
+                        "COPY_TO_CLIPBOARD_SUCCESS": "Søk kopiert til utklippstavle",
+                        "EXECUTE_SEARCH": "Utfør søk"
+                    }
+                },
+                "FOUND_RESULTS": "{{ number }} resultater funnet",
+                "FOUND_ONE_RESULT": "{{ number }} resultat funnet",
+                "CUSTOM_ROW": {
+                    "MODIFIED": "Endret",
+                    "BY_USER": "av {{ user }}",
+                    "LOCATION": "Lokalisering",
+                    "SIZE": "Størrelse"
+                },
+                "UNKNOWN_LOCATION": "You do not have permission to view the location of this document.",
+                "VIEW_ADDITIONAL_LOCATIONS": "Vis flere referanseplasseringer",
+                "NO_RESULTS": "Ditt søk ga 0 resultater",
+                "EMPTY_SEARCH": "Søkeord kreves",
+                "NO_FILTER_RESULTS": "Ditt filter ga 0 resultater",
+                "ERRORS": {
+                    "500": "Det oppstod en feil under behandling av søket [500]",
+                    "GENERIC": "Det oppstod en feil under behandling av søket"
+                }
+            },
+            "SEARCH_LIBRARIES": {
+                "FOUND_RESULTS": "{{ number }} resultater",
+                "FOUND_ONE_RESULT": "{{ number }} resultat"
+            }
+        },
+        "ACTIONS": {
+            "VIEW": "Vis",
+            "EDIT": "Rediger",
+            "DOWNLOAD": "Last ned",
+            "COPY": "Kopier",
+            "MOVE": "Flytt",
+            "DELETE": "Slett",
+            "DELETE_PERMANENT": "Slettet permanent",
+            "MORE": "Flere handlinger",
+            "UNDO": "Angre",
+            "PERMISSIONS": "Tillatelser",
+            "RESTORE": "Gjenopprett",
+            "FAVORITE": "Favoritt",
+            "ADD_FAVORITE": "Legg til favoritt",
+            "REMOVE_FAVORITE": "Fjern favoritt",
+            "UNSHARE": "Opphev deling",
+            "DETAILS": "Vis detaljer",
+            "VERSIONS": "Administrer versjoner",
+            "UPLOAD_VERSION": "Last opp ny versjon",
+            "TOGGLE-SIDENAV": "Veksle sidenavigasjonslinje",
+            "SHARE": "Del",
+            "SHARE_EDIT": "Innstillinger for delt lenke",
+            "PRINT": "Utskrift",
+            "FULLSCREEN": "Aktiver fullskjermmodus",
+            "JOIN": "Bli med",
+            "CANCEL_JOIN": "Avbryt forespørsel om å bli med",
+            "LEAVE": "Forlat bibliotek",
+            "EDIT_OFFLINE": "Rediger frakoblet",
+            "EDIT_OFFLINE_CANCEL": "Avbryt redigering",
+            "CHANGE_ASPECT": "Rediger aspekter",
+            "ADD_ASPECTS": "Legg til aspekter",
+            "NODE_INFO": "Informasjon"
+        },
+        "DIALOGS": {
+            "CONFIRM_PURGE": {
+                "TITLE": "Vil du slette fra papirkurv?",
+                "MESSAGE": "Dette vil permanent fjerne valgt(e) element(er).",
+                "YES_LABEL": "Slett",
+                "NO_LABEL": "Behold"
+            },
+            "CONFIRM_LEAVE": {
+                "TITLE": "Vil du forlate dette biblioteket?",
+                "MESSAGE": "Å forlate vil fjerne tilgangen din.",
+                "YES_LABEL": "OK",
+                "NO_LABEL": "Avbryt"
+            },
+            "MOBILE_APP": {
+                "MOBILE_APP_BUTTON_LABEL": "Åpne i app",
+                "DOWNLOAD_APP_BUTTON_LABEL": "Har du ikke appen? Last ned nå.",
+                "OPEN_ALFRESCO_MOBILE_APP": "Vil du åpne med Alfresco-mobilappen?"
+            }
+        },
+        "DOCUMENT_LIST": {
+            "COLUMNS": {
+                "ID": "ID",
+                "NAME": "Navn",
+                "DESCRIPTION": "Beskrivelse",
+                "SIZE": "Størrelse",
+                "MODIFIED_ON": "Endret",
+                "MODIFIED_BY": "Endret av",
+                "VISIBILITY": "Synlighet",
+                "TITLE": "Tittel",
+                "LOCATION": "Lokalisering",
+                "SHARED_BY": "Delt av",
+                "DELETED_ON": "Slettet",
+                "DELETED_BY": "Slettet av",
+                "ROLE": "Min rolle",
+                "TAGS": "Tagger"
+            }
+        },
+        "MESSAGES": {
+            "ERRORS": {
+                "CANNOT_NAVIGATE_LOCATION": "Kan ikke åpne denne plasseringen",
+                "MISSING_CONTENT": "Dette elementet eksisterer ikke lenger, eller du har ikke tillatelse til å vise det.",
+                "GENERIC": "Handlingen mislyktes. Prøv igjen eller kontakt IT-teamet ditt.",
+                "CONFLICT": "Dette navnet er allerede i bruk. Prøv et annet navn.",
+                "NODE_MOVE": "Flyttingen mislyktes, en fil med samme navn eksisterer allerede.",
+                "EXISTENT_FOLDER": "Det er allerede en mappe med dette navnet. Prøv et annet navn.",
+                "NODE_DELETION": "{{ name }} kunne ikke slettes",
+                "NODE_DELETION_PLURAL": "{{ number }} elementer kunne ikke slettes",
+                "NODE_RESTORE": "{{ name }} kunne ikke gjenopprettes",
+                "NODE_RESTORE_PLURAL": "{{ number }} elementer kunne ikke gjenopprettes",
+                "PERMISSION": "Du har ikke tilgang til å gjøre dette",
+                "LOCK_NODE": "Det oppsto et problem med å låse {{ fileName }}-filen",
+                "UNLOCK_NODE": "Det oppsto et problem med å låse opp {{ fileName }}-filen",
+                "TRASH": {
+                    "NODES_PURGE": {
+                        "PLURAL": "{{ number }} elementer kunne ikke slettes",
+                        "SINGULAR": "{{ name }} kunne ikke slettes"
+                    },
+                    "NODES_RESTORE": {
+                        "PARTIAL_PLURAL": "{{ number }} elementer ble ikke gjenopprettet på grunn av problemer med plasseringen for gjenoppretting",
+                        "NODE_EXISTS": "Kan ikke gjenopprette, {{ name }} eksisterer allerede",
+                        "LOCATION_MISSING": "Kan ikke gjenopprette {{ name }}, den opprinnelige plasseringen eksisterer ikke lenger",
+                        "GENERIC": "Det oppsto et problem med å gjenopprette {{ name }}"
+                    }
+                },
+                "DELETE_LIBRARY_FAILED": "Kan ikke slette biblioteket",
+                "LEAVE_LIBRARY_FAILED": "Kan ikke forlate dette biblioteket"
+            },
+            "UPLOAD": {
+                "ERROR": {
+                    "GENERIC": "Opplastingen mislyktes. Kontakt IT hvis dette problemet vedvarer",
+                    "CONFLICT": "Ny versjon er ikke lastet opp, en fil med samme navn eksisterer allerede",
+                    "500": "Intern serverfeil, prøv igjen eller kontakt IT-støtte [500]",
+                    "504": "Serveren ble tidsavbrutt, prøv igjen eller kontakt IT-støtte [504]",
+                    "403": "Utilstrekkelige tillatelser til å laste opp til denne plasseringen [403]",
+                    "404": "Plasseringen for opplasting eksisterer ikke lenger [404]"
+                }
+            },
+            "INFO": {
+                "TRASH": {
+                    "NODES_PURGE": {
+                        "PLURAL": "{{ number }} elementer er slettet",
+                        "SINGULAR": "{{ name }} er slettet",
+                        "PARTIAL_SINGULAR": "{{ name }} er slettet, {{ failed }} kunne ikke slettes",
+                        "PARTIAL_PLURAL": "{{ number }} elementer er slettet, {{ failed }} kunne ikke slettes"
+                    },
+                    "NODES_RESTORE": {
+                        "PLURAL": "Gjenopprettingen er fullført",
+                        "SINGULAR": "{{ name }} er gjenopprett"
+                    }
+                },
+                "NODE_DELETION": {
+                    "SINGULAR": "{{ name }} er slettet",
+                    "PLURAL": "Slettet {{ number }} elementer",
+                    "PARTIAL_SINGULAR": "Slettet {{ success }} element, {{ failed }} kunne ikke slettes",
+                    "PARTIAL_PLURAL": "Slettet {{ success }} elementer, {{ failed }} kunne ikke slettes"
+                },
+                "NODE_COPY": {
+                    "SINGULAR": "Kopierte {{ success }} element",
+                    "PLURAL": "Kopierte {{ success }} elementer",
+                    "PARTIAL_SINGULAR": "Kopierte {{ success }} element, {{ failed }} kunne ikke kopieres.",
+                    "PARTIAL_PLURAL": "Kopierte {{ success }} elementer, {{ failed }} kunne ikke kopieres.",
+                    "FAIL_SINGULAR": "{{ failed }} element kunne ikke kopieres.",
+                    "FAIL_PLURAL": "{{ failed }} elementer kunne ikke kopieres."
+                },
+                "NODE_MOVE": {
+                    "SINGULAR": "Flyttet {{ success }} element.",
+                    "PLURAL": "Flyttet {{ success }} elementer.",
+                    "PARTIAL": {
+                        "SINGULAR": "Flyttet {{ partially }} element delvis.",
+                        "PLURAL": "Flyttet {{ partially }} elementer delvis.",
+                        "FAIL": "{{ failed }} kunne ikke flyttes."
+                    }
+                },
+                "NODE_CREATE": {
+                    "FILE_FROM_TEMPLATE_SUCCESS": "Filen {{ name }} ble opprettet fra malen",
+                    "FOLDER_FROM_TEMPLATE_SUCCESS": "Mappen {{ name }} ble opprettet fra malen"
+                },
+                "LIBRARY_DELETED": "Biblioteket er slettet",
+                "LEFT_LIBRARY": "Du har forlatt biblioteket",
+                "FAVORITE_NODE_ADDED": "Lagt {{ name }} til favoritter",
+                "FAVORITE_NODES_ADDED": "Lagt til {{ number }} elementer i favoritter",
+                "FAVORITE_NODE_REMOVED": "Fjernet {{ name }} fra favoritter",
+                "FAVORITE_NODES_REMOVED": "Fjernet {{ number }} elementer fra favoritter",
+                "FAVORITE_NODE_NOT_FOUND": "{{ name }} er ikke favoritt"
+            }
+        },
+        "CONTENT_METADATA": {
+            "EXIF_GROUP_TITLE": "Bilde EXIF",
+            "GROUP_IPTC_CORE_CONTACT_INFO": "IPTC-kontakt",
+            "GROUP_IPTC_CORE_IMAGE_INFO": "IPTC-bilde",
+            "GROUP_IPTC_CORE_CONTENT_INFO": "IPTC-innhold",
+            "GROUP_IPTC_CORE_STATUS_INFO": "IPTC-status",
+            "GROUP_IPTC_EXT_DESCRIPTION": "IPTC-bildebeskrivelse",
+            "GROUP_IPTC_EXT_AO_DETAIL": "Detaljer om IPTC-kunstverk eller -objekt",
+            "GROUP_IPTC_EXT_MODEL_INFO": "Informasjon om IPTC-modell",
+            "GROUP_IPTC_EXT_ADMIN_INFO": "Informasjon om IPTC-administrator",
+            "GROUP_IPTC_EXT_RIGHTS_INFO": "Informasjon om IPTC-rettigheter",
+            "GROUP_IPTC_EXT_OTHER": "IPTC annet",
+            "EFFECTIVITY_GROUP_TITLE": "Effektivitet"
+        },
+        "INFO_DRAWER": {
+            "TITLE": "Detaljer",
+            "REDUCE_PANEL": "Reduser panel",
+            "DATA_LOADING": "Data lastes inn",
+            "ICON": "Node-ikon",
+            "TABS": {
+                "PROPERTIES": "Egenskaper",
+                "LIBRARY_PROPERTIES": "Om",
+                "VERSIONS": "Versjoner",
+                "COMMENTS": "Kommentarer",
+                "PERMISSIONS": "Tillatelser",
+                "EXPAND": "Utvid panel"
+            }
+        },
+        "TOOLTIPS": {
+            "COLLAPSE_NAVIGATION": "Skjul navigasjonsmeny",
+            "COLLAPSE_NAVIGATION_ALT": "Ikon for å skjule navigasjonsmenyen",
+            "OPTIONS_SETTINGS": "Alternativer og innstillinger",
+            "MY_PROFILE": "Min profil",
+            "EXPAND_NAVIGATION": "Utvid navigasjonsmeny",
+            "EXPAND_SECTION": "Utvid seksjon",
+            "COLLAPSE_SECTION": "Skjul seksjonen",
+            "EDIT": "Rediger",
+            "CANCEL": "Avbryt",
+            "SAVE": "Lagre"
+        },
+        "NODE_INFO": {
+            "ICON": "Node-ikon",
+            "TITLE": "Informasjon",
+            "SIZE": "Størrelse",
+            "NUMBER_OF_FILES": "Antall filer",
+            "CALCULATING": "Beregner...",
+            "LOCATION": "Lokalisering",
+            "REFERENCED": "Referert",
+            "CREATED": "Opprettet",
+            "MODIFIED": "Endret",
+            "DONE": "Ferdig",
+            "ERROR": "Noe gikk galt, lukk denne dialogboksen og prøv igjen"
+        },
+        "ADDITIONAL_REFERENCES_DIALOG": {
+            "TITLE": "Ekstra referanseplassering",
+            "NO_LOCATIONS": "{{ name }} er ikke referert på noen plasseringer.",
+            "DESCRIPTION": "{{ name }} er for øyeblikket referert på disse plasseringene.",
+            "CLOSE": "Lukk"
+        }
+    },
+    "NODE_SELECTOR": {
+        "COPY_ITEM": "Kopier «{{ name }}» til...",
+        "COPY_ITEMS": "Kopier {{ number }} elementer til...",
+        "MOVE_ITEM": "Flytt «{{ name }}» til...",
+        "MOVE_ITEMS": "Flytt {{ number }} elementer til...",
+        "SEARCH": "Søk",
+        "NEXT": "Neste",
+        "SELECT_FILE_TEMPLATE_TITLE": "Velg en dokumentmal",
+        "SELECT_FOLDER_TEMPLATE_TITLE": "Velg en mappemal"
+    },
+    "NODE_FROM_TEMPLATE": {
+        "CANCEL": "AVBRYT",
+        "CREATE": "Opprett",
+        "FOLDER_DIALOG_TITLE": "Opprett en ny mappe fra <span class=\"bold\">«{{ template }}»</span>",
+        "FILE_DIALOG_TITLE": "Opprett et nytt dokument fra <span class=\"bold\">«{{ template }}»</span>",
+        "FORM": {
+            "PLACEHOLDER": {
+                "NAME": "Navn",
+                "TITLE": "Tittel",
+                "DESCRIPTION": "Beskrivelse"
+            },
+            "ERRORS": {
+                "DESCRIPTION_TOO_LONG": "Bruk 512 tegn eller mindre for beskrivelse",
+                "TITLE_TOO_LONG": "Bruk 256 tegn eller mindre for tittel",
+                "REQUIRED": "Navn er nødvendig",
+                "SPECIAL_CHARACTERS": "Navnet kan ikke inneholde følgende tegn * \" < > \\ / ? : |",
+                "ENDING_DOT": "Navnet kan ikke slutte med punktum.",
+                "ONLY_SPACES": "Navnet kan ikke bare bestå av mellomrom"
+            }
+        }
+    },
+    "SHARED_LINK": {
+        "UNSHARE_PERMISSION_ERROR": "Du har ikke tillatelse til å oppheve deling av denne filen"
+    },
+    "VERSION": {
+        "DIALOG": {
+            "TITLE": "Last opp ny versjon",
+            "CANCEL": "Avbryt",
+            "UPLOAD": "Last opp"
+        },
+        "SELECTION": {
+            "EMPTY": "Velg et dokument for å vise versjonene av det.",
+            "NO_PERMISSION": "Du har ikke tillatelse til å administrere versjonene av dette innholdet."
+        },
+        "ERROR": {
+            "GENERIC": "Det oppstod en feil under versjonering av filen"
+        }
+    },
+    "LIBRARY": {
+        "DIALOG": {
+            "CREATE_TITLE": "Opprett bibliotek",
+            "CREATE": "Opprett",
+            "UPDATE": "Oppdater",
+            "EDIT": "Rediger",
+            "CANCEL": "Avbryt",
+            "FORM": {
+                "DESCRIPTION": "Beskrivelse",
+                "SITE_ID": "Bibliotek-ID",
+                "NAME": "Navn",
+                "VISIBILITY": "Synlighet"
+            }
+        },
+        "VISIBILITY": {
+            "PRIVATE": "Privat",
+            "PUBLIC": "Offentlig",
+            "MODERATED": "Moderert"
+        },
+        "HINTS": {
+            "SITE_TITLE_EXISTS": "Biblioteknavnet er allerede i bruk"
+        },
+        "ERRORS": {
+            "GENERIC": "Vi har støtt på et problem",
+            "EXISTENT_SITE": "Denne bibliotek-ID-en er ikke tilgjengelig. Prøv en annen bibliotek-ID.",
+            "CONFLICT": "Denne bibliotek-ID-en er allerede i bruk. Sjekk papirkurven.",
+            "ID_TOO_LONG": "Bruk 72 tegn eller mindre for URL-navnet",
+            "DESCRIPTION_TOO_LONG": "Bruk 512 tegn eller mindre for beskrivelse",
+            "TITLE_TOO_LONG_OR_MISSING": "Bruk 256 tegn eller mindre for tittel",
+            "ILLEGAL_CHARACTERS": "Bruk kun tall og bokstaver",
+            "ONLY_SPACES": "Biblioteknavnet kan ikke bare bestå av mellomrom",
+            "LIBRARY_UPDATE_ERROR": "Det oppsto en feil under oppdatering av bibliotekets egenskaper"
+        },
+        "SUCCESS": {
+            "LIBRARY_UPDATED": "Bibliotekets egenskaper er oppdatert"
+        }
+    },
+    "SEARCH": {
+        "BULK_ACTIONS_DROPDOWN": {
+            "LABEL": "Handlinger for flere",
+            "TITLE": "Select an action for all {{ count }} results",
+            "BULK_NOT_AVAILABLE": "Massehandlinger (ikke tilgjengelig)",
+            "BULK_NOT_AVAILABLE_TOOLTIP": "Massehandlinger kan ikke brukes uten søkeresultater"
+        },
+        "INPUT": {
+            "PLACEHOLDER": "Søk",
+            "FILES": "Filer",
+            "FOLDERS": "Mapper",
+            "LIBRARIES": "Biblioteker",
+            "MIN_LENGTH": "Søketeksten må bestå av minst 2 alfanumeriske tegn.",
+            "REQUIRED": "Søk i inndata er påkrevd.",
+            "WHITESPACE": "Søkeinndata kan ikke bare være i blanke rom.",
+            "OPERATORS": "Søkefeltet kan ikke starte med, slutte med eller kun bestå av operatorer",
+            "IN_PREFIX": "In",
+            "FILES_AND_FOLDERS": "Files and folders",
+            "RESET": "Tilbakestill",
+            "SEARCH_IN": "Search in"
+        },
+        "SORT": {
+            "SORTING_OPTION": "Sorter etter",
+            "ASCENDING": "Stigende",
+            "DESCENDING": "Synkende",
+            "RELEVANCE": "Relevans",
+            "FILENAME": "Filnavn",
+            "TITLE": "Tittel",
+            "MODIFIED_DATE": "Endret dato",
+            "SIZE": "Størrelse",
+            "TYPE": "Type",
+            "MODIFIER": "Modifikator",
+            "CREATE_DATE": "Opprettet dato"
+        },
+        "CLOSE_BUTTON": {
+            "ARIA_LABEL": "Lukk søk"
+        },
+        "FACET_FIELDS": {
+            "CREATOR": "Oppretter",
+            "MODIFIER": "Modifikator",
+            "LOCATION": "Lokalisering",
+            "CATEGORIES": "Kategorier"
+        },
+        "CATEGORIES": {
+            "DATE": "Dato",
+            "DATE_TABS": {
+                "CREATED": "Opprettet",
+                "MODIFIED": "Endret"
+            },
+            "EFFECTIVITY_FROM": "Effektivitet fra",
+            "EFFECTIVITY_TO": "Effektivitet til",
+            "LOGIC": "Logikk",
+            "PROPERTIES": "Egenskaper"
+        },
+        "SEARCH_HEADER": {
+            "TITLE": "Filter",
+            "TYPE": "Type",
+            "FILTER_BY": "Filtrer etter {{ category }}",
+            "CLEAR": "Tøm",
+            "APPLY": "Bruk",
+            "FILTERS": {
+                "NAME": {
+                    "TITLE": "Navn",
+                    "PLACEHOLDER": "Skriv inn navnet"
+                },
+                "TYPE": {
+                    "TITLE": "Kontroller type",
+                    "FOLDER": "Mappe",
+                    "DOCUMENT": "Dokument"
+                },
+                "SIZE": {
+                    "TITLE": "Innholdsstørrelse (område)",
+                    "SMALL": "Liten",
+                    "MEDIUM": "Mellomstor",
+                    "LARGE": "Stor",
+                    "HUGE": "Enorm"
+                },
+                "DATE": {
+                    "TITLE": "Opprettet dato (område)"
+                }
+            }
+        }
+    },
+    "CORE": {
+        "METADATA": {
+            "ACTIONS": {
+                "SAVE": "Lagre endringer",
+                "CANCEL": "Forkast endringer"
+            }
+        }
+    },
+    "ADF_VIEWER": {
+        "ACTIONS": {
+            "INFO": "Vis detaljer",
+            "PREVIEW": "Vis forhåndsvisning"
+        }
+    },
+    "FILE_UPLOAD": {
+        "ERRORS": {
+            "409": "Dette navnet er allerede i bruk. Prøv et annet navn [409]"
+        }
+    },
+    "ADF_VERSION_LIST": {
+        "ACTIONS": {
+            "UPLOAD": {
+                "TOOLTIP": "Last opp ny versjon"
+            }
+        }
+    },
+    "CUSTOM_NAME_COLUMN": {
+        "ACCESSIBILITY": {
+            "FILE_LINK_ARIA_LABEL": "Vis {{ name }}",
+            "FOLDER_LINK_ARIA_LABEL": "Åpne {{ name }}-mappen"
+        }
+    },
+    "ADF-DATATABLE": {
+        "FILE_TYPE": {
+            "BOOKS-24PX": "filbibliotek",
+            "BASELINE-LOCK-24PX": "låst fil"
+        }
+    },
+    "KNOWLEDGE_RETRIEVAL": {
+        "SEARCH": {
+            "RESULTS_PAGE": {
+                "QUERY_INPUT_PLACEHOLDER": "Ønsker du å spørre om noe annet?",
+                "REFERENCED_DOCUMENTS_HEADER": "Refererte dokumenter",
+                "REGENERATION_BUTTON_LABEL": "Regenerer",
+                "COPY_BUTTON_LABEL": "Kopier",
+                "COPY_MESSAGE": "Svaret er kopiert til utklippstavlen",
+                "RELOAD_REFERENCES_BUTTON_LABEL": "Last inn på nytt"
+            },
+            "AGENTS_BUTTON": {
+                "LABEL": "Spør dokumentbevis",
+                "TITLE": "Kunnskapsinnhenting"
+            },
+            "SEARCH_INPUT": {
+                "ASK_BUTTON_LABEL": "Spør",
+                "DEFAULT_PLACEHOLDER": "Still spørsmålet så detaljert som mulig...",
+                "HIDE_INPUT": "Skjul inndata",
+                "HIDE_ANSWER": "Skjul svar"
+            },
+            "ERRORS": {
+                "AGENTS_FETCHING": "Feil under henting av agenter.",
+                "HX_INSIGHT_URL_FETCHING": "Feil under henting av HX Insight URL.",
+                "LOADING_ERROR": "Hmm... noe ser ut til å ha gått galt.",
+                "PAGE_NOT_AVAILABLE_ERROR": "Siden er ikke tilgjengelig for disse betingelsene.",
+                "REFERENCES_LOADING_ERROR": "Noe gikk galt under lasting av referanser."
+            },
+            "DISCARD_CHANGES": {
+                "WARNING": "Advarsel!",
+                "ASK_AI": "Spør KI",
+                "DO_NOT_SHOW_MESSAGE": "Ikke vis denne meldingen igjen",
+                "DISCARD_CONVERSATION": "Forkast samtale",
+                "CONVERSATION_DISCARDED": "Denne samtalen vil bli forkastet",
+                "LOSE_RESPONSE": "Ved å stille et nytt spørsmål, mister du det forrige svaret"
+            }
+        }
+    }
+}

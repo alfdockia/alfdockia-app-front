@@ -1,0 +1,12 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "extends": "./tsconfig.lib.json",
+  "compilerOptions": {
+    "paths": {
+      "@alfresco/aca-content": ["dist/@alfresco/aca-content"],
+      "@alfresco/aca-content/viewer": ["dist/@alfresco/aca-content/viewer"],
+      "@alfresco/aca-shared": ["dist/@alfresco/aca-shared"],
+      "@alfresco/aca-shared/store": ["dist/@alfresco/aca-shared/store"]
+    }
+  }
+}

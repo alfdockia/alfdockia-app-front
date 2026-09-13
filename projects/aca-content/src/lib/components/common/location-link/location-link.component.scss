@@ -1,0 +1,26 @@
+@use '@angular/material' as mat;
+
+.aca-location-link {
+  &-unknown {
+    display: flex;
+    align-items: center;
+
+    .adf-datatable-cell-value:hover {
+      color: var(--theme-foreground-text-color);
+      text-decoration: none;
+    }
+  }
+
+  .aca-location-link-info-btn {
+    @include mat.icon-button-overrides(
+      (
+        state-layer-size: 24px,
+        icon-size: 24px
+      )
+    );
+
+    color: var(--theme-foreground-text-color);
+    padding: 0;
+    margin-left: 5px;
+  }
+}

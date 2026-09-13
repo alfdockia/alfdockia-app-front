@@ -1,0 +1,264 @@
+/*!
+ * Copyright © 2005-2025 Hyland Software, Inc. and its affiliates. All rights reserved.
+ *
+ * Alfresco Example Content Application
+ *
+ * This file is part of the Alfresco Example Content Application.
+ * If the software was purchased under a paid Alfresco license, the terms of
+ * the paid license agreement will prevail. Otherwise, the software is
+ * provided under the following open source license terms:
+ *
+ * The Alfresco Example Content Application is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * The Alfresco Example Content Application is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * from Hyland Software. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+import { inject, Injectable } from '@angular/core';
+import {
+  AppConfigService,
+  AuthenticationService,
+  NotificationService,
+  PageTitleService,
+  StorageService,
+  UserPreferencesService
+} from '@alfresco/adf-core';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import {
+  AlfrescoApiService,
+  FileUploadErrorEvent,
+  SearchQueryBuilderService,
+  SharedLinksApiService,
+  UploadService
+} from '@alfresco/adf-content-services';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { ActivatedRoute, ActivationEnd, NavigationStart, Router } from '@angular/router';
+import { filter, map } from 'rxjs/operators';
+import { AppStore, ResetSelectionAction, SetCurrentUrlAction, SetRepositoryInfoAction, SetUserProfileAction } from '@alfresco/aca-shared/store';
+import { ContentApiService } from './content-api.service';
+import { RouterExtensionService } from './router.extension.service';
+import { Store } from '@ngrx/store';
+import { DiscoveryEntry } from '@alfresco/js-api';
+import { AcaMobileAppSwitcherService } from './aca-mobile-app-switcher.service';
+import { ShellAppService } from '@alfresco/adf-core/shell';
+import { AppSettingsService } from './app-settings.service';
+import { UserProfileService } from './user-profile.service';
+import { MatDialog } from '@angular/material/dialog';
+
+@Injectable({
+  providedIn: 'root'
+})
+// After moving shell to ADF to core, AppService will implement ShellAppService
+export class AppService implements ShellAppService {
+  preferencesService = inject(UserPreferencesService);
+  private readonly authenticationService = inject(AuthenticationService);
+  private readonly store = inject<Store<AppStore>>(Store);
+  private readonly router = inject(Router);
+  private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly config = inject(AppConfigService);
+  private readonly pageTitle = inject(PageTitleService);
+  private readonly alfrescoApiService = inject(AlfrescoApiService);
+  private readonly uploadService = inject(UploadService);
+  private readonly routerExtensionService = inject(RouterExtensionService);
+  private readonly contentApi = inject(ContentApiService);
+  private readonly sharedLinksApiService = inject(SharedLinksApiService);
+  private readonly overlayContainer = inject(OverlayContainer);
+  private readonly acaMobileAppSwitcherService = inject(AcaMobileAppSwitcherService);
+  private readonly appSettingsService = inject(AppSettingsService);
+  private readonly userProfileService = inject(UserProfileService);
+  private readonly storage = inject(StorageService);
+
+  private readonly notificationService = inject(NotificationService);
+  private readonly matDialog = inject(MatDialog);
+  private readonly ready: BehaviorSubject<boolean>;
+
+  ready$: Observable<boolean>;
+
+  private readonly pageHeading = new BehaviorSubject('');
+  /** @deprecated page title is updated automatically */
+  pageHeading$ = this.pageHeading.asObservable();
+
+  appNavNarMode$: Subject<'collapsed' | 'expanded'> = new BehaviorSubject('expanded');
+  toggleAppNavBar$ = new Subject<void>();
+
+  hideSidenavConditions = ['/preview/'];
+  minimizeSidenavConditions = [];
+
+  /**
+   * Whether `withCredentials` mode is enabled.
+   * Usually means that `Kerberos` mode is used.
+   */
+  get withCredentials(): boolean {
+    return this.config.get<boolean>('auth.withCredentials', false);
+  }
+
+  constructor() {
+    const searchQueryBuilderService = inject(SearchQueryBuilderService);
+    const acaMobileAppSwitcherService = this.acaMobileAppSwitcherService;
+
+    this.ready = new BehaviorSubject(this.authenticationService.isLoggedIn() || this.withCredentials);
+    this.ready$ = this.ready.asObservable();
+
+    this.authenticationService.onLogin.subscribe(() => {
+      this.ready.next(true);
+      this.preferencesService.setStoragePrefix(this.authenticationService.getUsername());
+    });
+
+    this.authenticationService.onLogout.subscribe(() => {
+      this.storage.removeItem(this.preferencesService.getPropertyKey('expandedSidenav'));
+      searchQueryBuilderService.resetToDefaults();
+      acaMobileAppSwitcherService.clearSessionExpireTime();
+      acaMobileAppSwitcherService.closeDialog();
+    });
+
+    this.router.events
+      .pipe(
+        filter((event) => event instanceof ActivationEnd && event.snapshot.children.length === 0),
+        map((event: ActivationEnd) => event.snapshot?.data?.title ?? '')
+      )
+      .subscribe((title) => {
+        this.pageHeading.next(title);
+        this.pageTitle.setTitle(title);
+      });
+  }
+
+  init(): void {
+    this.alfrescoApiService.getInstance().on('error', (error: { status: number; response: any }) => {
+      const shouldNavigateToLogin =
+        error.status === 401 &&
+        !this.alfrescoApiService.isExcludedErrorListener(error?.response?.req?.url) &&
+        !this.authenticationService.isLoggedIn();
+
+      if (shouldNavigateToLogin) {
+        this.matDialog.closeAll();
+
+        let redirectUrl = this.activatedRoute.snapshot.queryParams['redirectUrl'];
+        if (!redirectUrl) {
+          redirectUrl = this.router.url;
+        }
+
+        this.router.navigate(['/login'], {
+          queryParams: { redirectUrl }
+        });
+      }
+    });
+
+    this.loadCustomCss();
+    this.loadCustomWebFont();
+
+    const { router } = this;
+
+    this.router.events.pipe(filter((event) => event instanceof ActivationEnd && event.snapshot.children.length === 0)).subscribe(() => {
+      this.store.dispatch(new SetCurrentUrlAction(router.url));
+    });
+
+    this.router.events.pipe(filter((event) => event instanceof NavigationStart)).subscribe(() => {
+      this.store.dispatch(new ResetSelectionAction());
+    });
+
+    this.routerExtensionService.mapExtensionRoutes();
+
+    this.uploadService.fileUploadError.subscribe((error) => this.onFileUploadedError(error));
+
+    this.sharedLinksApiService.error.subscribe((err: { message: string }) => {
+      if (err?.message) {
+        this.notificationService.showError(err.message);
+      }
+    });
+
+    this.ready$.subscribe((isReady) => {
+      if (isReady) {
+        this.loadRepositoryStatus();
+        this.loadUserProfile();
+        setTimeout(() => {
+          this.openMobileAppDialog();
+        });
+      }
+    });
+
+    this.overlayContainer.getContainerElement().setAttribute('role', 'region');
+  }
+
+  setAppNavbarMode(mode: 'expanded' | 'collapsed'): void {
+    this.appNavNarMode$.next(mode);
+    this.preferencesService.set('expandedSidenav', mode === 'expanded');
+  }
+
+  private loadRepositoryStatus() {
+    this.contentApi.getRepositoryInformation().subscribe((response: DiscoveryEntry) => {
+      if (response?.entry?.repository) {
+        this.store.dispatch(new SetRepositoryInfoAction(response.entry.repository));
+      }
+    });
+  }
+
+  private async loadUserProfile() {
+    const profile = await this.userProfileService.loadUserProfile();
+    this.store.dispatch(new SetUserProfileAction(profile));
+  }
+
+  onFileUploadedError(error: FileUploadErrorEvent) {
+    let message = 'APP.MESSAGES.UPLOAD.ERROR.GENERIC';
+
+    if (error?.error?.status === 403) {
+      message = 'APP.MESSAGES.UPLOAD.ERROR.403';
+    }
+
+    if (error?.error?.status === 404) {
+      message = 'APP.MESSAGES.UPLOAD.ERROR.404';
+    }
+
+    if (error?.error?.status === 409) {
+      message = 'APP.MESSAGES.UPLOAD.ERROR.CONFLICT';
+    }
+
+    if (error?.error?.status === 500) {
+      message = 'APP.MESSAGES.UPLOAD.ERROR.500';
+    }
+
+    if (error?.error?.status === 504) {
+      message = 'APP.MESSAGES.UPLOAD.ERROR.504';
+    }
+
+    this.notificationService.showError(message);
+  }
+
+  private loadCustomCss(): void {
+    const customCssPath = this.appSettingsService.customCssPath;
+    if (customCssPath) {
+      this.createLink(customCssPath);
+    }
+  }
+
+  private loadCustomWebFont(): void {
+    const webFontPath = this.appSettingsService.webFontPath;
+    if (webFontPath) {
+      this.createLink(webFontPath);
+    }
+  }
+
+  private createLink(url: string): void {
+    const cssLinkElement = document.createElement('link');
+    cssLinkElement.setAttribute('rel', 'stylesheet');
+    cssLinkElement.setAttribute('type', 'text/css');
+    cssLinkElement.setAttribute('href', url);
+    document.head.appendChild(cssLinkElement);
+  }
+
+  public openMobileAppDialog(): void {
+    const isMobileSwitchEnabled: boolean = this.config.get<boolean>('mobileAppSwitch.enabled', false);
+    if (isMobileSwitchEnabled) {
+      this.acaMobileAppSwitcherService.resolveExistenceOfDialog();
+    } else {
+      this.acaMobileAppSwitcherService.clearSessionExpireTime();
+    }
+  }
+}

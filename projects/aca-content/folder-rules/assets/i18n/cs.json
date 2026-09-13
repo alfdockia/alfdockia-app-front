@@ -1,0 +1,159 @@
+{
+  "ACA_FOLDER_RULES": {
+    "ACTIONS": {
+      "MANAGE_RULES": "Správa pravidel",
+      "GO_BACK": "Přejít zpět"
+    },
+    "EDIT_RULE_DIALOG": {
+      "CANCEL": "Zrušit",
+      "CLOSE": "Zavřít",
+      "CREATE": "Vytvořit",
+      "CREATE_TITLE": "Vytvořit pravidlo",
+      "UPDATE": "Aktualizovat",
+      "UPDATE_TITLE": "Upravit pravidlo",
+      "OPEN_ACTION_MENU": "Otevřít nabídku akcí"
+    },
+    "RULE_DETAILS": {
+      "LABEL": {
+        "NAME": "Název",
+        "DESCRIPTION": "Popis",
+        "WHEN": "Když",
+        "PERFORM_ACTIONS": "Provádějte akce",
+        "OPTIONS": "Jiné možnosti",
+        "FIELD": "Pole",
+        "COMPARATOR": "Komparátor",
+        "VALUE": "Hodnota",
+        "LOGIC_OPERATOR": "Logický operátor",
+        "GROUP_CONDITIONS": "Podmínky skupiny",
+        "CONDITIONS": "Podmínky"
+      },
+      "PLACEHOLDER": {
+        "NAME": "Zadejte název pravidla",
+        "DESCRIPTION": "Zadejte popis pravidla",
+        "NO_DESCRIPTION": "Žádný popis",
+        "VALUE": "Hodnota",
+        "CHOOSE_FOLDER": "Vyberte cílovou složku"
+      },
+      "ERROR": {
+        "REQUIRED": "Toto pole je povinné",
+        "RULE_COMPOSITE_CONDITION_INVALID": "Nejméně jedna skupina podmínek je prázdná",
+        "INSUFFICIENT_TRIGGERS_SELECTED": "Je požadován alespoň jeden spouštěč",
+        "ACTION_REQUIRED": "Pole akce je povinné"
+      },
+      "TRIGGERS": {
+        "INBOUND": "Položky jsou vytvořeny nebo vstupují do této složky",
+        "UPDATE": "Položky jsou aktualizovány",
+        "OUTBOUND": "Položky jsou odstraněny nebo opouští tuto složku"
+      },
+      "OPTIONS": {
+        "IS_INHERITABLE": "Pravidlo platí pro podsložky",
+        "IS_ASYNCHRONOUS": "Spustit pravidlo na pozadí",
+        "DISABLE_RULE": "Zakázat pravidlo",
+        "ERROR_SCRIPT": "Pokud se vyskytnou chyby, spusťte  skript",
+        "NO_SCRIPT": "Žádný"
+      },
+      "COMPARATORS": {
+        "EQUALS": "(=) Rovná se",
+        "CONTAINS": "Obsahuje",
+        "STARTS_WITH": "Začíná na",
+        "ENDS_WITH": "Končí na",
+        "GREATER_THAN": "(>) Větší než",
+        "LESS_THAN": "(<) Menší než",
+        "GREATER_THAN_OR_EQUAL": "(>=) Větší než nebo rovno",
+        "LESS_THAN_OR_EQUAL": "(<=) Menší než nebo rovno",
+        "ON": "(=) Na",
+        "AFTER": "(>) Po",
+        "BEFORE": "(<) Před",
+        "ON_OR_AFTER": "(>=) Na nebo po",
+        "ON_OR_BEFORE": "(<=) Na nebo před",
+        "INSTANCE_OF": "(=) Je"
+      },
+      "FIELDS": {
+        "NAME": "Název",
+        "SIZE": "Velikost",
+        "MIMETYPE": "Typ MIME",
+        "ENCODING": "Kódování",
+        "HAS_CATEGORY": "Má kategorii",
+        "HAS_TAG": "Má značku",
+        "HAS_ASPECT": "Má aspekt"
+      },
+      "LOGIC_OPERATORS": {
+        "IF": "Pokud",
+        "NOT_IF": "NE pokud",
+        "AND": "A",
+        "OR": "Nebo"
+      },
+      "CONDITION_BUTTONS": {
+        "ADD_CONDITION": "Přidat podmínku",
+        "ADD_GROUP": "Přidat skupinu podmínek",
+        "REMOVE": "Odebrat"
+      },
+      "NO_CONDITIONS": "Žádné podmínky",
+      "NO_CONDITIONS_IN_GROUP": "Žádné podmínky ve skupině",
+      "ACTION_BUTTONS": {
+        "ADD_ACTION": "Přidat akci",
+        "REMOVE": "Odebrat"
+      },
+      "ACTION_SELECT_PLACEHOLDER": "Vyberte akci"
+    },
+    "MANAGE_RULES": {
+      "TOOLBAR": {
+        "BREADCRUMB": {
+          "RULES": "pravidla"
+        },
+        "ACTIONS": {
+          "CREATE_RULE": "Vytvořit pravidlo",
+          "LINK_RULES": "Pravidla pro odkazy",
+          "EDIT_RULE": "Upravit",
+          "SEE_IN_FOLDER": "Zobrazit ve složce",
+          "INHERIT_RULES": "Zděděná pravidla"
+        }
+      },
+      "EMPTY_RULES_LIST": {
+        "TITLE": "Tento seznam je prázdný",
+        "SUBTITLE": "Pro tuto složku ještě nejsou definována žádná pravidla."
+      }
+    },
+    "CONFIRMATION_DIALOG": {
+      "DELETE_RULE": {
+        "TITLE": "Odstranit pravidlo",
+        "MESSAGE": "Chcete skutečně smazat toto pravidlo?"
+      },
+      "DELETE_RULE_SET_LINK": {
+        "TITLE": "Smazat odkaz na nastavené pravidlo",
+        "MESSAGE": "Chcete skutečně smazat odkaz na toto nastavené pravidlo?"
+      }
+    },
+    "RULE_LIST": {
+      "OWNED_RULES": "Pravidla z aktuální složky",
+      "LINKED_RULES": "Pravidla z odkazované složky",
+      "INHERITED_RULES": "Zděděná pravidla",
+      "LOAD_MORE_RULE_SETS": "Načíst pravidla z jiných složek",
+      "LOAD_MORE_RULES": "Načíst více pravidel",
+      "LOADING_RULES": "Načítání pravidel",
+      "TOGGLE_RULE_STATE": "Přepnout {{ name }} pravidlo",
+      "INHERITED_RULES_WILL_BE_RUN_FIRST": "Jako první budou spuštěna zděděná pravidla",
+      "ALL_LINKED_RULES_ARE_DISABLED": "Všechna pravidla, na která byl vytvořen odkaz z tohoto souboru pravidel, jsou zakázaná",
+      "EDIT_LINK_LABEL": "Pravidla odkazů z jiné složky"
+    },
+    "LINK_RULES_DIALOG": {
+      "TITLE": "Vyberte složku pro vytvoření odkazu na pravidla z",
+      "CANCEL": "Zrušit",
+      "SUBMIT": "Vybrat složku",
+      "EMPTY_RULES_LIST": {
+        "TITLE": "Žádná vlastní pravidla",
+        "SUBTITLE": "Vybraná složka neobsahuje žádná vlastní pravidla."
+      },
+      "LIST_OF_RULES_TO_LINK": "Seznam pravidel, na která bude vytvořen odkaz",
+      "ERRORS": {
+        "REQUEST_FAILED": "Vyskytla se chyba při vytváření odkaz na nastavené pravidlo"
+      }
+    },
+    "ERRORS": {
+      "DELETE_RULE_SET_LINK_FAILED": "Vyskytla se chyba při pokusu o smazání odkazu z nastaveného pravidla"
+    },
+    "AUTOCOMPLETE": {
+      "NO_OPTIONS_FOUND": "Nebyly nalezeny žádné možnosti"
+    }
+  }
+}

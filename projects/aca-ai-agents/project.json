@@ -1,0 +1,37 @@
+{
+  "name": "aca-ai-agents",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "projects/aca-ai-agents/src",
+  "projectType": "library",
+  "prefix": "aca",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:ng-packagr",
+      "options": {
+        "project": "projects/aca-ai-agents/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "projects/aca-ai-agents/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "projects/aca-ai-agents/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production",
+      "outputs": ["{workspaceRoot}/dist/@alfdockia/aca-ai-agents"]
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "codeCoverage": true,
+        "main": "projects/aca-ai-agents/src/test.ts",
+        "tsConfig": "projects/aca-ai-agents/tsconfig.spec.json",
+        "karmaConfig": "projects/aca-ai-agents/karma.conf.js"
+      }
+    },
+    "lint": {
+      "executor": "@angular-eslint/builder:lint"
+    }
+  }
+}

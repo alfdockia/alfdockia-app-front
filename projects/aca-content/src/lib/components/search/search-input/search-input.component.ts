@@ -1,0 +1,170 @@
+/*!
+ * Copyright © 2005-2025 Hyland Software, Inc. and its affiliates. All rights reserved.
+ *
+ * Alfresco Example Content Application
+ *
+ * This file is part of the Alfresco Example Content Application.
+ * If the software was purchased under a paid Alfresco license, the terms of
+ * the paid license agreement will prevail. Otherwise, the software is
+ * provided under the following open source license terms:
+ *
+ * The Alfresco Example Content Application is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * The Alfresco Example Content Application is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * from Hyland Software. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+import { AppHookService } from '@alfresco/aca-shared';
+import { AfterViewInit, Component, DestroyRef, ElementRef, inject, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute, NavigationSkipped, Params, Router } from '@angular/router';
+import { SearchNavigationService } from '../search-navigation.service';
+import { SearchFilterService } from '../search-filter.service';
+import { SearchExecutionService } from '../search-execution.service';
+import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { SearchInMenuComponent } from '../search-in-menu/search-in-menu.component';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { merge } from 'rxjs/internal/observable/merge';
+import { filter, map, withLatestFrom } from 'rxjs';
+import { extractUserQueryFromEncodedQuery } from '../../../utils/aca-search-utils';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { SearchQueryBuilderService } from '@alfresco/adf-content-services';
+
+@Component({
+  imports: [
+    CommonModule,
+    TranslatePipe,
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    SearchInMenuComponent,
+    MatButtonToggleModule
+  ],
+  selector: 'aca-search-input',
+  templateUrl: './search-input.component.html',
+  styleUrls: ['./search-input.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  host: { class: 'aca-search-input' }
+})
+export class SearchInputComponent implements OnInit, AfterViewInit, OnDestroy {
+  private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
+  private readonly appHookService = inject(AppHookService);
+  private readonly filterService = inject(SearchFilterService);
+  private readonly searchExecutionService = inject(SearchExecutionService);
+  readonly searchNavigationService = inject(SearchNavigationService);
+  readonly queryBuilder = inject(SearchQueryBuilderService);
+
+  has400LibraryError = false;
+  searchedWord: string = null;
+  lastSearchedWord: string = null;
+  lastSearchMode: 'regular' | 'formula' = 'regular';
+  error = '';
+
+  @ViewChild('searchInputField')
+  searchInputField: ElementRef<HTMLInputElement>;
+
+  private readonly destroyRef = inject(DestroyRef);
+
+  ngOnInit(): void {
+    this.initSearchState();
+    this.subscribeToRouteParams();
+    this.lastSearchMode = this.queryBuilder.searchMode;
+
+    this.appHookService.library400Error.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
+      this.has400LibraryError = true;
+    });
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.searchInputField.nativeElement.focus();
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.filterService.removeContentFilters();
+  }
+
+  exitSearch() {
+    this.searchNavigationService.navigateBack();
+  }
+
+  onSearchSubmit(event: Event) {
+    const trimmedTerm = (event.target as HTMLInputElement).value?.trim();
+    const validationError = this.filterService.validateSearchTerm(trimmedTerm);
+
+    if (validationError) {
+      this.error = validationError;
+      return;
+    }
+
+    this.error = '';
+    if (this.lastSearchedWord !== trimmedTerm || this.lastSearchMode !== this.queryBuilder.searchMode) {
+      this.lastSearchedWord = trimmedTerm;
+      this.searchedWord = trimmedTerm;
+      this.lastSearchMode = this.queryBuilder.searchMode;
+      this.executeSearch();
+    }
+  }
+
+  onFiltersApplied() {
+    if (!this.searchedWord?.trim()) {
+      return;
+    }
+
+    const validationError = this.filterService.validateSearchTerm(this.searchedWord.trim());
+    if (!validationError) {
+      this.executeSearch();
+    } else {
+      this.error = validationError;
+    }
+  }
+
+  executeSearch() {
+    this.has400LibraryError = false;
+    this.searchExecutionService.execute(this.searchedWord);
+  }
+
+  private subscribeToRouteParams() {
+    merge(
+      this.route.queryParams,
+      this.router.events.pipe(
+        filter((e) => e instanceof NavigationSkipped),
+        withLatestFrom(this.route.queryParams),
+        map(([, params]) => params)
+      )
+    )
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((params: Params) => {
+        const encodedQuery = params['q'];
+        if (encodedQuery) {
+          this.searchedWord = extractUserQueryFromEncodedQuery(encodedQuery);
+        }
+      });
+  }
+
+  private initSearchState() {
+    this.has400LibraryError = false;
+    this.searchedWord = this.searchNavigationService.getUrlSearchTerm();
+
+    if (this.searchNavigationService.onLibrariesSearchResults) {
+      this.filterService.initForLibrariesRoute();
+    }
+  }
+}

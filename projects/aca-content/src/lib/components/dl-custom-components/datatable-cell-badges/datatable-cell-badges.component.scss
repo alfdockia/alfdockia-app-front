@@ -1,0 +1,23 @@
+@use '@angular/material' as mat;
+
+.aca-datatable-cell-badges-container {
+  display: flex;
+  align-items: center;
+
+  .adf-datatable-cell-badge,
+  * > .adf-datatable-cell-badge {
+    display: flex;
+    border-radius: 14px;
+    padding: 8px;
+
+    @include mat.icon-overrides(
+      (
+        color: var(--theme-secondary-text)
+      )
+    );
+
+    &:hover {
+      background-color: var(--theme-selected-text-background);
+    }
+  }
+}

@@ -1,0 +1,13 @@
+<aca-libraries-base
+  [list]="list"
+  [isLoading]="isLoading"
+  [pagination]="pagination"
+  [columns]="columns"
+  [titleKey]="'APP.BROWSE.LIBRARIES.MENU.ALL_LIBRARIES.TITLE'"
+  [emptyTitleKey]="'APP.BROWSE.LIBRARIES.EMPTY_STATE.ALL_LIBRARIES.TITLE'"
+  [emptySubtitleKey]="'APP.BROWSE.LIBRARIES.EMPTY_STATE.ALL_LIBRARIES.TEXT'"
+  (changePageSize)="onChangePageSize($event)"
+  (changePageNumber)="getList($event)"
+  (nextPage)="getList($event)"
+  (prevPage)="getList($event)"
+/>

@@ -1,0 +1,34 @@
+<ng-container *ngIf="nodeId">
+  <adf-alfresco-viewer
+    [ngClass]="{
+      'aca-right_side--hide': !showRightSide
+    }"
+    [nodeId]="nodeId"
+    [allowNavigate]="navigateMultiple"
+    [allowRightSidebar]="true"
+    [allowPrint]="false"
+    [showRightSidebar]="true"
+    [allowDownload]="false"
+    [allowFullScreen]="false"
+    [canNavigateBefore]="!!previousNodeId"
+    [canNavigateNext]="!!nextNodeId"
+    [overlayMode]="true"
+    (showViewerChange)="onVisibilityChanged($event)"
+    (navigateBefore)="onNavigateBefore($event)"
+    (navigateNext)="onNavigateNext($event)"
+  >
+    <adf-viewer-sidebar *ngIf="infoDrawerOpened$ | async">
+      <aca-info-drawer [node]="selection.file" />
+    </adf-viewer-sidebar>
+
+    <adf-viewer-open-with *ngIf="openWith.length">
+      <ng-container *ngFor="let action of openWith; trackBy: trackByActionId">
+        <app-toolbar-menu-item [actionRef]="action" />
+      </ng-container>
+    </adf-viewer-open-with>
+
+    <adf-viewer-toolbar-actions *ngIf="!simplestMode">
+      <aca-toolbar [items]="viewerToolbarActions" />
+    </adf-viewer-toolbar-actions>
+  </adf-alfresco-viewer>
+</ng-container>

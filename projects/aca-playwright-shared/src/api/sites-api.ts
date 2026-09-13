@@ -1,0 +1,187 @@
+/*!
+ * Copyright © 2005-2025 Hyland Software, Inc. and its affiliates. All rights reserved.
+ *
+ * Alfresco Example Content Application
+ *
+ * This file is part of the Alfresco Example Content Application.
+ * If the software was purchased under a paid Alfresco license, the terms of
+ * the paid license agreement will prevail. Otherwise, the software is
+ * provided under the following open source license terms:
+ *
+ * The Alfresco Example Content Application is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * The Alfresco Example Content Application is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * from Hyland Software. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+import { ApiClientFactory } from './api-client-factory';
+import { logger } from '../utils';
+import {
+  Site,
+  SiteBodyCreate,
+  SiteEntry,
+  SiteMemberEntry,
+  SiteMembershipBodyCreate,
+  SiteMembershipBodyUpdate,
+  SiteMembershipRequestBodyCreate,
+  SiteMembershipRequestEntry
+} from '@alfresco/js-api';
+
+export class SitesApi {
+  private readonly apiService: ApiClientFactory;
+
+  constructor() {
+    this.apiService = new ApiClientFactory();
+  }
+  static async initialize(userName: string, password?: string): Promise<SitesApi> {
+    const classObj = new SitesApi();
+    await classObj.apiService.setUpAcaBackend(userName, password);
+    return classObj;
+  }
+
+  async createSite(title: string, visibility?: string, description?: string, siteId?: string): Promise<SiteEntry> {
+    const site = {
+      title,
+      visibility: visibility || Site.VisibilityEnum.PUBLIC,
+      description: description,
+      id: siteId || title
+    } as SiteBodyCreate;
+
+    try {
+      return await this.apiService.sites.createSite(site);
+    } catch (error) {
+      if (JSON.stringify(error).includes('409')) {
+        logger.warn(`[SitesApi] createSite: site "${siteId || title}" already exists, skipping creation`);
+        return this.getSite(siteId || title);
+      } else {
+        const message = `SitesApi ${this.createSite.name}: ${JSON.stringify(error)}`;
+        logger.error(message);
+        throw new Error(message);
+      }
+    }
+  }
+
+  async getDocLibId(siteId: string): Promise<string> {
+    try {
+      const id = (await this.apiService.sites.listSiteContainers(siteId)).list?.entries?.[0]?.entry?.id;
+      if (!id) {
+        const message = `Document library not found for site ${siteId}`;
+        logger.error(message);
+        throw new Error(message);
+      }
+      return id;
+    } catch (error) {
+      const message = `Failed to get document library ID for site ${siteId}: ${error}`;
+      logger.error(message);
+      throw new Error(message);
+    }
+  }
+
+  /**
+   * Delete multiple sites/libraries.
+   * @param siteIds The list of the site/library IDs to delete.
+   * @param permanent Delete permanently, without moving to the trashcan? (default: true)
+   */
+  async deleteSites(siteIds: string[], permanent: boolean = true) {
+    try {
+      if (siteIds && siteIds.length > 0) {
+        for (const siteId of siteIds) {
+          await this.apiService.sites.deleteSite(siteId, { permanent });
+        }
+      }
+    } catch (error) {
+      logger.error(`SitesApi deleteSites: ${JSON.stringify(error)}`);
+    }
+  }
+
+  async updateSiteMember(siteId: string, userId: string, role: string): Promise<SiteMemberEntry> {
+    const siteRole = {
+      role: role
+    } as SiteMembershipBodyUpdate;
+
+    try {
+      return await this.apiService.sites.updateSiteMembership(siteId, userId, siteRole);
+    } catch (error) {
+      logger.error(`SitesApi updateSiteMember : catch : ${error}`);
+      return new SiteMemberEntry();
+    }
+  }
+
+  async addSiteMember(siteId: string, userId: string, role: string): Promise<SiteMemberEntry> {
+    const memberBody = {
+      id: userId,
+      role: role
+    } as SiteMembershipBodyCreate;
+
+    try {
+      return this.apiService.sites.createSiteMembership(siteId, memberBody);
+    } catch (error) {
+      if (String(error).includes('409')) {
+        return this.updateSiteMember(siteId, userId, role);
+      }
+      throw error;
+    }
+  }
+
+  async createSiteMembershipRequestForPerson(personId: string, siteId: string): Promise<SiteMembershipRequestEntry> {
+    const body = {
+      id: siteId
+    } as SiteMembershipRequestBodyCreate;
+
+    try {
+      return this.apiService.sites.createSiteMembershipRequestForPerson(personId, body);
+    } catch (error) {
+      const message = `Failed to create site membership request for person ${personId} and site ${siteId}: ${error}`;
+      logger.error(message);
+      throw new Error(message);
+    }
+  }
+
+  async approveSiteMembershipRequest(siteId: string, inviteeId: string): Promise<SiteMemberEntry> {
+    try {
+      return this.apiService.sites.approveSiteMembershipRequest(siteId, inviteeId);
+    } catch (error) {
+      const message = `Failed to approve site membership request for invitee ${inviteeId} and site ${siteId}: ${error}`;
+      logger.error(message);
+      throw new Error(message);
+    }
+  }
+
+  async hasMembershipRequest(personId: string, siteId: string): Promise<boolean> {
+    try {
+      const entries = (await this.apiService.sites.listSiteMembershipRequestsForPerson(personId)).list?.entries ?? [];
+      const requests = entries.map((e) => e.entry?.id).filter((id): id is string => !!id);
+      return requests.includes(siteId);
+    } catch (error) {
+      const message = `Failed to check site membership request for person ${personId} and site ${siteId}: ${error}`;
+      logger.error(message);
+      throw new Error(message);
+    }
+  }
+
+  async deleteSiteMember(siteId: string, userId: string) {
+    try {
+      return this.apiService.sites.deleteSiteMembership(siteId, userId);
+    } catch (error) {
+      logger.error(`SitesApi deleteSiteMember : catch : ${error}`);
+    }
+  }
+
+  async getSite(siteId: string): Promise<SiteEntry> {
+    try {
+      return this.apiService.sites.getSite(siteId);
+    } catch (error) {
+      const message = `Failed to get site ${siteId}: ${error}`;
+      logger.error(message);
+      throw new Error(message);
+    }
+  }
+}

@@ -1,0 +1,26 @@
+@use '@angular/material' as mat;
+
+.aca-locked-by {
+  display: flex;
+  align-items: center;
+  color: var(--theme-text-color, rgba(0, 0, 0, 0.54));
+
+  &--icon {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+    min-width: 14px;
+
+    @include mat.icon-overrides(
+      (
+        color: var(--adf-theme-foreground-icon-color)
+      )
+    );
+  }
+
+  &--label,
+  &--name {
+    font-size: 12px;
+    padding: 0 2px;
+  }
+}

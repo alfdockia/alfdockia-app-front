@@ -1,0 +1,98 @@
+@use '@angular/material' as mat;
+@use '../../../ui/mat-selectors' as ms;
+
+$search-height: 48px;
+$search-border-radius: 4px;
+
+.app-search-container {
+  color: var(--theme-foreground-text-color);
+  width: 100%;
+  height: $search-height;
+  border: none;
+  background: none;
+  padding: 0;
+
+  @include mat.icon-overrides(
+    (
+      color: var(--theme-foreground-text-color)
+    )
+  );
+  @include mat.form-field-overrides(
+    (
+      container-text-tracking: -0.7px,
+      outlined-input-text-placeholder-color: var(--adf-theme-foreground-text-color-060)
+    )
+  );
+
+  .app-search-input {
+    font-size: 16px;
+    letter-spacing: -0.7px;
+
+    &::placeholder {
+      letter-spacing: -0.7px;
+    }
+  }
+
+  /* stylelint-disable-next-line selector-class-pattern */
+  .mdc-notched-outline {
+    display: none;
+  }
+}
+
+.aca-search-input {
+  flex: 1;
+  min-width: 350px;
+  border-radius: $search-border-radius;
+  height: $search-height;
+
+  .app-input-form-field {
+    width: 100%;
+    height: $search-height;
+    font-size: 16px;
+    line-height: calc($search-height / 2);
+  }
+}
+
+.aca-search-input--suffix {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  &-button-toggle-group {
+    @include mat.button-toggle-overrides(
+      (
+        height: 30px
+      )
+    );
+
+    #{ms.$mat-icon} {
+      width: 18px;
+      height: 18px;
+      font-size: 18px;
+    }
+  }
+}
+
+@media screen and (width <= 959px) {
+  $search-width-small: 400px;
+
+  .aca-search-input {
+    max-width: $search-width-small;
+  }
+
+  .app-search-container {
+    max-width: $search-width-small;
+  }
+}
+
+@media screen and (width <= 599px) {
+  .aca-search-input {
+    max-width: 220px;
+  }
+}
+
+@media screen and (width <= 380px) {
+  .aca-search-input {
+    max-width: 148px;
+  }
+}

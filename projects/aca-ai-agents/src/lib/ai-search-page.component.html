@@ -1,0 +1,157 @@
+<section class="aca-ai-search">
+  <header class="aca-ai-search__header">
+    <div class="aca-ai-search__brand">
+      <img src="assets/aca-ai-agents/images/alfdockia-logo.png" alt="AlfDockia" />
+      <div>
+        <p class="aca-ai-search__eyebrow">AlfDockia Search Center</p>
+        <h1>Búsquedas IA</h1>
+        <p class="aca-ai-search__intro">Búsqueda documental por lenguaje natural.</p>
+      </div>
+    </div>
+
+    <div class="aca-ai-search__actions">
+      <button
+        *ngIf="(appNavBarMode$ | async) === 'collapsed'"
+        mat-icon-button
+        type="button"
+        aria-label="Mostrar menú lateral"
+        matTooltip="Mostrar menú lateral"
+        (click)="reopenNavigation()"
+      >
+        <mat-icon>keyboard_double_arrow_right</mat-icon>
+      </button>
+      <button class="aca-ai-search__toolbar-button" mat-stroked-button type="button" (click)="openSaveDialog()" [disabled]="!lastExecutedQuery || isCurrentSearchSaved()">
+        <mat-icon>{{ isCurrentSearchSaved() ? 'check_circle' : 'bookmark_add' }}</mat-icon>
+        <span>{{ isCurrentSearchSaved() ? 'Guardada' : 'Guardar búsqueda' }}</span>
+      </button>
+      <button class="aca-ai-search__toolbar-button" mat-raised-button color="primary" type="button" (click)="submitSearch()" [disabled]="loading">
+        <mat-icon>manage_search</mat-icon>
+        <span>Buscar</span>
+      </button>
+    </div>
+  </header>
+
+  <form class="aca-ai-search__query-panel" (ngSubmit)="submitSearch()">
+    <mat-form-field class="aca-ai-search__query-field" appearance="outline">
+      <mat-label>Consulta IA</mat-label>
+      <textarea
+        matInput
+        [formControl]="queryControl"
+        rows="3"
+        placeholder="Contratos renovados en 2026 con proveedor y fecha de vencimiento"
+      ></textarea>
+      <mat-error *ngIf="queryControl.hasError('required')">La consulta es obligatoria.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="aca-ai-search__page-size" appearance="outline">
+      <mat-label>Resultados</mat-label>
+      <mat-select [formControl]="maxItemsControl">
+        <mat-option *ngFor="let option of pageSizeOptions" [value]="option">{{ option }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+
+  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+  <div *ngIf="errorMessage" class="aca-ai-search__banner">
+    <mat-icon>info</mat-icon>
+    <span>{{ errorMessage }}</span>
+  </div>
+
+  <div class="aca-ai-search__layout">
+    <section class="aca-ai-search__results-panel" aria-label="Resultados de búsqueda IA">
+      <div class="aca-ai-search__panel-title">
+        <h2>Resultados</h2>
+        <span>{{ resultRange() }}</span>
+      </div>
+
+      <div class="aca-ai-search__results-scroll">
+        <div *ngIf="!loading && !results.length" class="aca-ai-search__empty">
+          <mat-icon>travel_explore</mat-icon>
+          <strong>No hay resultados</strong>
+          <span>{{ lastExecutedQuery ? 'Sin coincidencias para esta consulta.' : 'Lanza una búsqueda IA.' }}</span>
+        </div>
+
+        <article
+          *ngFor="let result of results; trackBy: trackByResultId"
+          class="aca-ai-search__result"
+          [class.aca-ai-search__result--selected]="selectedResult?.entry?.id === result.entry.id"
+          (click)="selectResult(result)"
+          (dblclick)="openResult(result)"
+        >
+          <mat-icon>{{ result.entry.isFolder ? 'folder' : 'description' }}</mat-icon>
+          <div class="aca-ai-search__result-main">
+            <h3>{{ result.entry.name }}</h3>
+            <p>{{ result.entry.path?.name || result.entry.nodeType || 'cm:content' }}</p>
+          </div>
+          <button
+            class="aca-ai-search__result-open-button"
+            mat-icon-button
+            type="button"
+            aria-label="Abrir resultado"
+            matTooltip="Abrir resultado"
+            (click)="openResult(result); $event.stopPropagation()"
+          >
+            <mat-icon>open_in_new</mat-icon>
+          </button>
+        </article>
+      </div>
+
+      <div class="aca-ai-search__pagination" *ngIf="pagination.totalItems">
+        <span>Mostrando {{ resultRange() }}</span>
+        <div>
+          <button mat-icon-button type="button" aria-label="Página anterior" (click)="previousPage()" [disabled]="!canGoPrevious()">
+            <mat-icon>chevron_left</mat-icon>
+          </button>
+          <button mat-icon-button type="button" aria-label="Página siguiente" (click)="nextPage()" [disabled]="!canGoNext()">
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <aside class="aca-ai-search__detail-panel" aria-label="Detalle del resultado IA">
+      <ng-container *ngIf="selectedResult as result; else detailPlaceholder">
+        <div class="aca-ai-search__detail-heading">
+          <div>
+            <mat-icon>fact_check</mat-icon>
+            <h2>Metadatos</h2>
+          </div>
+        </div>
+
+        <div class="aca-ai-search__metadata-scroll">
+          <div *ngIf="metadataLoading" class="aca-ai-search__metadata-status">
+            <mat-icon>hourglass_top</mat-icon>
+            <span>Cargando metadatos completos...</span>
+          </div>
+
+          <div *ngIf="metadataLoadError" class="aca-ai-search__metadata-warning">
+            <mat-icon>info</mat-icon>
+            <span>{{ metadataLoadError }}</span>
+          </div>
+
+          <dl class="aca-ai-search__facts aca-ai-search__metadata-list">
+            <div *ngFor="let item of metadataEntries; trackBy: trackByMetadataLabel">
+              <dt>{{ item.label }}</dt>
+              <dd>{{ item.value }}</dd>
+            </div>
+          </dl>
+        </div>
+
+        <button class="aca-ai-search__open-button" mat-raised-button color="primary" type="button" (click)="openResult(result)">
+          <mat-icon>open_in_new</mat-icon>
+          <span>Abrir resultado</span>
+        </button>
+      </ng-container>
+
+      <ng-template #detailPlaceholder>
+        <div class="aca-ai-search__empty aca-ai-search__empty--detail">
+          <mat-icon>psychology</mat-icon>
+          <strong>Selecciona un resultado</strong>
+        </div>
+      </ng-template>
+    </aside>
+  </div>
+
+  <footer class="aca-ai-search__footer">&copy; AlfDockia todos los derechos reservados.</footer>
+</section>

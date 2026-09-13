@@ -1,0 +1,180 @@
+/*!
+ * Copyright © 2005-2025 Hyland Software, Inc. and its affiliates. All rights reserved.
+ *
+ * Alfresco Example Content Application
+ *
+ * This file is part of the Alfresco Example Content Application.
+ * If the software was purchased under a paid Alfresco license, the terms of
+ * the paid license agreement will prevail. Otherwise, the software is
+ * provided under the following open source license terms:
+ *
+ * The Alfresco Example Content Application is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * The Alfresco Example Content Application is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * from Hyland Software. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+import { Page, expect } from '@playwright/test';
+import { BaseComponent } from './base.component';
+import { AcaHeader } from './aca-header.component';
+import { timeouts } from '../../utils';
+
+export class ViewerComponent extends BaseComponent {
+  private static readonly rootElement = 'adf-viewer';
+
+  public viewerLocator = this.getChild('adf-viewer-render');
+  public closeButtonLocator = this.getChild('.adf-viewer-close-button');
+  public fileTitleButtonLocator = this.getChild('#adf-viewer-display-name');
+  public pdfViewerContentPages = this.getChild('.adf-pdf-viewer__content .page');
+  public shareButton = this.getChild('button[id="share-action-button"]');
+  public downloadButton = this.getChild('button[id="app.viewer.download"]');
+  public unknownFormat = this.getChild(`adf-viewer-unknown-format .adf-viewer__unknown-format-view`);
+  public viewerImage = this.viewerLocator.locator('#viewer-image');
+  public viewerDocument = this.viewerLocator.locator('.adf-pdf-viewer__content [role="document"]');
+  public documentThumbnailButton = this.getChild('[data-automation-id="adf-thumbnails-button"]');
+  public thumbnailsPages = this.getChild('[data-automation-id="adf-thumbnails-content"] adf-pdf-thumb');
+  public thumbnailsCloseButton = this.getChild('[data-automation-id="adf-thumbnails-close"]');
+  public viewerPage = this.getChild('[data-automation-id="adf-page-selector"]');
+  public viewerMedia = this.getChild('adf-media-player');
+  public viewerSpinner = this.getChild('.adf-viewer-render__loading-screen__spinner');
+  public zoomInButton = this.getChild('#viewer-zoom-in-button');
+  public zoomOutButton = this.getChild('#viewer-zoom-out-button');
+  public zoomScale = this.getChild('[data-automation-id="adf-page-scale"]');
+  public zoomResetButton = this.getChild('#viewer-reset-button');
+  public fitToPageButton = this.getChild('#viewer-scale-page-button');
+  public nextFileButton = this.getChild('[data-automation-id="adf-toolbar-next-file"]');
+  public previousFileButton = this.getChild('[data-automation-id="adf-toolbar-pref-file"]');
+  public noPermissionsView = this.getChild('aca-generic-error');
+
+  toolbar = new AcaHeader(this.page);
+
+  constructor(page: Page) {
+    super(page, ViewerComponent.rootElement);
+  }
+
+  async isPdfViewerContentDisplayed(): Promise<boolean> {
+    const count = await this.pdfViewerContentPages.count();
+    return count > 0;
+  }
+
+  async isViewerOpened(): Promise<boolean> {
+    await this.waitForViewerToOpen();
+    return this.viewerLocator.isVisible();
+  }
+
+  async waitForViewerToOpen(): Promise<void> {
+    await this.waitForViewerLoaderToFinish();
+    await this.viewerLocator.waitFor({ state: 'visible', timeout: timeouts.large });
+  }
+
+  async waitForViewerLoaderToFinish(): Promise<void> {
+    await this.viewerSpinner.waitFor({ state: 'attached', timeout: timeouts.short }).catch(() => {});
+    await this.viewerSpinner.waitFor({ state: 'detached', timeout: timeouts.extraLarge }).catch(() => {});
+  }
+
+  async waitForViewerContentToRender(type: 'document' | 'image' | 'media' = 'document'): Promise<void> {
+    if (type === 'image') {
+      await this.viewerImage.waitFor({ state: 'attached', timeout: timeouts.extraLarge });
+      return;
+    }
+    if (type === 'media') {
+      await this.viewerMedia.waitFor({ state: 'visible', timeout: timeouts.extraLarge });
+      return;
+    }
+    await this.pdfViewerContentPages.first().waitFor({ state: 'attached', timeout: timeouts.extraLarge });
+  }
+
+  async checkViewerActivePage(pageNumber: number): Promise<void> {
+    await expect(this.viewerPage).toHaveValue(pageNumber.toString());
+  }
+
+  async clickViewerThumbnailPage(pageNumber: number): Promise<void> {
+    await this.thumbnailsPages.nth(pageNumber - 1).click();
+  }
+
+  async isCloseButtonDisplayed(): Promise<boolean> {
+    await this.closeButtonLocator.waitFor({ state: 'visible', timeout: timeouts.normal });
+    return this.closeButtonLocator.isEnabled({ timeout: timeouts.normal });
+  }
+
+  async isFileTitleDisplayed(): Promise<boolean> {
+    await this.fileTitleButtonLocator.waitFor({ state: 'visible', timeout: timeouts.normal });
+    return this.fileTitleButtonLocator.isVisible();
+  }
+
+  async waitForZoomPercentageToDisplay(): Promise<void> {
+    await this.zoomScale.waitFor({ state: 'visible', timeout: timeouts.normal });
+    const startTime = Date.now();
+    let textContent = '';
+
+    while (Date.now() - startTime <= timeouts.medium) {
+      textContent = await this.zoomScale.innerText();
+      if (textContent.trim() !== '') {
+        break;
+      }
+      await this.page.waitForTimeout(timeouts.tiny);
+    }
+
+    if (textContent.trim() === '') {
+      throw new Error(`Timeout: Text did not show up within ${timeouts.medium} ms`);
+    }
+  }
+
+  async getFileTitle(): Promise<string> {
+    await this.fileTitleButtonLocator.waitFor({ state: 'visible', timeout: timeouts.normal });
+    const title = await this.fileTitleButtonLocator.textContent();
+    if (!title) {
+      const errorMessage = 'File title is not displayed in the viewer';
+      this.logger.error(errorMessage);
+      throw new Error(errorMessage);
+    }
+    return title;
+  }
+
+  async getCloseButtonTooltip(): Promise<string> {
+    await this.closeButtonLocator.waitFor({ state: 'visible', timeout: timeouts.normal });
+    const tooltip = await this.closeButtonLocator.getAttribute('title');
+    if (!tooltip) {
+      const errorMessage = 'Close button tooltip is not available';
+      this.logger.error(errorMessage);
+      throw new Error(errorMessage);
+    }
+    return tooltip;
+  }
+
+  async verifyViewerPrimaryActions(expectedToolbarPrimary: string[]): Promise<void> {
+    const toRemove = ['Close', 'Previous File', 'Next File', 'View details'];
+    const removeClosePreviousNextOldInfo = (actions: string[]): string[] => actions.filter((elem) => !toRemove.includes(elem));
+
+    const buttons = await this.page.$$('adf-viewer button');
+    let actualPrimaryActions: string[] = await Promise.all(
+      buttons.map(async (button) => {
+        const title = await button.getAttribute('title');
+        return title || '';
+      })
+    );
+
+    actualPrimaryActions = removeClosePreviousNextOldInfo(actualPrimaryActions);
+
+    for (const action of expectedToolbarPrimary) {
+      expect(actualPrimaryActions.includes(action), `Expected to contain ${action}`).toBe(true);
+    }
+  }
+
+  async checkUnknownFormatIsDisplayed(): Promise<void> {
+    await this.waitForViewerLoaderToFinish();
+    await this.unknownFormat.waitFor({ state: 'visible', timeout: timeouts.fortySeconds });
+  }
+
+  async getUnknownFormatMessage(): Promise<string> {
+    return this.unknownFormat.locator(`.adf-viewer__unknown-label`).innerText();
+  }
+}

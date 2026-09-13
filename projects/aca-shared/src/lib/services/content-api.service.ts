@@ -1,0 +1,338 @@
+/*!
+ * Copyright © 2005-2025 Hyland Software, Inc. and its affiliates. All rights reserved.
+ *
+ * Alfresco Example Content Application
+ *
+ * This file is part of the Alfresco Example Content Application.
+ * If the software was purchased under a paid Alfresco license, the terms of
+ * the paid license agreement will prevail. Otherwise, the software is
+ * provided under the following open source license terms:
+ *
+ * The Alfresco Example Content Application is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * The Alfresco Example Content Application is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * from Hyland Software. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+import { Injectable, inject } from '@angular/core';
+import { UserPreferencesService } from '@alfresco/adf-core';
+import { AlfrescoApiService } from '@alfresco/adf-content-services';
+import { Observable, from } from 'rxjs';
+import {
+  NodePaging,
+  Node,
+  DeletedNodesPaging,
+  PersonEntry,
+  NodeEntry,
+  DiscoveryEntry,
+  FavoritePaging,
+  SharedLinkPaging,
+  SearchRequest,
+  ResultSetPaging,
+  SiteBodyCreate,
+  SiteEntry,
+  FavoriteBodyCreate,
+  FavoriteEntry,
+  NodesApi,
+  TrashcanApi,
+  SharedlinksApi,
+  DiscoveryApi,
+  FavoritesApi,
+  ContentApi,
+  SitesApi,
+  SearchApi,
+  PeopleApi,
+  VersionsApi,
+  DirectAccessUrlEntry,
+  VersionPaging,
+  LazyApi
+} from '@alfresco/js-api';
+import { map } from 'rxjs/operators';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ContentApiService {
+  private readonly api = inject(AlfrescoApiService);
+  private readonly preferences = inject(UserPreferencesService);
+
+  @LazyApi((self: ContentApiService) => new NodesApi(self.api.getInstance()))
+  declare nodesApi: NodesApi;
+
+  @LazyApi((self: ContentApiService) => new TrashcanApi(self.api.getInstance()))
+  declare trashcanApi: TrashcanApi;
+
+  @LazyApi((self: ContentApiService) => new SharedlinksApi(self.api.getInstance()))
+  declare sharedLinksApi: SharedlinksApi;
+
+  @LazyApi((self: ContentApiService) => new DiscoveryApi(self.api.getInstance()))
+  declare discoveryApi: DiscoveryApi;
+
+  @LazyApi((self: ContentApiService) => new FavoritesApi(self.api.getInstance()))
+  declare favoritesApi: FavoritesApi;
+
+  @LazyApi((self: ContentApiService) => new ContentApi(self.api.getInstance()))
+  declare contentApi: ContentApi;
+
+  @LazyApi((self: ContentApiService) => new SitesApi(self.api.getInstance()))
+  declare sitesApi: SitesApi;
+
+  @LazyApi((self: ContentApiService) => new SearchApi(self.api.getInstance()))
+  declare searchApi: SearchApi;
+
+  @LazyApi((self: ContentApiService) => new PeopleApi(self.api.getInstance()))
+  declare peopleApi: PeopleApi;
+
+  @LazyApi((self: ContentApiService) => new VersionsApi(self.api.getInstance()))
+  declare versionsApi: VersionsApi;
+
+  /**
+   * Moves a node to the trashcan.
+   *
+   * @param nodeId ID of the target node
+   * @param options Optional parameters supported by JS-API
+   * @returns Empty result that notifies when the deletion is complete
+   */
+  deleteNode(nodeId: string, options: { permanent?: boolean } = {}): Observable<void> {
+    return from(this.nodesApi.deleteNode(nodeId, options));
+  }
+
+  /**
+   * Gets the stored information about a node.
+   *
+   * @param nodeId ID of the target node
+   * @param options Optional parameters supported by JS-API
+   * @returns Node information
+   */
+  getNode(nodeId: string, options: any = {}): Observable<NodeEntry> {
+    const defaults = {
+      include: ['path', 'properties', 'allowableOperations', 'permissions', 'definition', 'isLink']
+    };
+    const queryOptions = Object.assign(defaults, options);
+
+    return from(this.nodesApi.getNode(nodeId, queryOptions));
+  }
+
+  getNodeInfo(nodeId: string, options?: any): Observable<Node> {
+    const defaults = {
+      include: ['isFavorite', 'allowableOperations', 'path', 'definition', 'isLink']
+    };
+    const queryOptions = Object.assign(defaults, options || {});
+
+    return from(
+      new Promise<Node>((resolve, reject) => {
+        this.nodesApi.getNode(nodeId, queryOptions).then(
+          (nodeEntry: NodeEntry) => {
+            resolve(nodeEntry.entry);
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+      })
+    );
+  }
+
+  /**
+   * Gets the items contained in a folder node.
+   *
+   * @param nodeId ID of the target node
+   * @param options Optional parameters supported by JS-API
+   * @returns List of child items from the folder
+   */
+  getNodeChildren(nodeId: string, options: any = {}): Observable<NodePaging> {
+    const defaults = {
+      maxItems: this.preferences.paginationSize,
+      skipCount: 0,
+      include: ['isLocked', 'path', 'properties', 'allowableOperations', 'permissions']
+    };
+    const queryOptions = Object.assign(defaults, options);
+
+    return from(this.nodesApi.listNodeChildren(nodeId, queryOptions));
+  }
+
+  deleteSharedLink(linkId: string): Observable<any> {
+    return from(this.sharedLinksApi.deleteSharedLink(linkId));
+  }
+
+  getDeletedNodes(options: any = {}): Observable<DeletedNodesPaging> {
+    const defaults = {
+      include: ['path']
+    };
+    const queryOptions = Object.assign(defaults, options);
+
+    return from(this.trashcanApi.listDeletedNodes(queryOptions));
+  }
+
+  restoreNode(nodeId: string): Observable<NodeEntry> {
+    return from(this.trashcanApi.restoreDeletedNode(nodeId));
+  }
+
+  purgeDeletedNode(nodeId: string): Observable<any> {
+    return from(this.trashcanApi.deleteDeletedNode(nodeId));
+  }
+
+  /**
+   * Gets information about a user identified by their username.
+   *
+   * @param personId ID of the target user
+   * @param options Api options
+   * @returns User information
+   */
+  getPerson(personId: string, options?: { fields?: Array<string> }): Observable<PersonEntry> {
+    return from(this.peopleApi.getPerson(personId, options));
+  }
+
+  /**
+   * Copy a node to destination node
+   *
+   * @param nodeId The id of the node to be copied
+   * @param targetParentId The id of the folder-node where the node have to be copied to
+   * @param name The new name for the copy that would be added on the destination folder
+   * @param opts Api options
+   */
+  copyNode(nodeId: string, targetParentId: string, name?: string, opts?: { include?: Array<string>; fields?: Array<string> }): Observable<NodeEntry> {
+    return from(this.nodesApi.copyNode(nodeId, { targetParentId, name }, opts));
+  }
+
+  /**
+   * Gets product information for Content Services.
+   *
+   * @returns ProductVersionModel containing product details
+   */
+  getRepositoryInformation(): Observable<DiscoveryEntry> {
+    return from(this.discoveryApi.getRepositoryInformation());
+  }
+
+  getFavorites(
+    personId: string,
+    opts?: {
+      skipCount?: number;
+      maxItems?: number;
+      where?: string;
+      fields?: Array<string>;
+    }
+  ): Observable<FavoritePaging> {
+    return from(this.favoritesApi.listFavorites(personId, opts));
+  }
+
+  getFavoriteLibraries(personId: string = '-me-', opts?: any): Observable<FavoritePaging> {
+    return this.getFavorites(personId, {
+      ...opts,
+      where: '(EXISTS(target/site))'
+    }).pipe(
+      map((response: FavoritePaging) => ({
+        list: {
+          entries: response.list.entries.map(({ entry }: any) => {
+            entry.target.site.createdAt = entry.createdAt;
+            return {
+              entry: entry.target.site
+            };
+          }),
+          pagination: response.list.pagination
+        }
+      }))
+    );
+  }
+
+  findSharedLinks(opts?: any): Observable<SharedLinkPaging> {
+    return from(this.sharedLinksApi.listSharedLinks(opts));
+  }
+
+  getSharedLinkContent(sharedId: string, attachment?: boolean): string {
+    return this.contentApi.getSharedLinkContentUrl(sharedId, attachment);
+  }
+
+  search(request: SearchRequest): Observable<ResultSetPaging> {
+    return from(this.searchApi.search(request));
+  }
+
+  getContentUrl(nodeId: string, attachment?: boolean): string {
+    return this.contentApi.getContentUrl(nodeId, attachment);
+  }
+
+  getVersionContentUrl(nodeId: string, versionId: string, attachment?: boolean): string {
+    return this.contentApi.getVersionContentUrl(nodeId, versionId, attachment);
+  }
+
+  deleteSite(siteId?: string, opts?: { permanent?: boolean }): Observable<any> {
+    return from(this.sitesApi.deleteSite(siteId, opts));
+  }
+
+  leaveSite(siteId?: string): Observable<any> {
+    return from(this.sitesApi.deleteSiteMembership(siteId, '-me-'));
+  }
+
+  createSite(
+    siteBody: SiteBodyCreate,
+    opts?: {
+      fields?: Array<string>;
+      skipConfiguration?: boolean;
+      skipAddToFavorites?: boolean;
+    }
+  ): Observable<SiteEntry> {
+    return from(this.sitesApi.createSite(siteBody, opts));
+  }
+
+  getSite(siteId?: string, opts?: { relations?: Array<string>; fields?: Array<string> }): Observable<SiteEntry> {
+    return from(this.sitesApi.getSite(siteId, opts));
+  }
+
+  updateLibrary(siteId: string, siteBody: SiteBodyCreate): Observable<SiteEntry> {
+    return from(this.sitesApi.updateSite(siteId, siteBody));
+  }
+
+  addFavorite(nodes: Array<NodeEntry>): Observable<FavoriteEntry> {
+    const payload: FavoriteBodyCreate[] = nodes.map((node) => {
+      const { isFolder, nodeId, id } = node.entry as any;
+      const siteId = node.entry['guid'];
+      const type = siteId ? 'site' : isFolder ? 'folder' : 'file';
+      const guid = siteId || nodeId || id;
+
+      return {
+        target: {
+          [type]: {
+            guid
+          }
+        }
+      };
+    });
+
+    return from(this.favoritesApi.createFavorite('-me-', payload as any));
+  }
+
+  removeFavorite(nodes: Array<NodeEntry>): Observable<any> {
+    return from(
+      Promise.all(
+        nodes.map((node: any) => {
+          const id = node.entry.nodeId || node.entry.id;
+          return this.favoritesApi.deleteFavorite('-me-', id);
+        })
+      )
+    );
+  }
+
+  unlockNode(nodeId: string, opts?: any): Promise<NodeEntry> {
+    return this.nodesApi.unlockNode(nodeId, opts);
+  }
+
+  getNodeVersions(nodeId: string, opts?: any): Observable<VersionPaging> {
+    return from(this.versionsApi.listVersionHistory(nodeId, opts));
+  }
+
+  requestNodeDirectAccessUrl(nodeId: string): Observable<DirectAccessUrlEntry> {
+    return from(this.nodesApi.requestDirectAccessUrl(nodeId));
+  }
+
+  requestVersionDirectAccessUrl(nodeId: string, versionId: string): Observable<DirectAccessUrlEntry> {
+    return from(this.versionsApi.requestDirectAccessUrl(nodeId, versionId));
+  }
+}

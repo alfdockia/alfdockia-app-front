@@ -1,0 +1,140 @@
+{
+  "$schema": "../../../extension.schema.json",
+  "$id": "aca-ai-agents",
+  "$name": "AlfDockia AI Agents",
+  "$version": "1.0.0",
+  "$vendor": "AlfDockia",
+  "$license": "MIT",
+  "$runtime": "1.7.0",
+  "$description": "Admin workspace for managing AlfDockia AI agents",
+
+  "actions": [
+    {
+      "id": "aca.ai-agents.actions.open",
+      "type": "NAVIGATE_URL",
+      "payload": "/ai-agents"
+    },
+    {
+      "id": "aca.ai-search.actions.open",
+      "type": "NAVIGATE_URL",
+      "payload": "/ai-search"
+    }
+  ],
+
+  "routes": [
+    {
+      "id": "aca.ai-agents.routes.main",
+      "path": "ai-agents",
+      "layout": "app.layout.main",
+      "auth": ["app.auth", "aca.ai-agents.auth.admin"],
+      "component": "aca.ai-agents.page"
+    },
+    {
+      "id": "aca.ai-search.routes.main",
+      "path": "ai-search",
+      "layout": "app.layout.main",
+      "auth": ["app.auth"],
+      "component": "aca.ai-search.page",
+      "children": [
+        {
+          "path": "view/:nodeId",
+          "outlet": "viewer",
+          "component": "aca.ai-search.viewer",
+          "data": {
+            "navigateSource": "search"
+          }
+        },
+        {
+          "path": "view/:nodeId/:versionId",
+          "outlet": "viewer",
+          "component": "aca.ai-search.viewer",
+          "data": {
+            "navigateSource": "search"
+          }
+        }
+      ]
+    }
+  ],
+
+  "features": {
+    "navbar": [
+      {
+        "id": "app.navbar.primary",
+        "items": [
+          {
+            "id": "app.navbar.menu",
+            "icon": "folder_special",
+            "title": "Bibliotecas",
+            "description": "Bibliotecas y favoritos",
+            "children": [
+              {
+                "id": "app.navbar.personalFiles",
+                "disabled": true
+              },
+              {
+                "id": "app.navbar.libraries.files",
+                "icon": "business"
+              },
+              {
+                "id": "app.navbar.libraries.favorite",
+                "icon": "bookmark"
+              },
+              {
+                "id": "app.navbar.libraries.all",
+                "icon": "account_tree"
+              },
+              {
+                "id": "app.navbar.recentFiles",
+                "disabled": true
+              },
+              {
+                "id": "app.navbar.repositoryView",
+                "disabled": true
+              },
+              {
+                "id": "app.navbar.favorites",
+                "icon": "star"
+              },
+              {
+                "id": "app.navbar.shared",
+                "disabled": true
+              },
+              {
+                "id": "app.navbar.trashcan",
+                "icon": "delete_outline"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "app.navbar.secondary",
+        "items": [
+          {
+            "id": "alfdockia.navbar.admin-tools.menu",
+            "order": 100,
+            "icon": "admin_panel_settings",
+            "title": "Herramientas de administración",
+            "description": "Herramientas de administración",
+            "rules": {
+              "visible": "alfdockia.ai-agents.canManage"
+            },
+            "children": [
+              {
+                "id": "aca.ai-agents.navbar.main",
+                "order": 100,
+                "icon": "psychology",
+                "title": "Agentes de IA",
+                "description": "Gestionar agentes de IA",
+                "route": "aca.ai-agents.routes.main",
+                "rules": {
+                  "visible": "alfdockia.ai-agents.canManage"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,181 @@
+@use '../styles/mat-selectors' as ms;
+@use '@angular/material' as mat;
+
+.aca-manage-rules {
+  @include mat.progress-bar-overrides(
+    (
+      active-indicator-color: var(--theme-primary-color)
+    )
+  );
+  @include mat.button-overrides(
+    (
+      outlined-outline-color: var(--adf-theme-foreground-text-color-064),
+      filled-container-color: var(--theme-primary-color),
+      filled-label-text-color: var(--theme-primary-color-default-contrast)
+    )
+  );
+
+  &__toolbar {
+    color: var(--adf-theme-foreground-text-color-064);
+    height: 64px;
+    font-size: var(--theme-body-1-font-size);
+    white-space: normal;
+    background-color: var(--theme-background-color);
+    border: none;
+    padding: 0;
+  }
+
+  adf-empty-content {
+    background-color: var(--theme-background-color);
+  }
+
+  &__actions-bar {
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+
+    .aca-page-title {
+      margin-left: 18px;
+    }
+
+    &__title {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      font-size: var(--theme-body-1-font-size);
+
+      mat-icon {
+        color: var(--adf-theme-foreground-text-color-054);
+      }
+    }
+
+    &__buttons {
+      display: flex;
+      align-items: stretch;
+      gap: 12px;
+
+      @include mat.button-overrides(
+        (
+          filled-horizontal-padding: 16px,
+          outlined-horizontal-padding: 16px
+        )
+      );
+    }
+
+    &__toggle {
+      font-weight: 600;
+      font-size: 14px;
+
+      @include mat.slide-toggle-overrides(
+        (
+          track-width: 36px,
+          track-height: 20px,
+          track-shape: 10px,
+          label-text-tracking: normal,
+          selected-handle-size: 14px,
+          unselected-handle-size: 14px,
+          pressed-handle-size: 14px,
+          with-icon-handle-size: 14px,
+          unselected-with-icon-handle-horizontal-margin: 0 3px 0 0,
+          selected-with-icon-handle-horizontal-margin: 0 0 0 16px,
+          selected-handle-color: var(--adf-theme-background-card-color),
+          selected-focus-handle-color: var(--adf-theme-background-card-color),
+          selected-hover-handle-color: var(--adf-theme-background-card-color),
+          selected-pressed-handle-color: var(--adf-theme-background-card-color),
+          selected-icon-color: var(--adf-theme-background-card-color),
+          handle-surface-color: var(--adf-theme-background-card-color),
+          unselected-handle-color: var(--adf-theme-foreground-text-color-075),
+          unselected-focus-handle-color: var(--adf-theme-foreground-text-color-087),
+          unselected-hover-handle-color: var(--adf-theme-foreground-text-color-087),
+          unselected-pressed-handle-color: var(--adf-theme-foreground-text-color-087)
+        )
+      );
+    }
+
+    &__vertical-divider {
+      height: 50%;
+      margin: 0 12px;
+    }
+  }
+
+  .aca-page-layout-header {
+    padding: 12px;
+
+    mat-icon {
+      color: var(--adf-theme-foreground-text-color-087);
+    }
+  }
+
+  &__container {
+    display: grid;
+    grid-template-columns: minmax(250px, 1fr) 3fr;
+    padding: 20px;
+    gap: 12px;
+    overflow-y: auto;
+    flex: 1;
+
+    &__rule-details {
+      border: 1px solid var(--theme-border-color);
+      border-radius: 12px;
+      overflow-y: auto;
+
+      &__header {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        overflow-x: auto;
+        justify-content: space-between;
+        padding: 12px 20px;
+        border-bottom: 1px solid var(--theme-border-color);
+        background-color: var(--theme-background-color);
+        column-gap: 20px;
+
+        &__title {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          word-wrap: break-word;
+          min-width: 100px;
+
+          &__name {
+            font-size: 1.2em;
+            font-weight: bold;
+          }
+
+          &__description {
+            font-size: 0.8em;
+            font-style: italic;
+          }
+        }
+
+        .aca-manage-rules__container__rule-details__header__buttons {
+          display: flex;
+          flex-direction: row;
+          align-items: stretch;
+          gap: 4px;
+
+          button {
+            color: var(--theme-text-color);
+
+            &#delete-rule-btn {
+              padding: 0 8px;
+              margin: 0;
+              min-width: unset;
+
+              mat-icon {
+                margin: 0;
+                padding: 0;
+                width: 24px;
+                height: 24px;
+                font-size: 24px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+@use '@angular/material' as mat;
+@use '../mat-selectors' as ms;
+
+@mixin adf-about-theme() {
+  adf-about {
+    /* custom ADF About Component Theme */
+
+    #{ms.$mat-data-table-header-cell} {
+      color: var(--adf-theme-foreground-text-color-064);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    background-color: var(--theme-about-panel-background-color);
+    overflow: auto;
+
+    #{ms.$mat-accordion} {
+      box-shadow: none;
+      border: none;
+
+      &.adf-about-panel {
+        #{ms.$mat-expansion-panel} {
+          border-radius: 12px;
+          margin: 24px;
+          width: 95%;
+          border: 1px solid var(--theme-about-panel-border-color);
+        }
+
+        @include mat.expansion-overrides(
+          (
+            container-elevation-shadow: none
+          )
+        );
+      }
+    }
+
+    #{ms.$mat-expansion-panel-header} {
+      height: 80px;
+      line-height: 32px;
+    }
+
+    mat-panel-title {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 24px;
+    }
+  }
+}

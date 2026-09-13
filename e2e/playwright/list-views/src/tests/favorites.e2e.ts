@@ -1,0 +1,157 @@
+/*!
+ * Copyright © 2005-2025 Hyland Software, Inc. and its affiliates. All rights reserved.
+ *
+ * Alfresco Example Content Application
+ *
+ * This file is part of the Alfresco Example Content Application.
+ * If the software was purchased under a paid Alfresco license, the terms of
+ * the paid license agreement will prevail. Otherwise, the software is
+ * provided under the following open source license terms:
+ *
+ * The Alfresco Example Content Application is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * The Alfresco Example Content Application is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * from Hyland Software. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+import { expect } from '@playwright/test';
+import { ApiClientFactory, NodesApi, Utils, test, SitesApi, FavoritesPageApi, timeouts, TrashcanApi } from '@alfresco/aca-playwright-shared';
+import { Site } from '@alfresco/js-api';
+
+test.describe('Favorites Files', () => {
+  let nodesApi: NodesApi;
+  let trashcanApi: TrashcanApi;
+  let siteActionsAdmin: SitesApi;
+  let favoritesActions: FavoritesPageApi;
+  let nodesApiAdmin: NodesApi;
+  let apiClientFactory: ApiClientFactory;
+  let parentId: string;
+  const username = `user-${Utils.random()}`;
+  const siteName = `site-${Utils.random()}`;
+  const favFolderName = `favFolder-${Utils.random()}`;
+  const parentFolder = `fev-parent-${Utils.random()}`;
+  const fileName1 = `file1-${Utils.random()}.txt`;
+  const fileName2 = `file2-${Utils.random()}.txt`;
+  const fileName3 = `file3-${Utils.random()}.txt`;
+  const fileName4 = `file4-${Utils.random()}.txt`;
+
+  test.beforeAll(async () => {
+    try {
+      test.setTimeout(timeouts.extendedTest);
+      apiClientFactory = new ApiClientFactory();
+      await apiClientFactory.setUpAcaBackend('admin');
+      await apiClientFactory.createUser({ username });
+      nodesApi = await NodesApi.initialize(username, username);
+      trashcanApi = await TrashcanApi.initialize(username, username);
+      nodesApiAdmin = await NodesApi.initialize('admin');
+      siteActionsAdmin = await SitesApi.initialize('admin');
+      favoritesActions = await FavoritesPageApi.initialize(username, username);
+
+      parentId = (await nodesApi.createFolder(parentFolder)).entry.id;
+    } catch (error) {
+      console.error(`beforeAll failed : ${error}`);
+    }
+  });
+
+  test.beforeEach(async ({ loginPage }) => {
+    await Utils.tryLoginUser(loginPage, username, username, 'beforeEach failed');
+  });
+
+  test.afterAll(async () => {
+    await Utils.deleteNodesSitesEmptyTrashcan(nodesApi, trashcanApi, 'afterAll failed', siteActionsAdmin, [siteName]);
+  });
+
+  test.describe(`Deleted favorite files in data list`, () => {
+    test.beforeAll(async () => {
+      const file3Id = (await nodesApi.createFile(fileName3, parentId)).entry.id;
+      const file4Id = (await nodesApi.createFile(fileName4, parentId)).entry.id;
+      await favoritesActions.addFavoriteById('file', file3Id);
+      await favoritesActions.addFavoriteById('file', file4Id);
+      await nodesApi.deleteNodes([file3Id, file4Id], false);
+      await apiClientFactory.trashCan.restoreDeletedNode(file4Id);
+    });
+
+    test.beforeEach(async ({ favoritePage }) => {
+      await favoritePage.navigate();
+    });
+
+    test(`[XAT-4456] Deleted favorite files and folders do not appear in the list`, async ({ favoritePage }) => {
+      expect(await favoritePage.dataTable.getRowByName(fileName3).isHidden(), `${fileName3} is displayed`).toBe(true);
+    });
+
+    test(`[XAT-4457] Favorite files and folders restored from trashcan are displayed in the list`, async ({ favoritePage }) => {
+      expect(await favoritePage.dataTable.isItemPresent(fileName4), `${fileName4} not displayed`).toBe(true);
+    });
+  });
+
+  test.describe(`Regular user's Favorites files`, () => {
+    test.beforeAll(async () => {
+      const consumerFavoritesTotalItems = await favoritesActions.getFavoritesTotalItems(username);
+      const folderFavId = (await nodesApi.createFolder(favFolderName)).entry.id;
+      await siteActionsAdmin.createSite(siteName, Site.VisibilityEnum.PUBLIC);
+      const docLibId = await siteActionsAdmin.getDocLibId(siteName);
+      await siteActionsAdmin.addSiteMember(siteName, username, Site.RoleEnum.SiteManager);
+      await favoritesActions.addFavoritesByIds('folder', [folderFavId]);
+      const file1Id = (await nodesApiAdmin.createFile(fileName1, docLibId)).entry.id;
+      const file2Id = (await nodesApi.createFile(fileName2, parentId)).entry.id;
+      await favoritesActions.addFavoritesByIds('file', [file1Id]);
+      await favoritesActions.addFavoriteById('file', file2Id);
+      await Promise.all([
+        favoritesActions.isFavoriteWithRetry(username, folderFavId, { expect: true }),
+        favoritesActions.waitForApi(username, { expect: consumerFavoritesTotalItems + 3 })
+      ]);
+    });
+
+    test.beforeEach(async ({ favoritePage }) => {
+      await favoritePage.navigate();
+    });
+
+    test('[XAT-4454] Favorites list has the correct columns', async ({ favoritePage }) => {
+      const expectedColumns = ['Name', 'Location', 'Size', 'Modified', 'Modified by', 'Tags'];
+      const actualColumns = Utils.trimArrayElements(await favoritePage.dataTable.getColumnHeaders());
+      expect(actualColumns).toEqual(expectedColumns);
+    });
+
+    test('[XAT-4459] Location column displays the parent folder of the file as link', async ({ favoritePage }) => {
+      expect(await favoritePage.dataTable.getItemLocationText(fileName2)).toEqual(parentFolder);
+      expect(await favoritePage.dataTable.getItemLocationText(favFolderName)).toEqual('Personal Files');
+      expect(await favoritePage.dataTable.getItemLocationTooltip(fileName2)).toEqual(`Personal Files/${parentFolder}`);
+      expect(await favoritePage.dataTable.getItemLocationTooltip(favFolderName)).toEqual('Personal Files');
+      await favoritePage.page.waitForTimeout(2500);
+      expect(await favoritePage.dataTable.getItemLocationText(fileName1)).toEqual(siteName);
+      expect(await favoritePage.dataTable.getItemLocationTooltip(fileName1)).toContain(`${siteName}`);
+    });
+
+    test(`[XAT-4460] Clicking on the location link redirects to parent folder - item in User's Home`, async ({ favoritePage }) => {
+      await favoritePage.dataTable.clickItemLocation(favFolderName);
+      await favoritePage.dataTable.spinnerWaitForReload();
+      expect(await favoritePage.breadcrumb.getAllItems()).toEqual(['Personal Files']);
+    });
+
+    test('[XAT-4461] Clicking on the location link redirects to parent folder - item in a folder', async ({ favoritePage }) => {
+      await favoritePage.dataTable.clickItemLocation(fileName2);
+      await favoritePage.dataTable.spinnerWaitForReload();
+      expect(await favoritePage.breadcrumb.getAllItems()).toEqual(['Personal Files', parentFolder]);
+    });
+
+    test('[XAT-4462] Clicking on the location link redirects to parent folder - item in a site', async ({ favoritePage }) => {
+      await favoritePage.dataTable.clickItemLocation(fileName1);
+      await favoritePage.dataTable.spinnerWaitForReload();
+      expect(await favoritePage.breadcrumb.getAllItems()).toEqual(['My Libraries', siteName]);
+    });
+
+    test('[XAT-4458] Navigate into a folder from Favorites', async ({ favoritePage }) => {
+      await favoritePage.dataTable.performClickFolderOrFileToOpen(favFolderName);
+      await favoritePage.dataTable.spinnerWaitForReload();
+      await expect(favoritePage.breadcrumb.currentItem).toHaveText(favFolderName);
+    });
+  });
+});

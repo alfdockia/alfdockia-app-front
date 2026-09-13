@@ -1,0 +1,85 @@
+@use '@angular/material' as mat;
+
+aca-search-in-menu {
+  .aca-search-input--search-in-button {
+    border-radius: 16px;
+    height: 32px;
+    padding: 0 8px 0 12px;
+    white-space: nowrap;
+    min-width: unset;
+    background-color: var(--theme-dropdown-color);
+    border: none;
+
+    @include mat.button-overrides(
+      (
+        outlined-label-text-color: var(--adf-theme-foreground-base-color),
+        outlined-icon-offset: -4px
+      )
+    );
+
+    &:hover {
+      background-color: var(--theme-dropdown-background-hover, rgba(0, 0, 0, 0.04));
+    }
+  }
+}
+
+.aca-search-in-panel {
+  padding: 0;
+  border: none;
+  background-color: var(--theme-white-background);
+  width: min(512px, 100vw);
+  box-shadow: 0 2px 4px var(--theme-grey-divider-color);
+  border-radius: 12px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 8px 8px 16px;
+    font-weight: bold;
+    border-bottom: 1px solid var(--theme-grey-background-color);
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  &__content {
+    padding: 24px;
+  }
+
+  &__radio {
+    display: block;
+  }
+
+  &__checkboxes {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-left: 28px;
+    padding-bottom: 4px;
+    margin: 10px 0;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 16px;
+  }
+
+  @media screen and (width <= 599px) {
+    position: fixed;
+    left: 50%;
+    top: 65px;
+    transform: translateX(-50%);
+    width: calc(100vw - 16px);
+    max-height: calc(100vh - 65px);
+    overflow-y: auto;
+  }
+
+  @media screen and (width <= 320px) {
+    top: 0;
+    max-height: 100vh;
+  }
+}

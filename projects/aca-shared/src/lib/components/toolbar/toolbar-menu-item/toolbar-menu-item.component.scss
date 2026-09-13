@@ -1,0 +1,12 @@
+@use '../../../styles/mat-selectors' as ms;
+
+.app-toolbar-menu-item {
+  &:last-child > #{ms.$mat-divider-horizontal} {
+    display: none;
+  }
+
+  &--icon {
+    display: inline-flex;
+    vertical-align: middle;
+  }
+}

@@ -1,0 +1,73 @@
+@use '../../styles/mat-selectors' as ms;
+@use '@angular/material' as mat;
+
+aca-open-in-app {
+  .aca-open-in-app {
+    .aca-open-in-app-button-container {
+      display: flex;
+      place-content: center;
+      padding: 0;
+      border-radius: 8px;
+      background-color: var(--theme-primary-color);
+      height: 48px;
+      overflow-x: hidden;
+      font-size: 16px;
+      color: var(--theme-white-background);
+      font-weight: 600;
+
+      &:focus-visible {
+        outline: none;
+        border-radius: unset;
+      }
+    }
+
+    .aca-download-app-container {
+      display: flex;
+      place-content: center;
+      margin-top: 12px;
+      margin-bottom: 16px;
+
+      &-button {
+        background: var(--theme-dialog-background-color);
+        color: var(--theme-primary-color);
+        font-size: 14px;
+      }
+    }
+
+    .aca-mobile-application-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      padding: 6px 0;
+      margin-bottom: 12px;
+    }
+
+    .aca-cross-button {
+      padding-right: 0;
+
+      &:focus-visible {
+        outline: none;
+        border-radius: unset;
+      }
+
+      &-icon {
+        font-weight: bold;
+        font-size: 20px;
+      }
+    }
+
+    &-button-container {
+      @include mat.button-overrides(
+        (
+          text-ripple-color: transparent,
+          text-state-layer-color: transparent,
+          text-hover-state-layer-opacity: 0,
+          text-focus-state-layer-opacity: 0,
+          text-pressed-state-layer-opacity: 0
+        )
+      );
+    }
+  }
+}

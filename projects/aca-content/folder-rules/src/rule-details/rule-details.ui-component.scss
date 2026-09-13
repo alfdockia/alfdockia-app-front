@@ -1,0 +1,89 @@
+.aca-rule-details {
+  .aca-rule-details__form__triggers {
+    margin-top: 10px;
+  }
+
+  .aca-rule-details__form__others {
+    margin-bottom: 12px;
+  }
+
+  &__form {
+    position: relative;
+
+    & > div {
+      padding: 0 20px;
+      width: 100%;
+      box-sizing: border-box;
+
+      &.aca-rule-details__form__description {
+        padding-top: 0;
+        border: none;
+        align-items: flex-start;
+      }
+    }
+
+    &__row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+
+      & > label,
+      & > .aca-label {
+        font-weight: bold;
+        color: var(--adf-theme-foreground-text-color);
+        width: 20%;
+        min-width: 100px;
+        max-width: 150px;
+        padding: 0.5em 0;
+      }
+
+      & > div {
+        flex-grow: 1;
+      }
+
+      &__field {
+        width: 100%;
+        max-width: 400px;
+        font-size: inherit;
+        margin-bottom: 15px;
+
+        &:first-of-type {
+          margin-top: 10px;
+        }
+
+        label[for='rule-details-name-input'] {
+          transform: translateY(-20%) scale(1);
+        }
+
+        &__textarea {
+          min-height: 4em;
+        }
+      }
+    }
+
+    &:not(:nth-child(1)) {
+      border-top: 1px solid var(--theme-border-color);
+    }
+
+    &__conditions {
+      width: 100%;
+      margin: 14px 0 36px;
+
+      & > .aca-rule-details-error {
+        margin-left: 16px;
+        color: inherit;
+      }
+    }
+
+    .aca-rule-details-error {
+      font-size: 75%;
+      height: 1em;
+    }
+
+    &__actions {
+      .aca-rule-action-list {
+        flex: 1;
+      }
+    }
+  }
+}

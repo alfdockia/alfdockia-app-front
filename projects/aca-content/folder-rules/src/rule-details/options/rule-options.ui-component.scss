@@ -1,0 +1,43 @@
+@use '@angular/material' as mat;
+
+.aca-rule-options {
+  fieldset {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__option {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__error-script-dropdown {
+    margin-top: 8px;
+
+    @include mat.form-field-overrides(
+      (
+        outlined-label-text-populated-size: 16px
+      )
+    );
+
+    mat-label {
+      line-height: 18px;
+    }
+  }
+
+  &.aca-read-only &__checkbox > div > div:first-child {
+    display: none;
+  }
+
+  &.aca-read-only &__error-script-dropdown {
+    margin-left: -13px;
+  }
+
+  .aca-hide-error-script-dropdown {
+    visibility: hidden;
+  }
+}

@@ -1,0 +1,91 @@
+<aca-page-layout>
+  <div class="aca-page-layout-header">
+    <h1 class="aca-page-title">
+      {{ (selectedRowItemsCount < 1 ? 'APP.BROWSE.TRASHCAN.TITLE' : 'APP.HEADER.SELECTED') | translate: { count: selectedRowItemsCount } }}
+    </h1>
+
+    <aca-toolbar [items]="actions" />
+  </div>
+
+  <div class="aca-page-layout-content">
+    <div class="aca-main-content">
+      <adf-document-list
+        #documentList
+        acaDocumentList
+        acaContextActions
+        [currentFolderId]="'-trashcan-'"
+        [selectionMode]="'multiple'"
+        [multiselect]="true"
+        [navigate]="false"
+        [sortingMode]="'client'"
+        [preselectNodes]="selectedNodesState?.nodes"
+        [imageResolver]="imageResolver"
+        [displayCheckboxesOnHover]="true"
+        (selectedItemsCountChanged)="onSelectedItemsCountChanged($event)"
+        [sorting]="['archivedAt', 'desc']"
+        [isResizingEnabled]="true"
+        [blurOnResize]="false"
+      >
+        <adf-custom-empty-content-template>
+          <adf-empty-content icon="delete" [title]="'APP.BROWSE.TRASHCAN.EMPTY_STATE.TITLE'">
+            <p class="adf-empty-content__text">
+              {{ 'APP.BROWSE.TRASHCAN.EMPTY_STATE.FIRST_TEXT' | translate }}
+            </p>
+            <p class="adf-empty-content__text">
+              {{ 'APP.BROWSE.TRASHCAN.EMPTY_STATE.SECOND_TEXT' | translate }}
+            </p>
+          </adf-empty-content>
+        </adf-custom-empty-content-template>
+
+        <data-columns>
+          <ng-container *ngFor="let column of columns; trackBy: trackByColumnId">
+            <ng-container *ngIf="column.template && !(column.desktopOnly && isSmallScreen)">
+              <data-column
+                [id]="column.id"
+                [key]="column.key"
+                [draggable]="column.draggable"
+                [resizable]="column.resizable"
+                [title]="column.title"
+                [type]="column.type"
+                [format]="column.format"
+                [class]="column.class"
+                [sortable]="column.sortable"
+                [isHidden]="column.isHidden"
+                [sortingKey]="column.sortingKey || column.key"
+              >
+                <ng-template let-context>
+                  <adf-dynamic-column [id]="column.template" [context]="context" />
+                </ng-template>
+              </data-column>
+            </ng-container>
+
+            <ng-container *ngIf="!column.template && !(column.desktopOnly && isSmallScreen)">
+              <data-column
+                [id]="column.id"
+                [key]="column.key"
+                [title]="column.title"
+                [type]="column.type"
+                [format]="column.format"
+                [class]="column.class"
+                [sortable]="column.sortable"
+                [draggable]="column.draggable"
+                [resizable]="column.resizable"
+                [isHidden]="column.isHidden"
+                [sortingKey]="column.sortingKey || column.key"
+              />
+            </ng-container>
+          </ng-container>
+
+          <data-column
+            *ngIf="!isSmallScreen && (user$ | async)?.isAdmin"
+            class="adf-ellipsis-cell"
+            key="archivedByUser.displayName"
+            title="APP.DOCUMENT_LIST.COLUMNS.DELETED_BY"
+          />
+        </data-columns>
+      </adf-document-list>
+
+      <adf-pagination acaPagination [target]="documentList" />
+    </div>
+  </div>
+</aca-page-layout>

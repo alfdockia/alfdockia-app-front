@@ -1,0 +1,61 @@
+<h2 mat-dialog-title [innerHTML]="title" class="app-create-from-template-title" data-automation-id="create-from-template-title"></h2>
+<div mat-dialog-content class="app-create-from-template-content">
+  <form [formGroup]="form" novalidate>
+    <mat-form-field class="app-create-from-template-field">
+      <mat-label>{{ 'NODE_FROM_TEMPLATE.FORM.PLACEHOLDER.NAME' | translate }}</mat-label>
+      <input
+        cdkFocusInitial
+        matInput
+        formControlName="name"
+        required
+      />
+
+      <mat-error *ngIf="form.controls['name'].errors?.message" data-automation-id="create-from-template-field-error">
+        {{ form.controls['name'].errors?.message | translate }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="app-create-from-template-field">
+      <mat-label>{{ 'NODE_FROM_TEMPLATE.FORM.PLACEHOLDER.TITLE' | translate }}</mat-label>
+      <input
+        matInput
+        formControlName="title"
+      />
+
+      <mat-error *ngIf="form.controls['title'].hasError('maxlength')" data-automation-id="create-from-template-field-error">
+        {{ 'NODE_FROM_TEMPLATE.FORM.ERRORS.TITLE_TOO_LONG' | translate }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="app-create-from-template-field app-create-from-template-field-description">
+      <mat-label>{{ 'NODE_FROM_TEMPLATE.FORM.PLACEHOLDER.DESCRIPTION' | translate }}</mat-label>
+      <textarea
+        matInput
+        rows="2"
+        formControlName="description"
+      ></textarea>
+
+      <mat-error *ngIf="form.controls['description'].hasError('maxlength')" data-automation-id="create-from-template-field-error">
+        {{ 'NODE_FROM_TEMPLATE.FORM.ERRORS.DESCRIPTION_TOO_LONG' | translate }}
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions class="app-create-from-template-footer">
+  <button
+    mat-button
+    mat-dialog-close
+    data-automation-id="create-from-template-dialog-cancel-button"
+    class="app-create-from-template-footer-button">
+    {{ 'NODE_FROM_TEMPLATE.CANCEL' | translate }}
+  </button>
+  <button
+    class="app-create-from-template-footer-button app-create-from-template-footer-create-button"
+    [disabled]="form.invalid"
+    mat-button
+    (click)="onSubmit()"
+    data-automation-id="create-from-template-dialog-create-button"
+  >
+    {{ 'NODE_FROM_TEMPLATE.CREATE' | translate }}
+  </button>
+</div>

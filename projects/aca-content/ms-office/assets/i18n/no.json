@@ -1,0 +1,10 @@
+{
+  "AOS": {
+    "ACTION_TITLE": "Rediger i Microsoft Office™",
+    "ERRORS": {
+      "UNSUPPORTED_PLATFORM": "Støttes kun for Windows- og MacOS-plattformer",
+      "ALREADY_LOCKED": "Dokumentet '{{ nodeId }}' er låst av '{{ lockOwner }}'",
+      "MISSING_PROTOCOL_HANDLER": "Ingen protokollbehandler funnet for '{{ nodeName }}'"
+    }
+  }
+}

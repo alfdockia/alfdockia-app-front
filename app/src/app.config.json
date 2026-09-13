@@ -1,0 +1,348 @@
+{
+  "$schema": "../../node_modules/@alfresco/adf-core/app.config.schema.json",
+  "ecmHost": "{protocol}//{hostname}{:port}",
+  "aosHost": "{protocol}//{hostname}{:port}/alfresco/aos",
+  "baseShareUrl": "{protocol}//{hostname}{:port}/#/preview/s",
+  "knowledgeDiscoveryUrl": "",
+  "providers": "ECM",
+  "authType": "BASIC",
+  "loginRoute": "login",
+  "landingPage": "/libraries",
+  "mobileAppSwitch": {
+    "enabled": true
+  },
+  "plugins": {
+    "aosPlugin": true,
+    "contentService": true,
+    "folderRules": true,
+    "tagsEnabled": true,
+    "categoriesEnabled": true
+  },
+  "oauth2": {
+    "host": "{protocol}//{hostname}{:port}/auth/realms/alfresco",
+    "clientId": "alfresco",
+    "scope": "openid",
+    "implicitFlow": false,
+    "codeFlow": true,
+    "silentLogin": true,
+    "publicUrls": ["**/preview/s/*", "**/settings"],
+    "redirectSilentIframeUri": "{protocol}//{hostname}{:port}/assets/silent-refresh.html",
+    "redirectUri": "/",
+    "redirectUriLogout": "/",
+    "skipIssuerCheck": true,
+    "strictDiscoveryDocumentValidation": false
+  },
+  "locale": "en",
+  "application": {
+    "name": "AlfDockia",
+    "version": "8.0.0",
+    "logo": "assets/images/alfdockia-logo.png",
+    "copyright": "\u00a9 AlfDockia todos los derechos reservados."
+  },
+  "alfdockiaAiSearch": {
+    "baseUrl": "",
+    "searchPath": "/search",
+    "defaultMaxItems": 25,
+    "maxItemsLimit": 100,
+    "fastRerankCandidates": 30,
+    "fastCandidateTextChars": 1200
+  },
+  "pagination": {
+    "size": 25,
+    "supportedPageSizes": [25, 50, 100]
+  },
+  "notification": {
+    "badgeSize": "medium"
+  },
+  "files": {
+    "excluded": [".DS_Store", "desktop.ini", "Thumbs.db", ".git"],
+    "match-options": {
+      "nocase": true
+    }
+  },
+  "dateValues": {
+    "defaultDateFormat": "mediumDate",
+    "defaultDateTimeFormat": "MMM d, y, h:mm",
+    "defaultLocale": "en"
+  },
+  "sideNav": {
+    "preserveState": true,
+    "expandedSidenav": true
+  },
+  "content-metadata": {
+    "presets": {
+      "custom": [
+        {
+          "includeAll": true,
+          "exclude": [
+            "rn:renditioned",
+            "cm:versionable",
+            "cm:auditable",
+            "cm:thumbnailModification",
+            "cm:content",
+            "cm:author",
+            "cm:titled",
+            "cm:generalclassifiable",
+            "cm:taggable",
+            "dp:restrictable",
+            "fm:commentsRollup",
+            "qshare:shared",
+
+            "exif:exif",
+            "cm:effectivity",
+
+            "cm:likesRatingSchemeRollups",
+            "cm:lockable",
+            "cm:ownable"
+          ]
+        },
+        {
+          "title": "APP.CONTENT_METADATA.EXIF_GROUP_TITLE",
+          "items": [
+            {
+              "aspect": "exif:exif",
+              "properties": [
+                "exif:pixelXDimension",
+                "exif:pixelYDimension",
+                "exif:dateTimeOriginal",
+                "exif:exposureTime",
+                "exif:fNumber",
+                "exif:flash",
+                "exif:focalLength",
+                "exif:isoSpeedRatings",
+                "exif:orientation",
+                "exif:manufacturer",
+                "exif:model",
+                "exif:software"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "APP.CONTENT_METADATA.EFFECTIVITY_GROUP_TITLE",
+          "items": [
+            {
+              "aspect": "cm:effectivity",
+              "properties": [
+                "cm:from",
+                "cm:to"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "multi-value-pipe-separator": ", ",
+    "multi-value-chips": true
+  },
+  "search-headers": {
+    "filterWithContains": true,
+    "include": ["path", "allowableOperations", "properties"],
+    "app:fields": [
+      "cm:name",
+      "cm:title",
+      "cm:description",
+      "TEXT",
+      "TAG"
+    ],
+    "categories": [
+      {
+        "id": "logic",
+        "name": "SEARCH.CATEGORIES.LOGIC",
+        "enabled": true,
+        "component": {
+          "selector": "logical-filter",
+          "settings": {
+            "allowUpdateOnChange": false,
+            "hideDefaultAction": true,
+            "field": "cm:name,cm:title,cm:description,TEXT,TAG"
+          }
+        }
+      },
+      {
+        "id": "queryName",
+        "name": "SEARCH.SEARCH_HEADER.FILTERS.NAME.TITLE",
+        "columnKey": "name",
+        "enabled": true,
+        "component": {
+          "selector": "text",
+          "settings": {
+            "pattern": "cm:name:'(.*?)'",
+            "field": "cm:name",
+            "placeholder": "SEARCH.SEARCH_HEADER.FILTERS.NAME.PLACEHOLDER",
+            "searchPrefix" : "*",
+            "searchSuffix" : "*"
+          }
+        }
+      },
+      {
+        "id": "checkList",
+        "name": "SEARCH.SEARCH_HEADER.FILTERS.TYPE.TITLE",
+        "columnKey":"$thumbnail",
+        "enabled": true,
+        "component": {
+          "selector": "check-list",
+          "settings": {
+            "allowUpdateOnChange": false,
+            "pageSize": 5,
+            "operator": "OR",
+            "options": [
+              {
+                "name": "SEARCH.SEARCH_HEADER.FILTERS.TYPE.FOLDER",
+                "value": "TYPE:'cm:folder'"
+              },
+              {
+                "name": "SEARCH.SEARCH_HEADER.FILTERS.TYPE.DOCUMENT",
+                "value": "TYPE:'cm:content'"
+              },
+              {
+                "name": "SEARCH.SEARCH_HEADER.FILTERS.TYPE.LINK",
+                "value": "TYPE:'app:filelink' OR TYPE:'app:folderlink'"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "contentSize",
+        "name": "SEARCH.SEARCH_HEADER.FILTERS.SIZE.TITLE",
+        "columnKey":"content.sizeInBytes",
+        "enabled": true,
+        "component": {
+          "selector": "check-list",
+          "settings": {
+            "allowUpdateOnChange": false,
+            "options": [
+              {
+                "name": "SEARCH.SEARCH_HEADER.FILTERS.SIZE.SMALL",
+                "value": "content.size:[0 TO 1048576> OR TYPE:'cm:folder'"
+              },
+              {
+                "name": "SEARCH.SEARCH_HEADER.FILTERS.SIZE.MEDIUM",
+                "value": "content.size:[1048576 TO 52428800] OR TYPE:'cm:folder'"
+              },
+              {
+                "name": "SEARCH.SEARCH_HEADER.FILTERS.SIZE.LARGE",
+                "value": "content.size:<52428800 TO 524288000] OR TYPE:'cm:folder'"
+              },
+              {
+                "name": "SEARCH.SEARCH_HEADER.FILTERS.SIZE.HUGE",
+                "value": "content.size:<524288000 TO MAX] OR TYPE:'cm:folder'"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "createdDateRange",
+        "name": "SEARCH.SEARCH_HEADER.FILTERS.DATE.TITLE",
+        "columnKey": "createdAt",
+        "enabled": true,
+        "component": {
+          "selector": "date-range",
+          "settings": {
+            "field": "cm:created",
+            "dateFormat": "dd-MMM-yy",
+            "maxDate": "today",
+            "displayedLabelsByField": {
+              "cm:created": "SEARCH.SEARCH_HEADER.FILTERS.DATE.TITLE"
+            }
+          }
+        }
+      }
+    ],
+    "highlight": {
+      "prefix": " ",
+      "postfix": " ",
+      "mergeContiguous": true,
+      "fields": [
+        {
+          "field": "cm:title"
+        },
+        {
+          "field": "description",
+          "prefix": "(",
+          "postfix": ")"
+        }
+      ]
+    },
+    "sorting": {
+      "options": [
+        {
+          "key": "name",
+          "label": "Name",
+          "type": "FIELD",
+          "field": "cm:name",
+          "ascending": true
+        },
+        {
+          "key": "content.sizeInBytes",
+          "label": "Size",
+          "type": "FIELD",
+          "field": "content.size",
+          "ascending": true
+        },
+        {
+          "key": "createdByUser",
+          "label": "Author",
+          "type": "FIELD",
+          "field": "cm:creator",
+          "ascending": true
+        },
+        {
+          "key": "createdAt",
+          "label": "Created",
+          "type": "FIELD",
+          "field": "cm:created",
+          "ascending": true
+        },
+        {
+          "key": "modifiedAt",
+          "label": "SEARCH.SORT.MODIFIED_DATE",
+          "type": "FIELD",
+          "field": "cm:modified",
+          "ascending": true
+        },
+        {
+          "key": "modifiedByUser.displayName",
+          "label": "SEARCH.SORT.MODIFIER",
+          "type": "FIELD",
+          "field": "cm:modifier",
+          "ascending": true
+        },
+        {
+          "key": "score",
+          "label": "Relevance",
+          "type": "SCORE",
+          "field": "score",
+          "ascending": false
+        }
+      ],
+      "defaults": [
+        {
+          "key": "score",
+          "type": "SCORE",
+          "field": "score",
+          "ascending": false
+        }
+      ]
+    }
+  },
+  "aspect-visible": {
+    "default" : ["cm:generalclassifiable", "cm:complianceable",
+                 "cm:dublincore", "cm:effectivity", "cm:summarizable",
+                 "cm:versionable", "cm:templatable","cm:emailed", "emailserver:aliasable",
+                 "cm:taggable", "app:inlineeditable", "cm:geographic", "exif:exif",
+                 "audio:audio", "cm:indexControl", "dp:restrictable", "smf:customConfigSmartFolder", "smf:systemConfigSmartFolder"],
+    "ai": ["ai:products", "ai:dates", "ai:places", "ai:events", "ai:organizations", "ai:people", "ai:things", "ai:quantities", "ai:creativeWorks", "ai:labels", "ai:textLines"]
+  },
+  "viewer": {
+    "enableDownloadPrompt": true,
+    "enableDownloadPromptReminder": true,
+    "downloadPromptDelay": 50,
+    "downloadPromptReminderDelay": 30,
+    "enableFileAutoDownload": true,
+    "fileAutoDownloadSizeThresholdInMB": 15
+  },
+  "search-wildcards-enabled": true
+}

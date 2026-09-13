@@ -1,0 +1,60 @@
+@use '@fontsource/open-sans';
+@import 'material-icons/iconfont/material-icons.css';
+
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+  --alfdockia-blue: #075aa6;
+  --alfdockia-cyan: #05a6d8;
+  --alfdockia-green: #24b85a;
+  --alfdockia-teal: #00998f;
+  --alfdockia-ink: #102033;
+  --alfdockia-surface: #f4f8fb;
+}
+
+body,
+html {
+  height: 100%;
+  color-scheme: light;
+}
+
+body {
+  background: var(--alfdockia-surface);
+  margin: 0;
+}
+
+.app-shell,
+.aca-page-layout,
+.aca-main-content {
+  background: var(--alfdockia-surface);
+}
+
+.aca-page-layout .aca-content-header {
+  background: #ffffff;
+  border-bottom: 1px solid #dbe7ee;
+  box-shadow: 0 8px 24px rgba(7, 90, 166, 0.06);
+}
+
+.aca-page-layout .aca-content-header-button {
+  background: rgba(5, 166, 216, 0.1);
+  color: var(--alfdockia-blue);
+}
+
+.aca-page-layout .aca-page-layout-header .adf-breadcrumb-item-anchor,
+.aca-page-layout .aca-page-layout-header .adf-breadcrumb-item {
+  color: var(--alfdockia-ink);
+}
+
+.mat-mdc-raised-button.mat-primary,
+.mat-mdc-unelevated-button.mat-primary,
+.mat-mdc-flat-button.mat-primary {
+  --mdc-protected-button-container-color: var(--alfdockia-blue);
+  --mdc-protected-button-label-text-color: #ffffff;
+  --mdc-filled-button-container-color: var(--alfdockia-blue);
+  --mdc-filled-button-label-text-color: #ffffff;
+}
+
+.mat-mdc-stroked-button.mat-primary {
+  --mdc-outlined-button-label-text-color: var(--alfdockia-blue);
+  --mdc-outlined-button-outline-color: rgba(7, 90, 166, 0.42);
+}

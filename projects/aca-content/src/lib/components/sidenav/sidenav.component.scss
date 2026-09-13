@@ -1,0 +1,243 @@
+@use '../../ui/mat-selectors' as ms;
+@use '@angular/material' as mat;
+
+.aca-sidenav {
+  --alfdockia-blue: #075aa6;
+  --alfdockia-cyan: #05a6d8;
+  --alfdockia-green: #24b85a;
+  --alfdockia-teal: #00998f;
+  --alfdockia-ink: #102033;
+
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: hidden;
+  background: linear-gradient(180deg, #ffffff 0%, #f5f9fb 100%);
+  border-right: 1px solid #dbe7ee;
+
+  &-header {
+    padding: 22px 0 26px;
+
+    &-title {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 72px;
+      padding: 0 24px;
+
+      &-logo {
+        align-items: center;
+        background: transparent;
+        border: none;
+        display: flex;
+        height: 64px;
+        justify-content: flex-start;
+        padding: 0;
+        width: 98px;
+
+        img {
+          cursor: pointer;
+          height: 58px;
+          object-fit: contain;
+          vertical-align: middle;
+          transform: none;
+          width: 98px;
+        }
+      }
+
+      &-text {
+        flex: 1;
+        color: var(--alfdockia-ink);
+        padding-left: 12px;
+        letter-spacing: 0.25px;
+        font-style: normal;
+        font-weight: 700;
+        font-size: var(--theme-body-1-font-size);
+        cursor: pointer;
+      }
+
+      .adf-notification-history-menu_button {
+        --mat-text-button-icon-offset: 0;
+        --mat-text-button-icon-spacing: 0;
+
+        @include mat.button-overrides(
+          (
+            text-with-icon-horizontal-padding: 8px
+          )
+        );
+
+        .adf-notification-history-menu_button-icon {
+          margin: 0;
+          color: var(--adf-theme-foreground-icon-color);
+
+          @include mat.badge-overrides(
+            (
+              background-color: var(--theme-accent-color),
+              container-overlap-offset: -8px
+            )
+          );
+        }
+      }
+
+      .aca-toolbar {
+        column-gap: 10px;
+        margin-left: auto;
+      }
+    }
+  }
+
+  .aca-sidenav__section {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+
+    #{ms.$mat-expansion-panel-body} {
+      padding: 0;
+    }
+
+    .aca-expansion-panel {
+      width: 100%;
+      background-color: unset;
+      box-shadow: none;
+      border-radius: 0;
+
+      &-header {
+        padding: 0 32px 0 0;
+        display: flex;
+        align-items: center;
+        border: none;
+
+        /* stylelint-disable selector-class-pattern */
+        .mat-expansion-indicator {
+          transform: rotate(180deg);
+        }
+
+        &.mat-expanded .mat-expansion-indicator {
+          transform: rotate(0deg);
+        }
+        /* stylelint-enable selector-class-pattern */
+
+        &-title {
+          display: flex;
+          flex-direction: row;
+
+          .aca-action-button__label {
+            font-size: var(--theme-caption-font-size);
+          }
+        }
+      }
+
+      .aca-expansion-panel-header:hover {
+        background: var(--adf-theme-background-hover-color);
+      }
+
+      &-item {
+        flex-direction: row;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        width: 100%;
+        user-select: none;
+
+        .aca-action-button__label {
+          color: #4a5b6b;
+          letter-spacing: normal;
+        }
+
+        &:hover .aca-action-button__label {
+          color: var(--alfdockia-blue);
+        }
+
+        .aca-action-button--active {
+          color: var(--alfdockia-blue);
+          background: rgba(5, 166, 216, 0.14);
+          border-left: 3px solid var(--alfdockia-teal);
+
+          .aca-action-button__label {
+            color: var(--alfdockia-blue);
+            font-weight: 700;
+          }
+        }
+      }
+
+      &-body {
+        font-size: var(--theme-body-1-font-size);
+        padding: 0;
+        margin: 0;
+
+        button {
+          line-height: 32px;
+          align-items: center;
+        }
+      }
+    }
+
+    .aca-action-button {
+      cursor: pointer;
+      color: #415468;
+      height: 32px;
+      padding: 0 24px;
+      border-radius: 0;
+      line-height: 32px;
+      justify-content: start;
+
+      adf-icon,
+      .adf-icon {
+        color: var(--alfdockia-teal);
+        margin-right: 8px;
+      }
+
+      &:hover {
+        background: rgba(36, 184, 90, 0.08);
+        color: var(--alfdockia-blue);
+      }
+
+      #{ms.$mat-button-label} {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .aca-full-width {
+      display: flex;
+      width: 100%;
+    }
+
+    .aca-sidenav__section__actions {
+      &__item:has(span) {
+        padding: 0;
+        height: 100%;
+        margin-bottom: 32px;
+
+        span {
+          pointer-events: auto;
+        }
+      }
+
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+  }
+
+  .aca-sidenav__brand-footer {
+    border-top: 1px solid #e1edf3;
+    color: #596a79;
+    font-size: 11px;
+    line-height: 1.35;
+    margin: 0 16px;
+    padding: 14px 8px 18px;
+
+    strong,
+    span {
+      display: block;
+    }
+
+    strong {
+      color: var(--alfdockia-blue);
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+  }
+}

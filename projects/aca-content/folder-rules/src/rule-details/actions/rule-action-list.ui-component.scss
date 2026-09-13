@@ -1,0 +1,46 @@
+@use '../../styles/mat-selectors' as ms;
+@use '@angular/material' as mat;
+
+/* stylelint-disable selector-class-pattern */
+.aca-rule-action-list {
+  min-width: 0;
+
+  .aca-rule-action-list-add-action-button {
+    margin: 4px 0 20px;
+
+    @include mat.button-overrides(
+      (
+        filled-label-text-color: var(--adf-theme-foreground-base-color),
+        filled-container-color: transparent,
+        filled-horizontal-padding: 16px
+      )
+    );
+
+    .aca-rule-action-list-add-action-button-icon {
+      width: 24px;
+      height: 24px;
+      font-size: 24px;
+      margin-right: 0;
+      margin-left: 1px;
+    }
+  }
+
+  &__item {
+    border-radius: 8px;
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+
+    & > .aca-rule-action {
+      flex: 1;
+    }
+
+    &:nth-child(2n) {
+      background-color: hsl(0deg, 0%, 95%);
+
+      &:last-of-type {
+        margin-bottom: 8px;
+      }
+    }
+  }
+}

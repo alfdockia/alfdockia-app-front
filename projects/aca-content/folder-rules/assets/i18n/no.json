@@ -1,0 +1,159 @@
+{
+  "ACA_FOLDER_RULES": {
+    "ACTIONS": {
+      "MANAGE_RULES": "Administrer regler",
+      "GO_BACK": "Gå tilbake"
+    },
+    "EDIT_RULE_DIALOG": {
+      "CANCEL": "Avbryt",
+      "CLOSE": "Lukk",
+      "CREATE": "Opprett",
+      "CREATE_TITLE": "Opprett en regel",
+      "UPDATE": "Oppdater",
+      "UPDATE_TITLE": "Rediger en regel",
+      "OPEN_ACTION_MENU": "Åpne aktivitetsmeny"
+    },
+    "RULE_DETAILS": {
+      "LABEL": {
+        "NAME": "Navn",
+        "DESCRIPTION": "Beskrivelse",
+        "WHEN": "Når",
+        "PERFORM_ACTIONS": "Utfør handlinger",
+        "OPTIONS": "Andre valg",
+        "FIELD": "Felt",
+        "COMPARATOR": "Komparator",
+        "VALUE": "Verdi",
+        "LOGIC_OPERATOR": "Logisk operator",
+        "GROUP_CONDITIONS": "Gruppebetingelser",
+        "CONDITIONS": "Betingelser"
+      },
+      "PLACEHOLDER": {
+        "NAME": "Angi regelnavn",
+        "DESCRIPTION": "Legg til regelbeskrivelse",
+        "NO_DESCRIPTION": "Ingen beskrivelse",
+        "VALUE": "Verdi",
+        "CHOOSE_FOLDER": "Velg målmappe"
+      },
+      "ERROR": {
+        "REQUIRED": "Dette feltet er obligatorisk",
+        "RULE_COMPOSITE_CONDITION_INVALID": "En eller flere betingelsesgrupper er tomme",
+        "INSUFFICIENT_TRIGGERS_SELECTED": "Minst én trigger er nødvendig",
+        "ACTION_REQUIRED": "Felt for handling er obligatorisk"
+      },
+      "TRIGGERS": {
+        "INBOUND": "Elementene er opprettet eller inn i denne mappen",
+        "UPDATE": "Elementene er oppdatert",
+        "OUTBOUND": "Elementer er slettet eller forlater denne mappen"
+      },
+      "OPTIONS": {
+        "IS_INHERITABLE": "Regelen gjelder for undermapper",
+        "IS_ASYNCHRONOUS": "Kjør regel i bakgrunnen",
+        "DISABLE_RULE": "Deaktiver regel",
+        "ERROR_SCRIPT": "Hvis feil forekommer, kjør skript",
+        "NO_SCRIPT": "Ingen"
+      },
+      "COMPARATORS": {
+        "EQUALS": "(=) Lik",
+        "CONTAINS": "Inneholder",
+        "STARTS_WITH": "Starter med",
+        "ENDS_WITH": "Slutter med",
+        "GREATER_THAN": "(>) Større enn",
+        "LESS_THAN": "(<) Mindre enn",
+        "GREATER_THAN_OR_EQUAL": "(>=) Større enn eller lik",
+        "LESS_THAN_OR_EQUAL": "(<=) Mindre enn eller lik",
+        "ON": "(=) På",
+        "AFTER": "(>) Etter",
+        "BEFORE": "(<) Før",
+        "ON_OR_AFTER": "(>=) På eller etter",
+        "ON_OR_BEFORE": "(<=) På eller før",
+        "INSTANCE_OF": "(=) Er"
+      },
+      "FIELDS": {
+        "NAME": "Navn",
+        "SIZE": "Størrelse",
+        "MIMETYPE": "Mimetype",
+        "ENCODING": "Koding",
+        "HAS_CATEGORY": "Har kategori",
+        "HAS_TAG": "Har tagg",
+        "HAS_ASPECT": "Har aspekt"
+      },
+      "LOGIC_OPERATORS": {
+        "IF": "Hvis",
+        "NOT_IF": "IKKE hvis",
+        "AND": "Og",
+        "OR": "Eller"
+      },
+      "CONDITION_BUTTONS": {
+        "ADD_CONDITION": "Legg til betingelse",
+        "ADD_GROUP": "Legg til betingelsesgruppe",
+        "REMOVE": "Fjern"
+      },
+      "NO_CONDITIONS": "Ingen betingelser",
+      "NO_CONDITIONS_IN_GROUP": "Ingen betingelser i gruppen",
+      "ACTION_BUTTONS": {
+        "ADD_ACTION": "Legg til handling",
+        "REMOVE": "Fjern"
+      },
+      "ACTION_SELECT_PLACEHOLDER": "Velg en handling"
+    },
+    "MANAGE_RULES": {
+      "TOOLBAR": {
+        "BREADCRUMB": {
+          "RULES": "regler"
+        },
+        "ACTIONS": {
+          "CREATE_RULE": "Opprett regel",
+          "LINK_RULES": "Link regler",
+          "EDIT_RULE": "Rediger",
+          "SEE_IN_FOLDER": "Se i mappen",
+          "INHERIT_RULES": "Arve regler"
+        }
+      },
+      "EMPTY_RULES_LIST": {
+        "TITLE": "Listen er tom",
+        "SUBTITLE": "Det er ikke definert noen regler for denne mappen ennå."
+      }
+    },
+    "CONFIRMATION_DIALOG": {
+      "DELETE_RULE": {
+        "TITLE": "Slett regel",
+        "MESSAGE": "Er du sikker på at du vil slette denne regelen?"
+      },
+      "DELETE_RULE_SET_LINK": {
+        "TITLE": "Lenke for sletting av regelsett",
+        "MESSAGE": "Er du sikker på at du vil slette koblingen til dette regelsettet?"
+      }
+    },
+    "RULE_LIST": {
+      "OWNED_RULES": "Regler fra gjeldende mappe",
+      "LINKED_RULES": "Regler fra koblede mapper",
+      "INHERITED_RULES": "Arvede regler",
+      "LOAD_MORE_RULE_SETS": "Last regler fra andre mapper",
+      "LOAD_MORE_RULES": "Last flere regler",
+      "LOADING_RULES": "Laster regler",
+      "TOGGLE_RULE_STATE": "Veksle {{ name }} regel",
+      "INHERITED_RULES_WILL_BE_RUN_FIRST": "Arvede regler vil bli kjørt først",
+      "ALL_LINKED_RULES_ARE_DISABLED": "Alle regler som er koblet fra dette regelsettet, er deaktivert",
+      "EDIT_LINK_LABEL": "Koble til regler fra en annen mappe"
+    },
+    "LINK_RULES_DIALOG": {
+      "TITLE": "Velg en mappe du vil koble til regler fra",
+      "CANCEL": "Avbryt",
+      "SUBMIT": "Velg mappe",
+      "EMPTY_RULES_LIST": {
+        "TITLE": "Ingen egne regler",
+        "SUBTITLE": "Den valgte mappen har ikke noen egne regler."
+      },
+      "LIST_OF_RULES_TO_LINK": "Liste over regler som vil bli knyttet til",
+      "ERRORS": {
+        "REQUEST_FAILED": "Feil ved forsøk på å opprette en kobling til en regelmal"
+      }
+    },
+    "ERRORS": {
+      "DELETE_RULE_SET_LINK_FAILED": "Feil ved forsøk på å slette en kobling fra en regelmal"
+    },
+    "AUTOCOMPLETE": {
+      "NO_OPTIONS_FOUND": "Ingen alternativer funnet"
+    }
+  }
+}

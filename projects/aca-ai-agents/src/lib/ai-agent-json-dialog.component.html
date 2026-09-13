@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>{{ data.title }}</h1>
+
+<div mat-dialog-content class="aca-ai-agent-json-dialog__content">
+  <p class="aca-ai-agent-json-dialog__helper">
+    {{ data.helperText || 'Pega el JSON de despliegue que espera AlfDockia.' }}
+  </p>
+
+  <mat-form-field appearance="outline" class="aca-ai-agent-json-dialog__field">
+    <mat-label>JSON del agente</mat-label>
+    <textarea matInput [formControl]="jsonControl" rows="18" spellcheck="false"></textarea>
+    <mat-error *ngIf="jsonControl.hasError('json')">El JSON no es valido.</mat-error>
+    <mat-error *ngIf="jsonControl.hasError('required')">El JSON es obligatorio.</mat-error>
+  </mat-form-field>
+
+  <div class="aca-ai-agent-json-dialog__tools">
+    <button mat-stroked-button type="button" (click)="useExample()">
+      <mat-icon>code</mat-icon>
+      <span>Ejemplo</span>
+    </button>
+    <button mat-stroked-button type="button" (click)="formatJson()" [disabled]="jsonControl.invalid">
+      <mat-icon>format_align_left</mat-icon>
+      <span>Formatear</span>
+    </button>
+  </div>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-raised-button color="primary" type="button" (click)="submit()">
+    {{ data.actionLabel }}
+  </button>
+</div>

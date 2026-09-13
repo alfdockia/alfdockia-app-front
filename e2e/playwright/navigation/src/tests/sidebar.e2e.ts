@@ -1,0 +1,124 @@
+/*!
+ * Copyright © 2005-2025 Hyland Software, Inc. and its affiliates. All rights reserved.
+ *
+ * Alfresco Example Content Application
+ *
+ * This file is part of the Alfresco Example Content Application.
+ * If the software was purchased under a paid Alfresco license, the terms of
+ * the paid license agreement will prevail. Otherwise, the software is
+ * provided under the following open source license terms:
+ *
+ * The Alfresco Example Content Application is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * The Alfresco Example Content Application is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * from Hyland Software. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+import { expect } from '@playwright/test';
+import { ApiClientFactory, APP_ROUTES, SIDEBAR_LABELS, test, Utils } from '@alfresco/aca-playwright-shared';
+
+test.describe('Sidebar', () => {
+  test.describe('Navigation from sidebar', () => {
+    const username = `sidebar-nav-${Utils.random()}`;
+
+    test.beforeAll(async () => {
+      const apiClientFactory = new ApiClientFactory();
+      await apiClientFactory.setUpAcaBackend('admin');
+      await apiClientFactory.createUser({ username });
+    });
+
+    test.beforeEach(async ({ loginPage }) => {
+      await Utils.tryLoginUser(loginPage, username, username, 'beforeEach failed');
+    });
+
+    test('[XAT-5368] Navigate to My Libraries', async ({ personalFiles, myLibrariesPage }) => {
+      await personalFiles.navigate();
+      await personalFiles.sidenav.openPanel(SIDEBAR_LABELS.MY_LIBRARIES);
+      await personalFiles.dataTable.spinnerWaitForReload();
+      expect(myLibrariesPage.page.url()).toContain(APP_ROUTES.MY_LIBRARIES);
+      expect(await myLibrariesPage.sidenav.isActive(SIDEBAR_LABELS.MY_LIBRARIES), 'My Libraries link not active').toBe(true);
+    });
+
+    test('[XAT-19271] Repository / Company Home button is accessible for all users on the sidebar', async ({ personalFiles }) => {
+      await personalFiles.navigate();
+      await personalFiles.sidenav.openPanel(SIDEBAR_LABELS.REPOSITORY);
+      expect(await personalFiles.sidenav.isActive(SIDEBAR_LABELS.REPOSITORY), 'Repository tab not active').toBe(true);
+      await personalFiles.dataTable.spinnerWaitForReload();
+      expect(await personalFiles.dataTable.isEmpty()).toBe(false);
+    });
+  });
+
+  test.describe('Sidenav expand/collapse', () => {
+    const username = `sidebar-toggle-${Utils.random()}`;
+
+    test.beforeAll(async () => {
+      const apiClientFactory = new ApiClientFactory();
+      await apiClientFactory.setUpAcaBackend('admin');
+      await apiClientFactory.createUser({ username });
+    });
+
+    test.beforeEach(async ({ loginPage }) => {
+      await Utils.tryLoginUser(loginPage, username, username, 'beforeEach failed');
+    });
+
+    test('[XAT-5384] Sidenav state is preserved on page refresh', async ({ personalFiles }) => {
+      await personalFiles.navigate();
+      await expect(personalFiles.sidenav.expandedSidenav, 'Sidebar not expanded').toBeVisible();
+      await personalFiles.reload();
+      await expect(personalFiles.sidenav.expandedSidenav, 'Sidebar not expanded').toBeVisible();
+
+      await personalFiles.sidenav.collapseSideNav();
+
+      await expect(personalFiles.sidenav.expandedSidenav, 'Sidebar expanded').toBeHidden();
+      await personalFiles.reload();
+      await expect(personalFiles.sidenav.expandedSidenav, 'Sidebar expanded').toBeHidden();
+    });
+
+    test('[XAT-5382] Sidenav can be collapsed and expanded', async ({ personalFiles }) => {
+      await personalFiles.navigate();
+      await personalFiles.sidenav.collapseSideNav();
+      await expect(personalFiles.sidenav.expandedSidenav, 'Sidebar expanded').toBeHidden();
+      await personalFiles.sidenav.expandSideNav();
+      await expect(personalFiles.sidenav.expandedSidenav, 'Sidebar not expanded').toBeVisible();
+    });
+  });
+
+  test.describe('Sidenav with search results', () => {
+    const username = `sidebar-search-${Utils.random()}`;
+
+    test.beforeAll(async () => {
+      const apiClientFactory = new ApiClientFactory();
+      await apiClientFactory.setUpAcaBackend('admin');
+      await apiClientFactory.createUser({ username });
+    });
+
+    test.beforeEach(async ({ loginPage }) => {
+      await Utils.tryLoginUser(loginPage, username, username, 'beforeEach failed');
+    });
+
+    test('[XAT-5387] The sidenav can be collapsed when search results page is displayed', async ({ personalFiles }) => {
+      await personalFiles.navigate({ remoteUrl: `#/search;q=test` });
+      await expect(personalFiles.sidenav.expandedSidenav, 'Sidebar expanded').toBeVisible();
+      await personalFiles.sidenav.collapseSideNav();
+      await expect(personalFiles.sidenav.expandedSidenav, 'Sidebar not collapsed').toBeHidden();
+    });
+
+    test('[XAT-5386] The sidenav returns to the default state when navigating away from the search results page', async ({
+      personalFiles,
+      searchPage
+    }) => {
+      await personalFiles.navigate({ remoteUrl: `#/search;q=test` });
+      await searchPage.searchInputComponent.searchCloseButton.click();
+      await searchPage.sidenav.expandedSidenav.waitFor({ state: 'attached' });
+      await expect(personalFiles.sidenav.expandedSidenav, 'Sidebar not expanded').toBeVisible();
+    });
+  });
+});

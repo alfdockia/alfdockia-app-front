@@ -1,0 +1,52 @@
+@use '../../styles/mat-selectors' as ms;
+
+.aca-rule-action {
+  max-width: 100%;
+
+  &__form {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    adf-card-view {
+      margin-top: 0;
+
+      .adf-property-list .adf-property adf-card-view-item-dispatcher adf-card-view-textitem {
+        display: inline-block;
+        width: 100%;
+
+        .adf-card-textitem-field-container {
+          padding-top: 0;
+        }
+
+        .adf-textitem-clickable {
+          padding-top: 0;
+        }
+
+        .adf-textitem-action {
+          .adf-textitem-icon {
+            margin-left: -10px;
+            color: var(--adf-theme-foreground-text-color-064);
+
+            &:hover {
+              color: var(--adf-theme-foreground-text-color);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &-full-width {
+    height: fit-content;
+    flex: 1;
+
+    &.aca-rule-action-form-field {
+      min-width: unset;
+
+      #{ms.$mat-form-field-subscript-wrapper} {
+        min-height: 22.5px;
+      }
+    }
+  }
+}

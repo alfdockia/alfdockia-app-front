@@ -1,0 +1,64 @@
+# Dependencies and package-manager caches (keep package-lock.json tracked)
+node_modules/
+.npm/
+.yarn/cache/
+.yarn/unplugged/
+.yarn/install-state.gz
+.pnpm-store/
+
+# Angular / Nx builds and local caches
+/dist/
+/out-tsc/
+/tmp/
+/temp/
+/nxcache/
+.nx/
+.angular/
+.cache/
+*.tsbuildinfo
+.eslintcache
+.stylelintcache
+
+# Test coverage, reports and browser sessions
+coverage/
+.nyc_output/
+test-results/
+e2e-output/
+playwright-report/
+playwright-data/
+blob-report/
+playwright/.auth/
+
+# Local environment and credentials; commit only sanitized examples
+.env
+.env.*
+!.env.example
+!.env.*.example
+!.env.template
+*.local
+*.key
+*.p12
+*.pfx
+
+# Logs and crash dumps
+*.log
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Editor and operating-system files
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+*.swp
+*.swo
+*~
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini
+
+# Local assistant runtime directories
+/.agents/
+/.codex/

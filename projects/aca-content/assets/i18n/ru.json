@@ -1,0 +1,754 @@
+{
+    "APP": {
+        "COPYRIGHT": "© 2005-2025 Hyland Software, Inc. и ее филиалы. Все права защищены.",
+        "TITLE": "Workspace",
+        "ABOUT": {
+            "VERSION": "Версия:",
+            "PLUGINS": {
+                "TITLE": "Расширения",
+                "ID": "Идентификатор",
+                "NAME": "Имя",
+                "VERSION": "Версия",
+                "VENDOR": "Поставщик",
+                "LICENSE": "Лицензия",
+                "RUNTIME": "Среда выполнения",
+                "DESCRIPTION": "Описание"
+            },
+            "LICENSE": {
+                "TITLE": "Лицензия",
+                "PROPERTY": "Свойство",
+                "VALUE": "Значение"
+            },
+            "STATUS": {
+                "TITLE": "Статус",
+                "PROPERTY": "Свойство",
+                "VALUE": "Значение"
+            },
+            "MODULES": {
+                "TITLE": "Модули платформы Alfresco",
+                "ID": "Идентификатор",
+                "NAME": "Имя",
+                "VERSION": "Версия"
+            },
+            "PACKAGES": {
+                "TITLE": "Пакеты",
+                "NAME": "Имя",
+                "VERSION": "Версия"
+            },
+            "BACK_BUTTON_LABEL": "Назад"
+        },
+        "LANGUAGE": "Язык",
+        "SIGN_IN": "Войти",
+        "SIGN_OUT": "Выйти",
+        "EDIT_PROFILE": {
+            "MY_PROFILE": "Мой профиль",
+            "GENERAL": "Общее",
+            "EDIT": "Редактировать",
+            "CANCEL": "Отмена",
+            "SAVE": "Сохранить",
+            "FIRST_NAME": "Имя",
+            "LAST_NAME": "Фамилия",
+            "JOB_TITLE": "Должность",
+            "LOCATION": "Местоположение",
+            "TELEPHONE": "Телефон",
+            "MOBILE": "Мобильный",
+            "EMAIL": "Электронная почта",
+            "COMPANY_DETAILS": "Сведения о компании",
+            "NAME": "Имя",
+            "ADDRESS": "Адрес",
+            "POSTCODE": "Почтовый индекс",
+            "INVALID_PHONE_FORMAT": "Введите действительный номер телефона",
+            "INVALID_EMAIL_FORMAT": "Введите действительный адрес электронной почты",
+            "GO_TO_PERSONAL_FILES_BUTTON_LABEL": "Перейти к личным файлам"
+        },
+        "LOCKED_BY": "Заблокировано: ",
+        "PREVIEW": {
+            "TITLE": "Предварительный просмотр"
+        },
+        "DETAILS": {
+            "TITLE": "Сведения"
+        },
+        "NEW_MENU": {
+            "MENU_ITEMS": {
+                "CREATE_FOLDER": "Создать папку",
+                "UPLOAD_FILE": "Загрузить файл",
+                "UPLOAD_FOLDER": "Загрузить папку",
+                "CREATE_LIBRARY": "Создание библиотеки",
+                "FILE_TEMPLATE": "Создать файл из шаблона",
+                "FOLDER_TEMPLATE": "Создать папку из шаблона"
+            },
+            "TOOLTIPS": {
+                "CREATE_FOLDER": "Создать новую папку",
+                "CREATE_FOLDER_NOT_ALLOWED": "Невозможно создать папки во время просмотра текущих элементов",
+                "CREATE_FILE_NOT_ALLOWED": "Файлы нельзя создать во время просмотра текущих элементов",
+                "UPLOAD_FILES": "Выберите файлы, которые необходимо загрузить",
+                "UPLOAD_FILES_NOT_ALLOWED": "Невозможно загрузить файлы во время просмотра текущих элементов",
+                "UPLOAD_FOLDERS": "Выберите папки, которые необходимо загрузить",
+                "UPLOAD_FOLDERS_NOT_ALLOWED": "Невозможно загрузить папки во время просмотра текущих элементов",
+                "CREATE_LIBRARY": "Создать новую библиотеку файлов"
+            }
+        },
+        "HEADER": {
+            "BUTTONS": {
+                "CREATE": "Создать",
+                "CREATE_TOOLTIP": "Создать контент",
+                "UPLOAD": "Загрузить",
+                "UPLOAD_TOOLTIP": "Загрузить файл"
+            },
+            "SELECTED": "Выбранные ({{ count }})"
+        },
+        "BROWSE": {
+            "FILE": {
+                "SIDENAV_LINK": {
+                    "LABEL": "Файлы",
+                    "TOOLTIP": "Файлы"
+                }
+            },
+            "PERSONAL": {
+                "TITLE": "Личные файлы",
+                "SIDENAV_LINK": {
+                    "LABEL": "Личные файлы",
+                    "TOOLTIP": "Посмотреть свои личные файлы"
+                },
+                "PERMISSIONS": {
+                    "TITLE": "Разрешения"
+                }
+            },
+            "REPOSITORY_VIEW": {
+                "TITLE": "Repository",
+                "SIDENAV_LINK": {
+                    "LABEL": "Repository",
+                    "TOOLTIP": "View the repository"
+                }
+            },
+            "LIBRARIES": {
+                "TITLE": "Библиотеки файлов",
+                "DESCRIPTION": "Библиотеки файлов доступа",
+                "SIDENAV_LINK": {
+                    "LABEL": "Библиотеки файлов",
+                    "TOOLTIP": "Библиотеки файлов"
+                },
+                "EMPTY_STATE": {
+                    "FILE_LIBRARIES": {
+                        "TITLE": "Вы пока не являетесь участником ни одной файловой библиотеки",
+                        "TEXT": "Станьте участником библиотеки, чтобы получить возможность загружать и просматривать файлы, а также предоставлять к ним общий доступ."
+                    },
+                    "FAVORITE_LIBRARIES": {
+                        "TITLE": "Нет избранных библиотек",
+                        "TEXT": "Добавляйте библиотеки в избранные, чтобы быстро находить их, когда они понадобятся снова."
+                    },
+                    "ALL_LIBRARIES": {
+                        "TITLE": "Библиотека не найдена",
+                        "TEXT": "Создайте новую библиотеку, чтобы начать работу."
+                    }
+                },
+                "MENU": {
+                    "MY_LIBRARIES": {
+                        "TITLE": "Библиотеки файлов",
+                        "SIDENAV_LINK": {
+                            "LABEL": "Библиотеки файлов",
+                            "TOOLTIP": "Доступ к моим библиотекам"
+                        }
+                    },
+                    "FAVORITE_LIBRARIES": {
+                        "TITLE": "Избранные библиотеки",
+                        "SIDENAV_LINK": {
+                            "LABEL": "Избранные библиотеки",
+                            "TOOLTIP": "Доступ к моим избранным библиотекам"
+                        }
+                    },
+                    "ALL_LIBRARIES": {
+                        "TITLE": "Все библиотеки",
+                        "SIDENAV_LINK": {
+                            "LABEL": "Все библиотеки",
+                            "TOOLTIP": "Доступ ко всем библиотекам"
+                        }
+                    }
+                },
+                "ERRORS": {
+                    "LIBRARY_NOT_FOUND": "Данная библиотека не существует.",
+                    "LIBRARY_LOADING_ERROR": "Ошибка загрузки библиотеки."
+                },
+                "LIBRARY_NO_PERMISSIONS_WARNING": "Нет прав для просмотра данной библиотеки."
+            },
+            "SHARED": {
+                "TITLE": "Общие файлы",
+                "SIDENAV_LINK": {
+                    "LABEL": "Общие",
+                    "TOOLTIP": "Посмотреть файлы, к которым предоставлен общий доступ"
+                },
+                "EMPTY_STATE": {
+                    "TITLE": "Нет файлов или папок с открытым доступом",
+                    "TEXT": "Здесь показаны элементы, к которым вы открыли доступ с помощью параметра Открыть доступ."
+                }
+            },
+            "RECENT": {
+                "TITLE": "Последние файлы",
+                "SIDENAV_LINK": {
+                    "LABEL": "Последние файлы",
+                    "TOOLTIP": "Посмотреть недавно отредактированные вами файлы"
+                },
+                "EMPTY_STATE": {
+                    "TITLE": "Нет недавних файлов",
+                    "TEXT": "Здесь показаны элементы, которые вы отправляли или редактировали за последние 30 дней."
+                }
+            },
+            "FAVORITES": {
+                "TITLE": "Избранное",
+                "SIDENAV_LINK": {
+                    "LABEL": "Избранное",
+                    "TOOLTIP": "Посмотреть ваши избранные файлы и папки"
+                },
+                "EMPTY_STATE": {
+                    "TITLE": "Нет избранных файлов или папок",
+                    "TEXT": "Избранные элементы, которые вам может понадобиться быстро найти в будущем."
+                }
+            },
+            "TRASHCAN": {
+                "TITLE": "Корзина",
+                "SIDENAV_LINK": {
+                    "LABEL": "Корзина",
+                    "TOOLTIP": "Посмотреть удаленные файлы в корзине"
+                },
+                "EMPTY_STATE": {
+                    "TITLE": "Корзина пуста",
+                    "FIRST_TEXT": "Элементы, которые вы удаляете, перемещаются в корзину.",
+                    "SECOND_TEXT": "Очистите корзину, чтобы удалить элементы навсегда."
+                }
+            },
+            "ABOUT": {
+                "TITLE": "О программе"
+            },
+            "SEARCH": {
+                "DEFAULT_SEARCH": "По умолчанию",
+                "DUBLIN_CORE": "Дублинское ядро",
+                "EFFECTIVITY": "Эффективность",
+                "TITLE": "Результаты поиска",
+                "FILTER_SET": "Используется фильтр:",
+                "ADVANCED_FILTERS": "Дополнительные фильтры:",
+                "RESET": "Сброс",
+                "RESET_ACTION": "Сбросить фильтры поиска",
+                "SAVE_SEARCH": {
+                    "ACTION_BUTTON": "Сохранить результаты поиска",
+                    "SAVE_CHANGES": "Сохранить изменения",
+                    "SAVE_AS_NEW": "Сохранить как новый документ",
+                    "MODAL_HEADER": "Сохранить результаты этого поиска",
+                    "NAME_LABEL": "Имя",
+                    "NAME_REQUIRED_ERROR": "Поле обязательно для заполнения",
+                    "DESCRIPTION_LABEL": "Описание",
+                    "SAVE_SUCCESS": "Результаты поиска сохранены",
+                    "SAVE_ERROR": "Возникла ошибка. Не удалось сохранить результаты поиска.",
+                    "SEARCH_NAME_NOT_UNIQUE_ERROR": "Сохраненные результаты поиска с именем «{{ name }}» уже существуют.",
+                    "NAVBAR": {
+                        "TITLE": "Сохраненные результаты поиска ({{ number }})",
+                        "MANAGE_BUTTON": "Управление результатами поиска"
+                    },
+                    "EDIT_DIALOG": {
+                        "CONTEXT_OPTION": "Изменить результаты поиска",
+                        "TITLE": "Изменить сохраненные результаты поиска",
+                        "SUCCESS_MESSAGE": "Сохраненные результаты поиска изменены",
+                        "ERROR_MESSAGE": "Возникла ошибка. Не удалось изменить результаты поиска."
+                    },
+                    "DELETE_DIALOG": {
+                        "CONTEXT_OPTION": "Удалить результаты поиска",
+                        "TITLE": "Удалить сохраненные результаты поиска",
+                        "CONTENT": "Вы хотите удалить эти результаты поиска?",
+                        "SUCCESS_MESSAGE": "Сохраненные результаты поиска удалены",
+                        "ERROR_MESSAGE": "Возникла ошибка. Не удалось удалить результаты поиска."
+                    },
+                    "LIST": {
+                        "TITLE": "Сохраненные результаты поиска",
+                        "NAME": "Имя",
+                        "DESCRIPTION": "Описание",
+                        "EMPTY_LIST": "Нет сохраненных результатов поиска",
+                        "COPY_TO_CLIPBOARD": "Копировать в буфер обмена",
+                        "COPY_TO_CLIPBOARD_SUCCESS": "Результаты поиска скопированы в буфер обмена",
+                        "EXECUTE_SEARCH": "Выполнить поиск"
+                    }
+                },
+                "FOUND_RESULTS": "Найдено результатов: {{ number }}",
+                "FOUND_ONE_RESULT": "Найден результат: {{ number }}",
+                "CUSTOM_ROW": {
+                    "MODIFIED": "Изменено",
+                    "BY_USER": "пользователем {{ user }}",
+                    "LOCATION": "Местоположение",
+                    "SIZE": "Размер"
+                },
+                "UNKNOWN_LOCATION": "У вас нет прав на просмотр местоположения этого документа.",
+                "VIEW_ADDITIONAL_LOCATIONS": "Просмотреть дополнительные места ссылок",
+                "NO_RESULTS": "Ваш поиск вернул 0 результатов",
+                "EMPTY_SEARCH": "Ключевое слово обязательно",
+                "NO_FILTER_RESULTS": "Ваш фильтр вернул 0 результатов",
+                "ERRORS": {
+                    "500": "При обработке поискового запроса [500] возникла ошибка",
+                    "GENERIC": "При обработке поискового запроса возникла ошибка"
+                }
+            },
+            "SEARCH_LIBRARIES": {
+                "FOUND_RESULTS": "Результатов: {{ number }}",
+                "FOUND_ONE_RESULT": "Результат: {{ number }}"
+            }
+        },
+        "ACTIONS": {
+            "VIEW": "Просмотреть",
+            "EDIT": "Редактировать",
+            "DOWNLOAD": "Скачать",
+            "COPY": "Копировать",
+            "MOVE": "Переместить",
+            "DELETE": "Удалить",
+            "DELETE_PERMANENT": "Удалить навсегда",
+            "MORE": "Больше действий",
+            "UNDO": "Отменить",
+            "PERMISSIONS": "Разрешения",
+            "RESTORE": "Восстановить",
+            "FAVORITE": "Избранное",
+            "ADD_FAVORITE": "Добавить в избранное",
+            "REMOVE_FAVORITE": "Удалить из избранного",
+            "UNSHARE": "Снять с публикации",
+            "DETAILS": "Просмотреть сведения",
+            "VERSIONS": "Управление версиями",
+            "UPLOAD_VERSION": "Загрузить новую версию",
+            "TOGGLE-SIDENAV": "Переключить боковую панель навигации",
+            "SHARE": "Открыть доступ",
+            "SHARE_EDIT": "Настройки ссылки общего доступа",
+            "PRINT": "Печатать",
+            "FULLSCREEN": "Включить полноэкранный режим",
+            "JOIN": "Присоединиться",
+            "CANCEL_JOIN": "Отменить запрос на присоединение",
+            "LEAVE": "Покинуть библиотеку",
+            "EDIT_OFFLINE": "Редактировать в автономном режиме",
+            "EDIT_OFFLINE_CANCEL": "Отменить редактирование",
+            "CHANGE_ASPECT": "Редактировать аспекты",
+            "ADD_ASPECTS": "Добавить аспекты",
+            "NODE_INFO": "Информация"
+        },
+        "DIALOGS": {
+            "CONFIRM_PURGE": {
+                "TITLE": "Удалить из корзины?",
+                "MESSAGE": "Это безвозвратно удалит отмеченные объекты.",
+                "YES_LABEL": "Удалить",
+                "NO_LABEL": "Оставить"
+            },
+            "CONFIRM_LEAVE": {
+                "TITLE": "Покинуть эту библиотеку?",
+                "MESSAGE": "Покинув библиотеку, вы потеряете к ней доступ.",
+                "YES_LABEL": "ОК",
+                "NO_LABEL": "Отмена"
+            },
+            "MOBILE_APP": {
+                "MOBILE_APP_BUTTON_LABEL": "Открыть в приложении",
+                "DOWNLOAD_APP_BUTTON_LABEL": "У вас не установлено приложение? Скачайте его прямо сейчас.",
+                "OPEN_ALFRESCO_MOBILE_APP": "Открыть, используя приложение Alfresco Mobile?"
+            }
+        },
+        "DOCUMENT_LIST": {
+            "COLUMNS": {
+                "ID": "Идентификатор",
+                "NAME": "Имя",
+                "DESCRIPTION": "Описание",
+                "SIZE": "Размер",
+                "MODIFIED_ON": "Изменено",
+                "MODIFIED_BY": "Изменено пользователем",
+                "VISIBILITY": "Видимость",
+                "TITLE": "Название",
+                "LOCATION": "Местоположение",
+                "SHARED_BY": "Доступ открыт пользователем",
+                "DELETED_ON": "Удаленные",
+                "DELETED_BY": "Удалено пользователем",
+                "ROLE": "Моя роль",
+                "TAGS": "Метки"
+            }
+        },
+        "MESSAGES": {
+            "ERRORS": {
+                "CANNOT_NAVIGATE_LOCATION": "Не удается открыть это местоположение",
+                "MISSING_CONTENT": "Этот элемент или больше не существует, или у вас нет разрешения на просмотр.",
+                "GENERIC": "Действие не выполнено. Повторите попытку или обратитесь к IT-специалистам.",
+                "CONFLICT": "Это имя уже используется, попробуйте другое.",
+                "NODE_MOVE": "Перемещение не выполнено, файл с таким же именем уже существует.",
+                "EXISTENT_FOLDER": "Папка с таким же именем уже существует. Используйте другое имя.",
+                "NODE_DELETION": "Не удалось удалить {{ name }}",
+                "NODE_DELETION_PLURAL": "Не удалось удалить элементов: {{ number }}",
+                "NODE_RESTORE": "Не удалось восстановить {{ name }}",
+                "NODE_RESTORE_PLURAL": "Не удалось восстановить элементов: {{ number }}",
+                "PERMISSION": "У вас нет прав для этого действия",
+                "LOCK_NODE": "При блокировке файла {{ fileName }} возникла проблема",
+                "UNLOCK_NODE": "При разблокировке файла {{ fileName }} возникла проблема",
+                "TRASH": {
+                    "NODES_PURGE": {
+                        "PLURAL": "Не удалось удалить элементов: {{ number }}",
+                        "SINGULAR": "Не удалось удалить {{ name }}"
+                    },
+                    "NODES_RESTORE": {
+                        "PARTIAL_PLURAL": "Из-за проблем с местоположением восстановления не восстановлено элементов: {{ number }}",
+                        "NODE_EXISTS": "Невозможно восстановить, {{ name }} уже существует",
+                        "LOCATION_MISSING": "Невозможно восстановить {{ name }}, исходное местоположение больше не существует",
+                        "GENERIC": "Возникла проблема с восстановлением {{ name }}"
+                    }
+                },
+                "DELETE_LIBRARY_FAILED": "Не удается удалить библиотеку",
+                "LEAVE_LIBRARY_FAILED": "Не удается покинуть эту библиотеку"
+            },
+            "UPLOAD": {
+                "ERROR": {
+                    "GENERIC": "Не удалось отправить. Обратитесь в службу поддержки, если проблему не удастся устранить.",
+                    "CONFLICT": "Новая версия не загружена, существует другой файл с таким же именем",
+                    "500": "Внутренняя ошибка сервера. Повторите попытку или обратитесь в службу поддержки [500]",
+                    "504": "Время сеанса сервера истекло. Повторите попытку или обратитесь в службу поддержки [504]",
+                    "403": "Недостаточно разрешений для отправки в это местоположение [403]",
+                    "404": "Местоположение, в которое выполняется отправка, больше не существует [404]"
+                }
+            },
+            "INFO": {
+                "TRASH": {
+                    "NODES_PURGE": {
+                        "PLURAL": "Удалено элементов: {{ number }}",
+                        "SINGULAR": "{{ name }} удален",
+                        "PARTIAL_SINGULAR": "{{ name }} удален, не удалось удалить {{ failed }}",
+                        "PARTIAL_PLURAL": "Элементов удалено: {{ number }}, не удалось удалить: {{ failed }}"
+                    },
+                    "NODES_RESTORE": {
+                        "PLURAL": "Восстановлено",
+                        "SINGULAR": "{{ name }} восстановлен"
+                    }
+                },
+                "NODE_DELETION": {
+                    "SINGULAR": "{{ name }} удален",
+                    "PLURAL": "Удалено элементов: {{ number }}",
+                    "PARTIAL_SINGULAR": "Удален {{ success }} элемент, не удалось удалить: {{ failed }}",
+                    "PARTIAL_PLURAL": "Удалено элементов: {{ success }}, не удалось удалить: {{ failed }}"
+                },
+                "NODE_COPY": {
+                    "SINGULAR": "Скопирован {{ success }} элемент",
+                    "PLURAL": "Скопировано элементов: {{ success }}",
+                    "PARTIAL_SINGULAR": "Скопирован {{ success }} элемент, не удалось скопировать {{ failed }}.",
+                    "PARTIAL_PLURAL": "Скопировано элементов: {{ success }}, не удалось скопировать {{ failed }}.",
+                    "FAIL_SINGULAR": "Не удалось скопировать {{ failed }} элемент.",
+                    "FAIL_PLURAL": "Не удалось скопировать элементов: {{ failed }}."
+                },
+                "NODE_MOVE": {
+                    "SINGULAR": "Перемещен {{ success }} элемент.",
+                    "PLURAL": "Перемещено элементов {{ success }}.",
+                    "PARTIAL": {
+                        "SINGULAR": "Частично перемещен {{ partially }} элемент.",
+                        "PLURAL": "Частично перемещено элементов: {{ partially }}.",
+                        "FAIL": "Не удалось переместить: {{ failed }}."
+                    }
+                },
+                "NODE_CREATE": {
+                    "FILE_FROM_TEMPLATE_SUCCESS": "Файл {{ name }} создан из шаблона",
+                    "FOLDER_FROM_TEMPLATE_SUCCESS": "Папка {{ name }} создана из шаблона"
+                },
+                "LIBRARY_DELETED": "Библиотека удалена",
+                "LEFT_LIBRARY": "Вы уже покинули библиотеку",
+                "FAVORITE_NODE_ADDED": "Добавлено в избранное: {{ name }}",
+                "FAVORITE_NODES_ADDED": "Добавлено элементов в избранное: {{ number }}",
+                "FAVORITE_NODE_REMOVED": "Удалено из избранного: {{ name }}",
+                "FAVORITE_NODES_REMOVED": "Удалено элементов из избранного: {{ number }}",
+                "FAVORITE_NODE_NOT_FOUND": "{{ name }} не находится в избранном"
+            }
+        },
+        "CONTENT_METADATA": {
+            "EXIF_GROUP_TITLE": "EXIF данные изображения",
+            "GROUP_IPTC_CORE_CONTACT_INFO": "IPTC контакт",
+            "GROUP_IPTC_CORE_IMAGE_INFO": "IPTC изображение",
+            "GROUP_IPTC_CORE_CONTENT_INFO": "IPTC содержимое",
+            "GROUP_IPTC_CORE_STATUS_INFO": "IPTC статус",
+            "GROUP_IPTC_EXT_DESCRIPTION": "IPTC описание изображения",
+            "GROUP_IPTC_EXT_AO_DETAIL": "IPTC подробные сведения о произведении либо объекте",
+            "GROUP_IPTC_EXT_MODEL_INFO": "IPTC информация о модели",
+            "GROUP_IPTC_EXT_ADMIN_INFO": "IPTC информация для администратора",
+            "GROUP_IPTC_EXT_RIGHTS_INFO": "IPTC информация о правах",
+            "GROUP_IPTC_EXT_OTHER": "IPTC другое",
+            "EFFECTIVITY_GROUP_TITLE": "Эффективность"
+        },
+        "INFO_DRAWER": {
+            "TITLE": "Сведения",
+            "REDUCE_PANEL": "Уменьшить панель",
+            "DATA_LOADING": "Загрузка данных",
+            "ICON": "Значок узла",
+            "TABS": {
+                "PROPERTIES": "Свойства",
+                "LIBRARY_PROPERTIES": "О программе",
+                "VERSIONS": "Версии",
+                "COMMENTS": "Комментарии",
+                "PERMISSIONS": "Разрешения",
+                "EXPAND": "Развернуть"
+            }
+        },
+        "TOOLTIPS": {
+            "COLLAPSE_NAVIGATION": "Свернуть меню навигации",
+            "COLLAPSE_NAVIGATION_ALT": "Значок свертывания меню навигации",
+            "OPTIONS_SETTINGS": "Параметры и настройки",
+            "MY_PROFILE": "Мой профиль",
+            "EXPAND_NAVIGATION": "Развернуть меню навигации",
+            "EXPAND_SECTION": "Развернуть раздел",
+            "COLLAPSE_SECTION": "Свернуть раздел",
+            "EDIT": "Редактировать",
+            "CANCEL": "Отмена",
+            "SAVE": "Сохранить"
+        },
+        "NODE_INFO": {
+            "ICON": "Значок узла",
+            "TITLE": "Информация",
+            "SIZE": "Размер",
+            "NUMBER_OF_FILES": "Количество файлов",
+            "CALCULATING": "Вычисление...",
+            "LOCATION": "Местоположение",
+            "REFERENCED": "Используется в ссылках",
+            "CREATED": "Создано",
+            "MODIFIED": "Изменено",
+            "DONE": "Готово",
+            "ERROR": "Что-то пошло не так. Закройте этот диалог и повторите попытку"
+        },
+        "ADDITIONAL_REFERENCES_DIALOG": {
+            "TITLE": "Дополнительное место ссылки",
+            "NO_LOCATIONS": "{{ name }} не используется ни в одном месте.",
+            "DESCRIPTION": "{{ name }} в настоящее время используется в следующих местах.",
+            "CLOSE": "Закрыть"
+        }
+    },
+    "NODE_SELECTOR": {
+        "COPY_ITEM": "Копировать '{{ name }}' в...",
+        "COPY_ITEMS": "Скопировать элементы {{ number }} в...",
+        "MOVE_ITEM": "Переместить '{{ name }}' в...",
+        "MOVE_ITEMS": "Переместить элементы {{ number }} в...",
+        "SEARCH": "Поиск",
+        "NEXT": "Далее",
+        "SELECT_FILE_TEMPLATE_TITLE": "Выберите шаблон документа",
+        "SELECT_FOLDER_TEMPLATE_TITLE": "Выберите шаблон папки"
+    },
+    "NODE_FROM_TEMPLATE": {
+        "CANCEL": "Отмена",
+        "CREATE": "Создать",
+        "FOLDER_DIALOG_TITLE": "Создать новую папку из <span class=\"bold\">'{{ template }}'</span>",
+        "FILE_DIALOG_TITLE": "Создать новый документ из <span class=\"bold\">'{{ template }}'</span>",
+        "FORM": {
+            "PLACEHOLDER": {
+                "NAME": "Имя",
+                "TITLE": "Название",
+                "DESCRIPTION": "Описание"
+            },
+            "ERRORS": {
+                "DESCRIPTION_TOO_LONG": "Описание должно содержать не более 512 символов",
+                "TITLE_TOO_LONG": "Название должно содержать не более 256 символов",
+                "REQUIRED": "Необходимо указать имя",
+                "SPECIAL_CHARACTERS": "Имя не может содержать символы * \" < > \\ / ? : |",
+                "ENDING_DOT": "Имя не может заканчиваться точкой .",
+                "ONLY_SPACES": "Имя не может содержать только пробелы"
+            }
+        }
+    },
+    "SHARED_LINK": {
+        "UNSHARE_PERMISSION_ERROR": "У вас нет разрешения на снятие этого файла с публикации"
+    },
+    "VERSION": {
+        "DIALOG": {
+            "TITLE": "Загрузить новую версию",
+            "CANCEL": "Отмена",
+            "UPLOAD": "Загрузить"
+        },
+        "SELECTION": {
+            "EMPTY": "Пожалуйста, выберите документ чтобы просмотреть его версии.",
+            "NO_PERMISSION": "У вас нет разрешения на управление версиями этого контента."
+        },
+        "ERROR": {
+            "GENERIC": "В ходе управления версиями возникла ошибка"
+        }
+    },
+    "LIBRARY": {
+        "DIALOG": {
+            "CREATE_TITLE": "Создание библиотеки",
+            "CREATE": "Создать",
+            "UPDATE": "Обновить",
+            "EDIT": "Редактировать",
+            "CANCEL": "Отмена",
+            "FORM": {
+                "DESCRIPTION": "Описание",
+                "SITE_ID": "Идентификатор библиотеки",
+                "NAME": "Имя",
+                "VISIBILITY": "Видимость"
+            }
+        },
+        "VISIBILITY": {
+            "PRIVATE": "Частный",
+            "PUBLIC": "Общедоступный",
+            "MODERATED": "Модерируемый"
+        },
+        "HINTS": {
+            "SITE_TITLE_EXISTS": "Библиотека с таким именем уже существует"
+        },
+        "ERRORS": {
+            "GENERIC": "Возникла проблема",
+            "EXISTENT_SITE": "Идентификатор библиотеки недоступен. Попробуйте использовать другой идентификатор библиотеки.",
+            "CONFLICT": "Этот идентификатор библиотеки уже используется. Проверьте корзину.",
+            "ID_TOO_LONG": "Имя URL должно содержать не более 72 символов",
+            "DESCRIPTION_TOO_LONG": "Описание должно содержать не более 512 символов",
+            "TITLE_TOO_LONG_OR_MISSING": "Для заголовка используйте не более 256 символов",
+            "ILLEGAL_CHARACTERS": "Используйте только буквы и цифры",
+            "ONLY_SPACES": "Имя библиотеки не может состоять только из пробелов",
+            "LIBRARY_UPDATE_ERROR": "Произошла ошибка при обновлении свойств библиотеки"
+        },
+        "SUCCESS": {
+            "LIBRARY_UPDATED": "Свойства библиотеки обновлены"
+        }
+    },
+    "SEARCH": {
+        "BULK_ACTIONS_DROPDOWN": {
+            "LABEL": "Массовые действия",
+            "TITLE": "Выбрать действие для всех результатов {{ count }}",
+            "BULK_NOT_AVAILABLE": "Массовые операции (недоступно)",
+            "BULK_NOT_AVAILABLE_TOOLTIP": "Массовые операции невозможно использовать без результатов поиска"
+        },
+        "INPUT": {
+            "PLACEHOLDER": "Поиск",
+            "FILES": "Файлы",
+            "FOLDERS": "Папки",
+            "LIBRARIES": "Библиотеки",
+            "MIN_LENGTH": "Поисковый запрос должен содержать как минимум два буквенно-цифровых символа.",
+            "REQUIRED": "Требуется ввести введенный поиск.",
+            "WHITESPACE": "Поисковый запрос не может быть только пробелов.",
+            "OPERATORS": "Поисковый запрос не может начинаться, заканчиваться или состоять только из операторов",
+            "IN_PREFIX": "В",
+            "FILES_AND_FOLDERS": "Файлы и папки",
+            "RESET": "Сброс",
+            "SEARCH_IN": "Поиск в"
+        },
+        "SORT": {
+            "SORTING_OPTION": "Сортировать по",
+            "ASCENDING": "По возрастанию",
+            "DESCENDING": "По убыванию",
+            "RELEVANCE": "Релевантность",
+            "FILENAME": "Имя файла",
+            "TITLE": "Название",
+            "MODIFIED_DATE": "Дата изменения",
+            "SIZE": "Размер",
+            "TYPE": "Тип",
+            "MODIFIER": "Редактор",
+            "CREATE_DATE": "Дата создания"
+        },
+        "CLOSE_BUTTON": {
+            "ARIA_LABEL": "Закрыть поиск"
+        },
+        "FACET_FIELDS": {
+            "CREATOR": "Создатель",
+            "MODIFIER": "Редактор",
+            "LOCATION": "Местоположение",
+            "CATEGORIES": "Категории"
+        },
+        "CATEGORIES": {
+            "DATE": "Дата",
+            "DATE_TABS": {
+                "CREATED": "Создано",
+                "MODIFIED": "Изменено"
+            },
+            "EFFECTIVITY_FROM": "Действует с",
+            "EFFECTIVITY_TO": "Действует до",
+            "LOGIC": "Логика",
+            "PROPERTIES": "Свойства"
+        },
+        "SEARCH_HEADER": {
+            "TITLE": "Фильтр",
+            "TYPE": "Тип",
+            "FILTER_BY": "Фильтровать по {{ category }}",
+            "CLEAR": "Очистить",
+            "APPLY": "Применить",
+            "FILTERS": {
+                "NAME": {
+                    "TITLE": "Имя",
+                    "PLACEHOLDER": "Введите имя"
+                },
+                "TYPE": {
+                    "TITLE": "Отметьте тип",
+                    "FOLDER": "Папка",
+                    "DOCUMENT": "Документ"
+                },
+                "SIZE": {
+                    "TITLE": "Размер контента (диапазон)",
+                    "SMALL": "Маленький",
+                    "MEDIUM": "Средний",
+                    "LARGE": "Большой",
+                    "HUGE": "Огромный"
+                },
+                "DATE": {
+                    "TITLE": "Созданная дата (диапазон)"
+                }
+            }
+        }
+    },
+    "CORE": {
+        "METADATA": {
+            "ACTIONS": {
+                "SAVE": "Сохранить изменения",
+                "CANCEL": "Отменить изменения"
+            }
+        }
+    },
+    "ADF_VIEWER": {
+        "ACTIONS": {
+            "INFO": "Подробно",
+            "PREVIEW": "Показать предварительный просмотр"
+        }
+    },
+    "FILE_UPLOAD": {
+        "ERRORS": {
+            "409": "Имя уже используется, выберите другое имя [409]"
+        }
+    },
+    "ADF_VERSION_LIST": {
+        "ACTIONS": {
+            "UPLOAD": {
+                "TOOLTIP": "Загрузить новую версию"
+            }
+        }
+    },
+    "CUSTOM_NAME_COLUMN": {
+        "ACCESSIBILITY": {
+            "FILE_LINK_ARIA_LABEL": "Просмотреть {{ name }}",
+            "FOLDER_LINK_ARIA_LABEL": "Открыть папку {{ name }}"
+        }
+    },
+    "ADF-DATATABLE": {
+        "FILE_TYPE": {
+            "BOOKS-24PX": "Библиотека файлов",
+            "BASELINE-LOCK-24PX": "заблокированный файл"
+        }
+    },
+    "KNOWLEDGE_RETRIEVAL": {
+        "SEARCH": {
+            "RESULTS_PAGE": {
+                "QUERY_INPUT_PLACEHOLDER": "Вы хотите узнать что-нибудь еще?",
+                "REFERENCED_DOCUMENTS_HEADER": "Справочные документы",
+                "REGENERATION_BUTTON_LABEL": "Восстановить",
+                "COPY_BUTTON_LABEL": "Копировать",
+                "COPY_MESSAGE": "Скопировать ответ в буфер обмена",
+                "RELOAD_REFERENCES_BUTTON_LABEL": "Перезагрузить"
+            },
+            "AGENTS_BUTTON": {
+                "LABEL": "Спросить Discovery",
+                "TITLE": "Поиск информации"
+            },
+            "SEARCH_INPUT": {
+                "ASK_BUTTON_LABEL": "Спросить",
+                "DEFAULT_PLACEHOLDER": "Пожалуйста, сформулируйте вопрос как можно подробнее.",
+                "HIDE_INPUT": "Скрыть вводимые данные",
+                "HIDE_ANSWER": "Скрыть ответ"
+            },
+            "ERRORS": {
+                "AGENTS_FETCHING": "Возникла ошибка при поиске агентов.",
+                "HX_INSIGHT_URL_FETCHING": "Возникла ошибка при поиске ссылки на HX Insight.",
+                "LOADING_ERROR": "Хм... похоже, что-то пошло не так.",
+                "PAGE_NOT_AVAILABLE_ERROR": "Для этих условий страница недоступна.",
+                "REFERENCES_LOADING_ERROR": "Произошла ошибка при загрузке ссылок."
+            },
+            "DISCARD_CHANGES": {
+                "WARNING": "Внимание!",
+                "ASK_AI": "Спросить ИИ",
+                "DO_NOT_SHOW_MESSAGE": "Больше не показывать это сообщение",
+                "DISCARD_CONVERSATION": "Отказаться от разговора",
+                "CONVERSATION_DISCARDED": "Этот разговор будет отменен",
+                "LOSE_RESPONSE": "Если вы зададите новый вопрос, предыдущий ответ будет потерян"
+            }
+        }
+    }
+}

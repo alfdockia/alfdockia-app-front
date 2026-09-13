@@ -1,0 +1,27 @@
+<div class="aca-ai-search-save-dialog__header">
+  <h2>Guardar búsqueda IA</h2>
+  <button mat-icon-button mat-dialog-close type="button" aria-label="Cerrar" title="Cerrar">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<mat-dialog-content>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <mat-form-field class="aca-ai-search-save-dialog__field" appearance="outline">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="name" required />
+      <mat-error *ngIf="form.controls.name.hasError('required')">El nombre es obligatorio.</mat-error>
+      <mat-error *ngIf="form.controls.name.hasError('duplicated')">Ya existe una búsqueda con ese nombre.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="aca-ai-search-save-dialog__field" appearance="outline">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput formControlName="description" rows="3"></textarea>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close type="button">Cancelar</button>
+  <button mat-flat-button color="primary" type="button" (click)="submit()" [disabled]="form.invalid">Guardar</button>
+</mat-dialog-actions>

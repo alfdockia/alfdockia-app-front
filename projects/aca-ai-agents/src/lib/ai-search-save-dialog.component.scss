@@ -1,0 +1,21 @@
+.aca-ai-search-save-dialog {
+  display: block;
+
+  &__header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 20px 0;
+
+    h2 {
+      font-size: 20px;
+      margin: 0;
+    }
+  }
+
+  &__field {
+    display: block;
+    margin-bottom: 14px;
+    width: 100%;
+  }
+}
