@@ -1,0 +1,9 @@
+# The Dockerfile consumes only prebuilt Angular assets and runtime configuration.
+**
+!Dockerfile
+!package.json
+!docker/
+!docker/**
+!dist/
+!dist/content-ce/
+!dist/content-ce/**
