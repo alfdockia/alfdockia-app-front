@@ -2,13 +2,15 @@
   <img src="docs/AlfDockia.png" alt="AlfDockia — Inteligencia documental operativa" width="380" />
 </p>
 
-<h1 align="center">AlfDockia · Agentes conectados a Alfresco</h1>
+<h1 align="center">alfdockia-content-app</h1>
 
 <p align="center">
   Crea, configura y administra agentes desde tu entorno documental.
 </p>
 
 AlfDockia incorpora a Alfresco Content Services un espacio de administración desde el que desplegar agentes como contenedores Docker. Desde una misma pantalla puedes dar de alta un agente, consultar su configuración, comprobar si está ejecutándose y controlar su ciclo de vida.
+
+**Versión del aplicativo: 1.2.2 · Empresa: AIgen Technologies S.L**
 
 Este proyecto es la interfaz web de AlfDockia, construida sobre **Alfresco Content App 8, Angular 20 y Alfresco ADF 9**. Se conecta al módulo AlfDockia del repositorio para convertir una definición JSON en un agente desplegado y registrado en Alfresco.
 
@@ -237,3 +239,9 @@ La funcionalidad de agentes se implementa en [`projects/aca-ai-agents`](projects
 Las operaciones utilizan la ruta base `/alfresco/s/api/-default-/public/alfdockia/versions/1/agents`. La creación envía un `POST` con el JSON del formulario; el backend se encarga de persistirlo y desplegar el agente.
 
 La documentación técnica heredada de Alfresco Content App se conserva en [`docs`](docs). Los términos de licencia del repositorio están en [`LICENSE`](LICENSE).
+
+## Copyright y atribuciones
+
+Copyright © 2026 AIgen Technologies S.L. Todos los derechos reservados sobre las aportaciones propias, conforme a la licencia aplicable.
+
+Este proyecto se basa en Alfresco Content App. Se conservan los avisos de autoría de Hyland Software y demás terceros, así como las licencias correspondientes. Consulta [LICENSE](LICENSE) y [NOTICE](NOTICE).

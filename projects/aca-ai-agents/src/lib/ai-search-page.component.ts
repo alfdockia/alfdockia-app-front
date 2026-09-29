@@ -6,7 +6,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SavedSearch } from '@alfresco/adf-content-services';
 import { NotificationService } from '@alfresco/adf-core';
-import { AppService, ContentApiService, PageComponent } from '@alfresco/aca-shared';
+import { AppService, AppSettingsService, ContentApiService, PageComponent } from '@alfresco/aca-shared';
 import { NavigateToFolder } from '@alfresco/aca-shared/store';
 import { NodeEntry } from '@alfresco/js-api';
 import { ActivatedRoute } from '@angular/router';
@@ -51,6 +51,7 @@ interface AiSearchMetadataItem {
 })
 export class AiSearchPageComponent extends PageComponent implements OnInit, OnDestroy {
   private readonly aiSearchService = inject(AiSearchService);
+  readonly settings = inject(AppSettingsService);
   private readonly appService = inject(AppService);
   private readonly contentApi = inject(ContentApiService);
   private readonly dialog = inject(MatDialog);

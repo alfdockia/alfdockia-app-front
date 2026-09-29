@@ -27,7 +27,7 @@ import { DynamicExtensionComponent, NavBarGroupRef, NavBarLinkRef } from '@alfre
 import { Store } from '@ngrx/store';
 import { AppStore, getSideNavState } from '@alfresco/aca-shared/store';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { AppExtensionService, AppService, NavigationHistoryService } from '@alfresco/aca-shared';
+import { AppExtensionService, AppService, AppSettingsService, NavigationHistoryService } from '@alfresco/aca-shared';
 import { SidenavLayoutComponent } from '@alfresco/adf-core';
 import { CommonModule } from '@angular/common';
 import { SidenavHeaderComponent } from './components/sidenav-header.component';
@@ -48,6 +48,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class SidenavComponent implements OnInit {
   private readonly store = inject<Store<AppStore>>(Store);
   private readonly extensions = inject(AppExtensionService);
+  readonly settings = inject(AppSettingsService);
   private readonly appService = inject(AppService);
   private readonly navigationHistoryService = inject(NavigationHistoryService);
 

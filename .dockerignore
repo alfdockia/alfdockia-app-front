@@ -2,6 +2,7 @@
 **
 !Dockerfile
 !package.json
+!NOTICE
 !docker/
 !docker/**
 !dist/

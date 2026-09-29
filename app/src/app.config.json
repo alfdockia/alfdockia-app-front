@@ -34,10 +34,10 @@
   },
   "locale": "en",
   "application": {
-    "name": "AlfDockia",
-    "version": "8.0.0",
+    "name": "alfdockia-content-app",
+    "version": "1.2.2",
     "logo": "assets/images/alfdockia-logo.png",
-    "copyright": "\u00a9 AlfDockia todos los derechos reservados."
+    "copyright": "\u00a9 2026 AIgen Technologies S.L. Todos los derechos reservados."
   },
   "alfdockiaAiSearch": {
     "baseUrl": "",

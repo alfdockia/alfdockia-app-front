@@ -12,7 +12,7 @@ Desde la raíz, con Node 24, npm 11 y Docker:
 ```bash
 npm ci
 npm run build -- --configuration=production
-docker build -t alfdockia-front:local .
+docker build -t alfdockia-content-app:1.2.2 .
 ```
 
 El Dockerfile consume `dist/content-ce`, por lo que Angular se compila primero.
@@ -27,7 +27,7 @@ y utilizar esta imagen y estas variables:
 ```yaml
 services:
   content-app:
-    image: alfdockia-front:local
+    image: alfdockia-content-app:1.2.2
     environment:
       SEARCH_URL: "http://alfresco-qdrant-search:8084/search"
       BASE_PATH: "/"
@@ -75,7 +75,7 @@ Con `nginx:stable-alpine` y `python:3.11-slim` disponibles localmente:
 python3 scripts/tests/docker-search-proxy.py
 
 # Verificar también la imagen construida y su entrypoint real
-FRONTEND_IMAGE=alfdockia-front:local python3 scripts/tests/docker-search-proxy.py
+FRONTEND_IMAGE=alfdockia-content-app:1.2.2 python3 scripts/tests/docker-search-proxy.py
 ```
 
 La prueba usa un backend temporal y comprueba POST, cuerpo, autorización,

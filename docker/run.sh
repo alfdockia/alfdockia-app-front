@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DOCKER_IMAGE_REPO=alfresco/alfresco-content-app
+DOCKER_IMAGE_REPO=alfdockia-content-app:1.2.2
 HOST_PORT=8081
 CONTAINER_PORT=8080
 

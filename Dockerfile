@@ -12,6 +12,10 @@ RUN mkdir -p ./licenses && \
 
 FROM nginxinc/nginx-unprivileged:1-alpine
 
+LABEL org.opencontainers.image.title="alfdockia-content-app" \
+      org.opencontainers.image.version="1.2.2" \
+      org.opencontainers.image.vendor="AIgen Technologies S.L"
+
 USER root
 RUN apk update && apk upgrade
 USER 101
@@ -20,6 +24,7 @@ COPY docker/default.conf.template /etc/nginx/templates/
 COPY docker/docker-entrypoint.d/* /docker-entrypoint.d/
 
 COPY dist/content-ce /usr/share/nginx/html/
+COPY NOTICE /usr/share/nginx/html/NOTICE
 COPY dist/content-ce/app.config.json /etc/nginx/templates/app.config.json.template
 COPY dist/content-ce/assets/app.extensions.json /etc/nginx/templates/app.extensions.json.template
 COPY --from=builder /usr/src/alfresco/licenses /usr/share/nginx/html/

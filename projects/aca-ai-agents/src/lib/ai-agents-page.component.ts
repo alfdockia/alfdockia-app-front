@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, DestroyRef, OnInit, ViewEncapsulation, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { AppService } from '@alfresco/aca-shared';
+import { AppService, AppSettingsService } from '@alfresco/aca-shared';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -26,6 +26,7 @@ export class AiAgentsPageComponent implements OnInit {
   private readonly agentsService = inject(AiAgentsService);
   private readonly dialog = inject(MatDialog);
   private readonly snackBar = inject(MatSnackBar);
+  readonly settings = inject(AppSettingsService);
   private readonly appService = inject(AppService);
   private readonly destroyRef = inject(DestroyRef);
 

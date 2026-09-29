@@ -1,6 +1,6 @@
 {
-  "name": "alfresco-content-app",
-  "version": "8.0.0",
+  "name": "alfdockia-content-app",
+  "version": "1.2.2",
   "license": "LGPL-3.0",
   "scripts": {
     "start": "nx serve content-ce",
@@ -40,7 +40,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Alfresco/alfresco-content-app.git"
+    "url": "https://github.com/alfdockia/alfdockia-app-front.git"
   },
   "private": true,
   "dependencies": {
@@ -135,5 +135,6 @@
     "ts-node": "^10.9.2",
     "typescript": "5.9.3",
     "webpack-bundle-analyzer": "^5.3.0"
-  }
+  },
+  "author": "AIgen Technologies S.L"
 }

@@ -23,6 +23,11 @@
             "input": ".",
             "output": "/"
           },
+          {
+            "glob": "NOTICE",
+            "input": ".",
+            "output": "/"
+          },
           "app/src/assets",
           "app/src/favicon-96x96.svg",
           {
