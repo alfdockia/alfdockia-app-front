@@ -3,10 +3,23 @@ server {
     server_name  localhost;
     root /usr/share/nginx/html;
 
-    rewrite           ^([^.]*[^/])$ $1/ permanent;
     absolute_redirect off;
 
+    # Resolve Docker service names at request time, including after recreation.
+    resolver 127.0.0.11 valid=10s ipv6=off;
+
+    location = ${BASE_PATH}search {
+        set $search_endpoint "${SEARCH_URL}";
+        proxy_pass $search_endpoint$is_args$args;
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";
+        proxy_ssl_server_name on;
+        proxy_read_timeout 300s;
+    }
+
     location ${BASE_PATH} {
+        # Only static paths need a trailing slash. Never redirect search POSTs.
+        rewrite ^([^.]*[^/])$ $1/ permanent;
         set $EVAL_BASE_PATH "${BASE_PATH}";
         if ($EVAL_BASE_PATH = "/") {
             root   /usr/share/nginx/html;

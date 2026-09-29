@@ -25,8 +25,10 @@ COPY dist/content-ce/assets/app.extensions.json /etc/nginx/templates/app.extensi
 COPY --from=builder /usr/src/alfresco/licenses /usr/share/nginx/html/
 
 USER root
-RUN chmod a+w -R /etc/nginx/conf.d
+RUN chmod a+w -R /etc/nginx/conf.d && \
+    chmod +x /docker-entrypoint.d/30-sed-on-appconfig.sh
 USER 101
 
 ENV BASE_PATH=/
+ENV SEARCH_URL=http://alfresco-qdrant-search:8084/search
 ENV NGINX_ENVSUBST_OUTPUT_DIR=/etc/nginx/conf.d

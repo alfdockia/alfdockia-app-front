@@ -4,6 +4,15 @@ set -e
 
 APP_CONFIG_FILE="${NGINX_ENVSUBST_OUTPUT_DIR}/app.config.json"
 
+if [ -n "${SEARCH_URL}" ]; then
+  # Keep requests under the frontend's public path (also behind StripPrefix).
+  # The internal Docker URL is used only by Nginx, never by the browser.
+  sed -i '/"alfdockiaAiSearch": {/,/}/ {
+    s/"baseUrl": "[^"]*"/"baseUrl": "."/
+    s/"searchPath": "[^"]*"/"searchPath": "\/search"/
+  }' "$APP_CONFIG_FILE"
+fi
+
 if [ -n "${APP_CONFIG_AUTH_TYPE}" ]; then
   echo "SET APP_CONFIG_AUTH_TYPE"
 
