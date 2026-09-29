@@ -59,6 +59,17 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 Thumbs.db
 Desktop.ini
 
-# Local assistant runtime directories
-/.agents/
+# Versioned Codex guidance; keep local runtime/state private
+/.agents/*
+!/.agents/README.md
+!/.agents/templates/
+/.agents/templates/*
+!/.agents/templates/handoff.md
 /.codex/
+.agents/
+docs/
+AGENTS.md
+
+# alfdockia
+.env
+.env.example
